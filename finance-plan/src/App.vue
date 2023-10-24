@@ -1,5 +1,6 @@
 <template>
   <the-header></the-header>
+  <nav-left></nav-left>
   <div class="content">
     <table-transactions> </table-transactions>
   </div>
@@ -8,11 +9,13 @@
 <script>
 import TableTransactions from "./components/table/TableTransactions.vue";
 import TheHeader from "./components/header/TheHeader.vue";
+import NavLeft from "./components/nav/NavLeft.vue";
 
 export default {
   components: {
     TableTransactions,
     TheHeader,
+    NavLeft,
   },
 };
 </script>
@@ -28,6 +31,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #152032;
 }
+
 p {
   color: #ecf0f3;
 }
