@@ -4,7 +4,6 @@
 
 <style>
 .editBtn {
-  background-color: #17253e;
-  color: #ffffff;
+  color: #17253e;
 }
 </style>
