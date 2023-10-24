@@ -17,12 +17,15 @@ export default {
 .tableRow {
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  border-top: 1px solid;
+  /*   background-color: #17253e;
+ */
   padding: 1vh;
 }
 
 p {
   width: 25%;
   text-align: center;
+  color: #ecf0f3;
 }
 </style>

@@ -18,7 +18,9 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: black;
+  background-color: #17253e;
+  /*   background-color: black;
+ */
   color: white;
   padding: 2vh;
 }

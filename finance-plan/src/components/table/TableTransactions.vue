@@ -40,8 +40,8 @@ export default {
 
 <style scoped>
 .tableSec {
-  border: 1px solid black;
   width: 80%;
-  margin-left: 10%;
+  margin: 10%;
+  background: linear-gradient(135deg, #20639b, #05da93);
 }
 </style>
