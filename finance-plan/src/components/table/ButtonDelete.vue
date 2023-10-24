@@ -2,7 +2,7 @@
   <button class="deleteBtn"><i class="fa-solid fa-trash"></i></button>
 </template>
 
-<style>
+<style scoped>
 .deleteBtn {
   color: #17253e;
 }
@@ -14,5 +14,13 @@ i {
 
 i:hover {
   transform: scale(1.1);
+}
+
+button {
+  background-color: transparent;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  margin: 1%;
 }
 </style>
