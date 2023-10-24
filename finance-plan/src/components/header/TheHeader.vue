@@ -26,8 +26,8 @@
 
 <style>
 header {
-  position: fixed;
-  top: 0;
+  /*   position: fixed;
+  top: 0; */
   width: 100vw;
   box-shadow: 0px 1px 10px grey;
   /* background-color: #152032; */
