@@ -20,8 +20,8 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   background-color: #17253e;
-  /*   background-color: black;
- */
+  border-top-left-radius: 4vh;
+  border-top-right-radius: 4vh;
   color: white;
   padding: 2vh;
 }
