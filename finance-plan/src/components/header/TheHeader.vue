@@ -26,7 +26,7 @@
 
 <style scoped>
 header {
-  /* position: fixed;
+  /*   position: fixed;
   top: 0; */
   width: 100vw;
   box-shadow: 0px 1px 10px grey;

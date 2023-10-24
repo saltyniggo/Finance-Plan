@@ -4,6 +4,7 @@
     <h3>Betrag</h3>
     <h3>Bezeichnung</h3>
     <h3>Kategorie</h3>
+    <div class="placeholder"></div>
   </div>
 </template>
 
@@ -19,14 +20,18 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   background-color: #17253e;
-  /*   background-color: black;
- */
+  border-top-left-radius: 4vh;
+  border-top-right-radius: 4vh;
   color: white;
   padding: 2vh;
 }
 
+.placeholder {
+  width: 10%;
+}
+
 h3 {
-  width: 25%;
+  width: 22.5%;
   text-align: center;
 }
 </style>
