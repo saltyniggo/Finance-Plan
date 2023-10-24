@@ -4,6 +4,7 @@
     <h3>Betrag</h3>
     <h3>Bezeichnung</h3>
     <h3>Kategorie</h3>
+    <div class="placeholder"></div>
   </div>
 </template>
 
@@ -25,8 +26,12 @@ export default {
   padding: 2vh;
 }
 
+.placeholder {
+  width: 10%;
+}
+
 h3 {
-  width: 25%;
+  width: 22.5%;
   text-align: center;
 }
 </style>

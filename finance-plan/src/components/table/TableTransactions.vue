@@ -32,6 +32,24 @@ export default {
           description: "Neues Katzenklo",
           category: "Katze",
         },
+        {
+          date: "16.12.1998",
+          amount: 20,
+          description: "Neues Katzenklo",
+          category: "Katze",
+        },
+        {
+          date: "16.12.1998",
+          amount: 20,
+          description: "Neues Katzenklo",
+          category: "Katze",
+        },
+        {
+          date: "16.12.1998",
+          amount: 20,
+          description: "Neues Katzenklo",
+          category: "Katze",
+        },
       ],
     };
   },
