@@ -56,7 +56,7 @@ button {
   margin: 2% 39%;
   background: linear-gradient(135deg, #20639b, #05da93);
   color: #ffffff;
-  font-size: 2.5vh;
+  font-size: 1vw;
   font-weight: 600;
   border-radius: 2vh;
 }
