@@ -1,9 +1,7 @@
 <template>
   <!-- Backdrop -->
 
-  <transition name="smoothBackdrop">
-    <div v-if="open" class="backdrop" @click="closeNav"></div
-  ></transition>
+  <back-drop @backdropClicked="closeNav" :open="open"></back-drop>
 
   <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
     <i class="fa-solid fa-bars"> </i>
@@ -31,7 +29,10 @@
 </template>
 
 <script>
+import BackDrop from "../BackDrop.vue";
+
 export default {
+  components: { BackDrop },
   data() {
     return {
       open: false,
@@ -49,25 +50,12 @@ export default {
       this.closeNavTimeout = setTimeout(() => {
         this.open = false;
       }, 500);
-      this.closeNavTimeout = setTimeout(() => {
-        this.open = false;
-      }, 500);
     },
   },
 };
 </script>
 
 <style scoped>
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-}
-
 i {
   background-color: #05da93;
   color: #fff;
@@ -135,23 +123,6 @@ i {
   to {
     opacity: 1;
     transform: translateX(0) scale(1);
-  }
-}
-
-.smoothBackdrop-enter-active {
-  animation: smoothBackdrop 0.7s ease-out forwards;
-}
-
-.smoothBackdrop-leave-active {
-  animation: smoothBackdrop 0.7s ease-in reverse forwards;
-}
-
-@keyframes smoothBackdrop {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 </style>
