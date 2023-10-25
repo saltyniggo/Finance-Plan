@@ -1,7 +1,8 @@
 <template>
-  <!-- Backdrop -->
-
-  <back-drop @backdropClicked="closeNav" :open="open"></back-drop>
+  <back-drop
+    @backdropClicked="closeNav"
+    :openBackdrop="openBackdrop"
+  ></back-drop>
 
   <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
     <i class="fa-solid fa-bars"> </i>
@@ -9,19 +10,19 @@
     <div>
       <div class="nav">
         <transition name="smoothOpening">
-          <a v-if="open" href="#">Übersicht</a>
+          <a v-if="openSide" href="#">Übersicht</a>
         </transition>
 
         <transition name="smoothOpening">
-          <a v-if="open" href="#">Einnahmen</a>
+          <a v-if="openSide" href="#">Einnahmen</a>
         </transition>
 
         <transition name="smoothOpening">
-          <a v-if="open" href="#">Schulden</a>
+          <a v-if="openSide" href="#">Schulden</a>
         </transition>
 
         <transition name="smoothOpening">
-          <a v-if="open" href="#">Ziele</a>
+          <a v-if="openSide" href="#">Ziele</a>
         </transition>
       </div>
     </div>
@@ -35,20 +36,23 @@ export default {
   components: { BackDrop },
   data() {
     return {
-      open: false,
+      openBackdrop: false,
+      openSide: false,
       closeNavTimeout: null,
     };
   },
 
   methods: {
     openNav() {
-      this.open = true;
+      this.openSide = true;
+      this.openBackdrop = true;
       clearTimeout(this.closeNavTimeout);
     },
 
     closeNav() {
       this.closeNavTimeout = setTimeout(() => {
-        this.open = false;
+        this.openSide = false;
+        this.openBackdrop = false;
       }, 500);
     },
   },

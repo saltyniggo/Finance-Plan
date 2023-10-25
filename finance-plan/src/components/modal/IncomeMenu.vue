@@ -1,6 +1,6 @@
 <template>
   <h1>Einkommen eintragen:</h1>
-  <form @submit.prevent="onSubmit" class="inputArea">
+  <form @submit.prevent="onSubmit" class="inputArea" name="incomeForm">
     <label>Wie viel?</label>
     <input type="number" min="0.00" step="1" placeholder="00.00" />
     <label>Woher?</label>

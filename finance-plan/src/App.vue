@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     openInputModal(value) {
-      console.log(value);
       this.openModal = true;
       this.chosenModal = value;
     },

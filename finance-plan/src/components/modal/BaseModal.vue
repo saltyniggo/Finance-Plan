@@ -1,5 +1,8 @@
 <template>
-  <back-drop @backdropClicked="closeBackdrop" :open="openBackdrop"></back-drop>
+  <back-drop
+    @backdropClicked="closeBackdrop"
+    :openBackdrop="openBackdrop"
+  ></back-drop>
   <transition name="modalPopup">
     <div v-if="openModal" id="baseModal">
       <expense-menu v-if="chosenModal === 'expense'"></expense-menu>
