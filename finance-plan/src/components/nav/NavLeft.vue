@@ -1,17 +1,18 @@
 <template>
-  <div
-    v-if="open"
-    class="backdrop"
-    @click="closeNav"
-    @mouseover="closeNav"
-  ></div>
-  <div class="menu-symbol" @mouseover="openNav" @mouseleave="closeNav">
+  //backdrop
+  <div v-if="open" class="backdrop" @click="closeNav"></div>
+  <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
     <i class="fa-solid fa-bars"> </i>
-    <div class="nav">
-      <a href="#">Übersicht</a>
-      <a href="#">Einnahmen</a>
-      <a href="#">Schulden</a>
-      <a href="#">Ziele</a>
+
+    <div v-if="open" class="nav">
+      <transition name="smoothOpening">
+        <div>
+          <a href="#">Übersicht</a>
+          <a href="#">Einnahmen</a>
+          <a href="#">Schulden</a>
+          <a href="#">Ziele</a>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -21,16 +22,29 @@ export default {
   data() {
     return {
       open: false,
+      closeNavTimeout: null,
     };
   },
   methods: {
     openNav() {
       this.open = true;
       console.log("hover");
+      clearTimeout(this.closeNavTimeout);
+
+      // document.querySelector(".menu-symbol .nav").classList.add("open");
+      // document.querySelector(".menu-symbol i").classList.add("open");
     },
 
     closeNav() {
-      this.open = false;
+      this.closeNavTimeout = setTimeout(() => {
+        this.open = false;
+        document.querySelector(".menu-symbol .nav").classList.remove("open");
+        document.querySelector(".menu-symbol i").classList.remove("open");
+      }, 500);
+
+      /*  this.open = false;
+      document.querySelector(".menu-symbol .nav").classList.remove("open");
+      document.querySelector(".menu-symbol i").classList.remove("open"); */
     },
   },
 };
@@ -98,13 +112,34 @@ i {
   left: 5%;
 }
 
-.menu-symbol:hover .nav {
+.menu-symbol .nav.open {
   opacity: 1;
   visibility: visible;
 }
 
-.menu-symbol:hover i {
+.menu-symbol i.open {
   background-color: white;
   color: #05da93;
+}
+
+.smoothOpening-enter-active {
+  animation: smoothOpening 0.3s ease-out;
+}
+
+.smoothOpening-leave-active {
+  animation: smoothOpening 0.3s ease-in reverse;
+}
+
+@keyframes smoothOpening {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    visibility: visible;
+  }
 }
 </style>
