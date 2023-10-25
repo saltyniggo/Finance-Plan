@@ -36,6 +36,7 @@ export default {
     return {
       open: false,
       closeNavTimeout: null,
+      closeNavTimeout: null,
     };
   },
 
@@ -46,6 +47,9 @@ export default {
     },
 
     closeNav() {
+      this.closeNavTimeout = setTimeout(() => {
+        this.open = false;
+      }, 500);
       this.closeNavTimeout = setTimeout(() => {
         this.open = false;
       }, 500);
@@ -74,13 +78,17 @@ i {
   left: 1%;
   border-radius: 50%;
   z-index: 3;
+  z-index: 3;
 }
 
 .nav {
   position: relative;
+  position: relative;
 }
 
 .nav a {
+  transition: all 0.5s;
+  position: fixed;
   transition: all 0.5s;
   position: fixed;
   padding: 12px 16px;
@@ -91,23 +99,21 @@ i {
   background-color: #20639b;
   width: 7rem;
   z-index: 2;
+  z-index: 2;
 }
 
 .nav :nth-child(1) {
   top: 35%;
   left: 5%;
 }
-
 .nav :nth-child(2) {
   top: 43%;
   left: 9%;
 }
-
 .nav :nth-child(3) {
   bottom: 43%;
   left: 9%;
 }
-
 .nav :nth-child(4) {
   bottom: 35%;
   left: 5%;

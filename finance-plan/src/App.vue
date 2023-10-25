@@ -1,5 +1,6 @@
 <template>
   <the-header></the-header>
+  <base-modal></base-modal>
   <nav-left></nav-left>
   <nav-right></nav-right>
   <div class="content">
@@ -11,6 +12,7 @@
 import TableTransactions from "./components/table/TableTransactions.vue";
 import TheHeader from "./components/header/TheHeader.vue";
 import NavLeft from "./components/nav/NavLeft.vue";
+import BaseModal from "./components/modal/BaseModal.vue";
 import NavRight from "./components/shortcuts/NavRight.vue";
 
 export default {
@@ -19,6 +21,7 @@ export default {
     TheHeader,
     NavLeft,
     NavRight,
+    BaseModal,
   },
 };
 </script>
