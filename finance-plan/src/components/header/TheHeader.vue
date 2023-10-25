@@ -1,7 +1,7 @@
 <template>
   <header>
     <h2>Finance Plan</h2>
-    <div class="right-container">
+    <div v-if="isAuth" class="right-container">
       <img src="https://robohash.org/avatar" />
       <div class="btn-container">
         <button-edit-profile></button-edit-profile>
@@ -23,6 +23,8 @@ export default {
     ButtonLogin,
     ButtonLogout,
   },
+
+  props: ["isAuth"],
 };
 </script>
 
@@ -31,7 +33,8 @@ header {
   /*   position: fixed;
   top: 0; */
   width: 100vw;
-  box-shadow: 0px 1px 10px grey;
+  height: 4.5rem;
+  box-shadow: 0px 1px 10px #20639b;
   /* background-color: #152032; */
   background-color: #17253e;
   display: flex;
