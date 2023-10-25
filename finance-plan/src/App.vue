@@ -1,6 +1,7 @@
 <template>
   <the-header></the-header>
   <nav-left></nav-left>
+  <nav-right></nav-right>
   <div class="content">
     <table-transactions> </table-transactions>
   </div>
@@ -10,12 +11,14 @@
 import TableTransactions from "./components/table/TableTransactions.vue";
 import TheHeader from "./components/header/TheHeader.vue";
 import NavLeft from "./components/nav/NavLeft.vue";
+import NavRight from "./components/shortcuts/NavRight.vue";
 
 export default {
   components: {
     TableTransactions,
     TheHeader,
     NavLeft,
+    NavRight,
   },
 };
 </script>

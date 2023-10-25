@@ -4,7 +4,19 @@
     <div class="right-container">
       <img src="https://robohash.org/avatar" />
       <div class="btn-container">
-        <button>
+        <button-round :btnColor="'#fff'"
+          ><i class="fa-solid fa-pencil"></i
+        ></button-round>
+
+        <button-round :btnColor="'#fff'"
+          ><i class="fa-solid fa-arrow-right-from-bracket"></i
+        ></button-round>
+
+        <button-round :btnColor="'#fff'" class="hidden"
+          ><i class="fa-solid fa-arrow-right-to-bracket"></i
+        ></button-round>
+
+        <!--  <button>
           <i class="fa-solid fa-pencil" style="color: #ffffff"></i>
         </button>
         <button>
@@ -18,11 +30,21 @@
             class="fa-solid fa-arrow-right-to-bracket"
             style="color: #ffffff"
           ></i>
-        </button>
+        </button> -->
       </div>
     </div>
   </header>
 </template>
+
+<script>
+import ButtonRound from "./ButtonRound.vue";
+
+export default {
+  components: {
+    ButtonRound,
+  },
+};
+</script>
 
 <style scoped>
 header {
@@ -63,11 +85,12 @@ img {
   margin-left: 2%;
 }
 
-button {
+/* button {
   background-color: transparent;
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
   margin: 1%;
-}
+  cursor: pointer;
+} */
 </style>

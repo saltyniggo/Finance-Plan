@@ -1,7 +1,9 @@
 <template>
   <!-- Backdrop -->
 
-  <div v-if="open" class="backdrop" @click="closeNav"></div>
+  <transition name="smoothBackdrop">
+    <div v-if="open" class="backdrop" @click="closeNav"></div
+  ></transition>
 
   <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
     <i class="fa-solid fa-bars"> </i>
@@ -128,6 +130,23 @@ i {
   to {
     opacity: 1;
     transform: translateX(0) scale(1);
+  }
+}
+
+.smoothBackdrop-enter-active {
+  animation: smoothBackdrop 0.7s ease-out forwards;
+}
+
+.smoothBackdrop-leave-active {
+  animation: smoothBackdrop 0.7s ease-in reverse forwards;
+}
+
+@keyframes smoothBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
