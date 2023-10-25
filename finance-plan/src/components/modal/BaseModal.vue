@@ -39,7 +39,7 @@ export default {
   color: #ecf0f3;
   border-radius: 5vh;
   box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
-  margin: 7.5% 35%;
+  margin-left: 35%;
 }
 
 .modalPopup-enter-active {

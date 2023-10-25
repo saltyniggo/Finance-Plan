@@ -1,19 +1,26 @@
 <template>
-  <the-header></the-header>
-  <base-modal :openModal="openModal" :chosenModal="chosenModal"></base-modal>
-  <nav-left></nav-left>
-  <nav-right
-    @addExpense="openInputModal('expense')"
-    @addIncome="openInputModal('income')"
-    @closeModal="
-      {
-        this.openModal = false;
-      }
-    "
-    :openModal="openModal"
-  ></nav-right>
-  <div class="content">
-    <table-transactions> </table-transactions>
+  <the-header :isAuth="isAuth"></the-header>
+
+  <div v-if="isAuth">
+    <base-modal :openModal="openModal" :chosenModal="chosenModal"></base-modal>
+    <nav-left></nav-left>
+    <nav-right
+      @addExpense="openInputModal('expense')"
+      @addIncome="openInputModal('income')"
+      @closeModal="
+        {
+          this.openModal = false;
+        }
+      "
+      :openModal="openModal"
+    ></nav-right>
+    <div class="content">
+      <table-transactions> </table-transactions>
+    </div>
+  </div>
+
+  <div v-else>
+    <base-card><login-form></login-form></base-card>
   </div>
 </template>
 
@@ -23,6 +30,8 @@ import TheHeader from "./components/header/TheHeader.vue";
 import NavLeft from "./components/nav/NavLeft.vue";
 import BaseModal from "./components/modal/BaseModal.vue";
 import NavRight from "./components/shortcuts/NavRight.vue";
+import BaseCard from "./components/login/BaseCard.vue";
+import LoginForm from "./components/login/LoginForm.vue";
 
 export default {
   components: {
@@ -31,9 +40,13 @@ export default {
     NavLeft,
     NavRight,
     BaseModal,
+    BaseCard,
+    LoginForm,
   },
+
   data() {
     return {
+      isAuth: true,
       openModal: false,
       chosenModal: false,
     };

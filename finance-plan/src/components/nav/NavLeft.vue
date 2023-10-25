@@ -82,7 +82,11 @@ i {
   display: block;
   text-align: center;
   color: #ecf0f3;
-  background-color: #20639b;
+  border-radius: 2vh;
+  border: 2px solid;
+  border-color: grey black black gray;
+  cursor: pointer;
+
   width: 7rem;
   z-index: 2;
 }
@@ -90,18 +94,22 @@ i {
 .nav :nth-child(1) {
   top: 35%;
   left: 5%;
+  background: linear-gradient(45deg, #05da93, #20639b);
 }
 .nav :nth-child(2) {
   top: 43%;
   left: 9%;
+  background: linear-gradient(90deg, #05da93, #20639b);
 }
 .nav :nth-child(3) {
   bottom: 43%;
   left: 9%;
+  background: linear-gradient(90deg, #05da93, #20639b);
 }
 .nav :nth-child(4) {
   bottom: 35%;
   left: 5%;
+  background: linear-gradient(135deg, #05da93, #20639b);
 }
 
 .smoothOpening-enter-active {
