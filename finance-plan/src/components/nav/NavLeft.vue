@@ -36,7 +36,6 @@ export default {
     return {
       open: false,
       closeNavTimeout: null,
-      closeNavTimeout: null,
     };
   },
 
