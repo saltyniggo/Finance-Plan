@@ -55,7 +55,7 @@ export default {
 @keyframes modalPopup {
   from {
     opacity: 0;
-    transform: translateY(400px) scale(0.8);
+    transform: translateY(225px) scale(0.8);
   }
 
   to {
