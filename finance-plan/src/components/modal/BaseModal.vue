@@ -15,7 +15,7 @@ export default {
   components: { BaseMenu, ExpenseMenu, IncomeMenu },
   data() {
     return {
-      actionChosen: "expense",
+      actionChosen: "income",
     };
   },
 };
@@ -23,11 +23,15 @@ export default {
 
 <style scoped>
 #baseModal {
+  z-index: 2;
   position: fixed;
   top: 0;
-  width: 30%;
-  height: 30%;
-  background-color: grey;
+  min-width: 30%;
+  min-height: 30%;
+  background-color: #152032;
+  color: #ecf0f3;
+  border-radius: 5vh;
+  box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
   margin: 20% 35%;
 }
 </style>
