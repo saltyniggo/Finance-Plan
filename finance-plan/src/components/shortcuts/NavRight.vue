@@ -10,15 +10,15 @@
     <div>
       <div class="nav">
         <transition name="smoothOpening">
-          <a v-if="open" href="#">+Einnahmen</a>
+          <div v-if="open"><button-expense></button-expense></div>
         </transition>
 
         <transition name="smoothOpening">
-          <a v-if="open" href="#">+Ausgaben</a>
+          <div v-if="open"><button-income></button-income></div>
         </transition>
 
         <transition name="smoothOpening">
-          <a v-if="open" href="#"> +Schulden</a>
+          <div v-if="open"><button-aim></button-aim></div>
         </transition>
       </div>
     </div>
@@ -26,7 +26,11 @@
 </template>
 
 <script>
+import ButtonExpense from "./ButtonExpense.vue";
+import ButtonAim from "./ButtonAim.vue";
+import ButtonIncome from "./ButtonIncome.vue";
 export default {
+  components: { ButtonExpense, ButtonAim, ButtonIncome },
   data() {
     return {
       open: false,
@@ -50,6 +54,10 @@ export default {
 </script>
 
 <style scoped>
+button {
+  width: 100%;
+  padding: 12px 12px;
+}
 .backdrop {
   position: fixed;
   top: 0;
@@ -75,15 +83,15 @@ i {
   position: relative;
 }
 
-.nav a {
+.nav div {
   transition: all 0.5s;
   position: fixed;
-  padding: 12px 16px;
+
   text-decoration: none;
   display: block;
   text-align: center;
   color: #ecf0f3;
-  background-color: #20639b;
+
   width: 7rem;
   z-index: 2;
 }

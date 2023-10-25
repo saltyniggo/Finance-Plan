@@ -4,44 +4,24 @@
     <div class="right-container">
       <img src="https://robohash.org/avatar" />
       <div class="btn-container">
-        <button-round :btnColor="'#fff'"
-          ><i class="fa-solid fa-pencil"></i
-        ></button-round>
-
-        <button-round :btnColor="'#fff'"
-          ><i class="fa-solid fa-arrow-right-from-bracket"></i
-        ></button-round>
-
-        <button-round :btnColor="'#fff'" class="hidden"
-          ><i class="fa-solid fa-arrow-right-to-bracket"></i
-        ></button-round>
-
-        <!--  <button>
-          <i class="fa-solid fa-pencil" style="color: #ffffff"></i>
-        </button>
-        <button>
-          <i
-            class="fa-solid fa-arrow-right-from-bracket"
-            style="color: #ffffff"
-          ></i>
-        </button>
-        <button class="hidden">
-          <i
-            class="fa-solid fa-arrow-right-to-bracket"
-            style="color: #ffffff"
-          ></i>
-        </button> -->
+        <button-edit-profile></button-edit-profile>
+        <button-login></button-login>
+        <button-logout></button-logout>
       </div>
     </div>
   </header>
 </template>
 
 <script>
-import ButtonRound from "./ButtonRound.vue";
+import ButtonLogin from "./ButtonLogin.vue";
+import ButtonLogout from "./ButtonLogout.vue";
+import ButtonEditProfile from "./ButtonEditProfile.vue";
 
 export default {
   components: {
-    ButtonRound,
+    ButtonEditProfile,
+    ButtonLogin,
+    ButtonLogout,
   },
 };
 </script>
@@ -84,13 +64,4 @@ img {
   justify-content: center;
   margin-left: 2%;
 }
-
-/* button {
-  background-color: transparent;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  margin: 1%;
-  cursor: pointer;
-} */
 </style>

@@ -77,7 +77,6 @@ i {
   left: 1%;
   border-radius: 50%;
   z-index: 3;
-  z-index: 3;
 }
 
 .nav {
@@ -97,7 +96,6 @@ i {
   color: #ecf0f3;
   background-color: #20639b;
   width: 7rem;
-  z-index: 2;
   z-index: 2;
 }
 
