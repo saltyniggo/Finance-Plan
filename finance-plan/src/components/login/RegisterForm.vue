@@ -1,13 +1,17 @@
 <template>
-  <h1>Login</h1>
+  <h1>Registrieren</h1>
   <form>
+    <label>Vorname</label>
+    <input type="text" />
+    <label>Nachname</label>
+    <input type="text" />
     <label>Email:</label>
     <input type="text" />
     <label>Passwort:</label>
     <input type="text" />
     <button @submit.prevent>SUBMIT</button>
   </form>
-  <a href="#">Noch nicht registriert? Dann gehts hier zur Anmeldung.</a>
+  <a href="#">Doch registriert? Dann gehts hier zum Login.</a>
 </template>
 
 <style scoped>
