@@ -10,13 +10,13 @@
       <div class="nav">
         <transition name="smoothOpening">
           <div v-if="openSide">
-            <button-expense @click="this.$emit('addExpense')"></button-expense>
+            <button-expense @click="$emit('addExpense')"></button-expense>
           </div>
         </transition>
 
         <transition name="smoothOpening">
           <div v-if="openSide">
-            <button-income @click="this.$emit('addIncome')"></button-income>
+            <button-income @click="$emit('addIncome')"></button-income>
           </div>
         </transition>
 
@@ -35,6 +35,7 @@ import ButtonIncome from "./ButtonIncome.vue";
 
 export default {
   props: ["openModal"],
+  emits: ["addExpense", "addIncome", "closeModal"],
   components: { ButtonExpense, ButtonAim, ButtonIncome },
   data() {
     return {
