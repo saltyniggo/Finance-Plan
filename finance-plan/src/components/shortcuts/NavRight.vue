@@ -64,7 +64,7 @@ export default {
         }
         this.openSide = false;
         this.openBackdrop = false;
-      }, 500);
+      }, 400);
     },
   },
 };
