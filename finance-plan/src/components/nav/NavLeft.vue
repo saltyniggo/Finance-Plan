@@ -1,17 +1,23 @@
 <template>
-  <div
-    v-if="open"
-    class="backdrop"
-    @click="closeNav"
-    @mouseover="closeNav"
-  ></div>
-  <div class="menu-symbol" @mouseover="openNav" @mouseleave="closeNav">
+  <!-- Backdrop -->
+  <div v-if="open" class="backdrop" @click="closeNav"></div>
+  <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
     <i class="fa-solid fa-bars"> </i>
-    <div class="nav">
-      <a href="#">Übersicht</a>
-      <a href="#">Einnahmen</a>
-      <a href="#">Schulden</a>
-      <a href="#">Ziele</a>
+    <div>
+      <div class="nav">
+        <transition name="smoothOpening">
+          <a v-if="open" href="#">Übersicht</a>
+        </transition>
+        <transition name="smoothOpening">
+          <a v-if="open" href="#">Einnahmen</a>
+        </transition>
+        <transition name="smoothOpening">
+          <a v-if="open" href="#">Schulden</a>
+        </transition>
+        <transition name="smoothOpening">
+          <a v-if="open" href="#">Ziele</a>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -21,16 +27,20 @@ export default {
   data() {
     return {
       open: false,
+      closeNavTimeout: null,
     };
   },
   methods: {
     openNav() {
       this.open = true;
       console.log("hover");
+      clearTimeout(this.closeNavTimeout);
     },
 
     closeNav() {
-      this.open = false;
+      this.closeNavTimeout = setTimeout(() => {
+        this.open = false;
+      }, 500);
     },
   },
 };
@@ -55,16 +65,16 @@ i {
   bottom: 48%;
   left: 1%;
   border-radius: 50%;
+  z-index: 3;
 }
 
 .nav {
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.5s;
-  z-index: 10;
+  position: relative;
 }
 
 .nav a {
+  transition: all 0.5s;
+  position: fixed;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -72,39 +82,43 @@ i {
   color: #ecf0f3;
   background-color: #20639b;
   width: 7rem;
+  z-index: 2;
 }
 
 .nav :nth-child(1) {
-  position: absolute;
   top: 35%;
   left: 5%;
 }
-
 .nav :nth-child(2) {
-  position: absolute;
   top: 43%;
   left: 9%;
 }
-
 .nav :nth-child(3) {
-  position: absolute;
   bottom: 43%;
   left: 9%;
 }
-
 .nav :nth-child(4) {
-  position: absolute;
   bottom: 35%;
   left: 5%;
 }
 
-.menu-symbol:hover .nav {
-  opacity: 1;
-  visibility: visible;
+.smoothOpening-enter-active {
+  animation: smoothOpening 0.7s ease-out forwards;
 }
 
-.menu-symbol:hover i {
-  background-color: white;
-  color: #05da93;
+.smoothOpening-leave-active {
+  animation: smoothOpening 0.7s ease-in reverse forwards;
+}
+
+@keyframes smoothOpening {
+  from {
+    opacity: 0;
+    transform: translateX(-200px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
 </style>

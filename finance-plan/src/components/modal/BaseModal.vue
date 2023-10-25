@@ -15,7 +15,7 @@ export default {
   components: { BaseMenu, ExpenseMenu, IncomeMenu },
   data() {
     return {
-      actionChosen: false,
+      actionChosen: "expense",
     };
   },
 };
