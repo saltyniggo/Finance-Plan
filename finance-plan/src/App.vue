@@ -1,8 +1,17 @@
 <template>
   <the-header></the-header>
-  <base-modal></base-modal>
+  <base-modal :openModal="openModal" :chosenModal="chosenModal"></base-modal>
   <nav-left></nav-left>
-  <nav-right></nav-right>
+  <nav-right
+    @addExpense="openInputModal('expense')"
+    @addIncome="openInputModal('income')"
+    @closeModal="
+      {
+        this.openModal = false;
+      }
+    "
+    :openModal="openModal"
+  ></nav-right>
   <div class="content">
     <table-transactions> </table-transactions>
   </div>
@@ -22,6 +31,19 @@ export default {
     NavLeft,
     NavRight,
     BaseModal,
+  },
+  data() {
+    return {
+      openModal: false,
+      chosenModal: false,
+    };
+  },
+  methods: {
+    openInputModal(value) {
+      console.log(value);
+      this.openModal = true;
+      this.chosenModal = value;
+    },
   },
 };
 </script>

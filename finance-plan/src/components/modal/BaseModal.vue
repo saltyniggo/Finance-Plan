@@ -1,31 +1,29 @@
 <template>
-  <back-drop @backdropClicked="closeModal" :open="open"></back-drop>
+  <back-drop @backdropClicked="closeBackdrop" :open="openBackdrop"></back-drop>
   <transition name="modalPopup">
-    <div v-if="open" id="baseModal">
-      <base-menu v-if="!actionChosen"></base-menu>
-      <expense-menu v-else-if="actionChosen === 'expense'"></expense-menu>
-      <income-menu v-else-if="actionChosen === 'income'"></income-menu>
+    <div v-if="openModal" id="baseModal">
+      <expense-menu v-if="chosenModal === 'expense'"></expense-menu>
+      <income-menu v-else-if="chosenModal === 'income'"></income-menu>
     </div>
   </transition>
 </template>
 
 <script>
-import BaseMenu from "./BaseMenu.vue";
 import ExpenseMenu from "./ExpenseMenu.vue";
 import IncomeMenu from "./IncomeMenu.vue";
 import BackDrop from "../BackDrop.vue";
 
 export default {
-  components: { BaseMenu, ExpenseMenu, IncomeMenu, BackDrop },
+  props: ["chosenModal", "openModal"],
+  components: { ExpenseMenu, IncomeMenu, BackDrop },
   data() {
     return {
-      open: true,
-      actionChosen: "income",
+      openBackdrop: false,
     };
   },
   methods: {
-    closeModal() {
-      this.open = false;
+    closeBackdrop() {
+      this.openBackdrop = false;
     },
   },
 };

@@ -1,7 +1,6 @@
 <template>
-  <!-- Backdrop -->
   <transition name="smoothBackdrop">
-    <div v-if="open" class="backdrop" @click="closeNav"></div
+    <div v-if="openBackdrop" class="backdrop" @click="closeNav"></div
   ></transition>
 
   <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
@@ -10,15 +9,19 @@
     <div>
       <div class="nav">
         <transition name="smoothOpening">
-          <div v-if="open"><button-expense></button-expense></div>
+          <div v-if="openSide">
+            <button-expense @click="this.$emit('addExpense')"></button-expense>
+          </div>
         </transition>
 
         <transition name="smoothOpening">
-          <div v-if="open"><button-income></button-income></div>
+          <div v-if="openSide">
+            <button-income @click="this.$emit('addIncome')"></button-income>
+          </div>
         </transition>
 
         <transition name="smoothOpening">
-          <div v-if="open"><button-aim></button-aim></div>
+          <div v-if="openSide"><button-aim></button-aim></div>
         </transition>
       </div>
     </div>
@@ -29,24 +32,38 @@
 import ButtonExpense from "./ButtonExpense.vue";
 import ButtonAim from "./ButtonAim.vue";
 import ButtonIncome from "./ButtonIncome.vue";
+
 export default {
+  props: ["openModal"],
   components: { ButtonExpense, ButtonAim, ButtonIncome },
   data() {
     return {
-      open: false,
+      openBackdrop: false,
+      openSide: false,
       closeNavTimeout: null,
     };
   },
 
   methods: {
     openNav() {
-      this.open = true;
+      this.openSide = true;
+      this.openBackdrop = true;
       clearTimeout(this.closeNavTimeout);
     },
 
     closeNav() {
+      if (this.openSide === false) {
+        this.openBackdrop = false;
+        this.$emit("closeModal");
+        return;
+      }
       this.closeNavTimeout = setTimeout(() => {
-        this.open = false;
+        if (this.openModal === true) {
+          this.openSide = false;
+          return;
+        }
+        this.openSide = false;
+        this.openBackdrop = false;
       }, 500);
     },
   },
