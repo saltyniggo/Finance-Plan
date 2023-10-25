@@ -37,6 +37,7 @@ h1 {
 label {
   font-size: 2vh;
   margin-left: 10%;
+  margin-bottom: 1vh;
 }
 
 input,
