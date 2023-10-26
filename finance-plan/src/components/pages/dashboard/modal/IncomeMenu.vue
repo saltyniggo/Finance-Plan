@@ -43,6 +43,9 @@ export default {
   methods: {
     submitIncome() {
       console.log(this.amount, this.description, this.date, this.category);
+      if (this.category === null || "") {
+        this.category = "Sonstiges";
+      }
       this.addTransaction({
         date: this.date,
         amount: this.amount,
