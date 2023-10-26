@@ -1,5 +1,7 @@
 import { createApp } from "vue";
+
 import App from "./App.vue";
+import store from "./store/index.js";
 
 import ButtonRound from "./components/base/ButtonRound.vue";
 import ButtonRectangle from "./components/base/ButtonRectangle.vue";
@@ -14,5 +16,7 @@ app.component("ButtonRectangle", ButtonRectangle);
 app.component("BackDrop", BackDrop);
 app.component("BaseCard", BaseCard);
 app.component("BaseForm", BaseForm);
+
+app.use(store);
 
 app.mount("#app");

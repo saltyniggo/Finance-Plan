@@ -1,7 +1,11 @@
 <template>
   <div class="tableSec">
     <table-head></table-head>
-    <table-row v-for="data in dataSet" :key="data" :data="data"></table-row>
+    <table-row
+      v-for="data in getTransactions"
+      :key="data"
+      :data="data"
+    ></table-row>
   </div>
 </template>
 
@@ -11,47 +15,10 @@ import TableHead from "./TableHead.vue";
 
 export default {
   components: { TableRow, TableHead },
-  data() {
-    return {
-      dataSet: [
-        {
-          date: "01.11.2003",
-          amount: 120,
-          description: "Fallschirm-Springen",
-          category: "Freizeit",
-        },
-        {
-          date: "29.07.2002",
-          amount: 140,
-          description: "Miete + Strom",
-          category: "Miete",
-        },
-        {
-          date: "16.12.1998",
-          amount: 20,
-          description: "Neues Katzenklo",
-          category: "Katze",
-        },
-        {
-          date: "16.12.1998",
-          amount: 20,
-          description: "Neues Katzenklo",
-          category: "Katze",
-        },
-        {
-          date: "16.12.1998",
-          amount: 20,
-          description: "Neues Katzenklo",
-          category: "Katze",
-        },
-        {
-          date: "16.12.1998",
-          amount: 20,
-          description: "Neues Katzenklo",
-          category: "Katze",
-        },
-      ],
-    };
+  computed: {
+    getTransactions() {
+      return this.$store.getters["transactionList/getTransactions"];
+    },
   },
 };
 </script>

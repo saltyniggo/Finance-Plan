@@ -1,6 +1,5 @@
 <template>
   <the-header :isAuth="isAuth"></the-header>
-
   <div v-if="isAuth">
     <base-modal :openModal="openModal" :chosenModal="chosenModal"></base-modal>
     <nav-left></nav-left>
