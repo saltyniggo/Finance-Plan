@@ -5,18 +5,14 @@
     <p>{{ data.description }}</p>
     <p>{{ data.category }}</p>
     <div class="buttonList">
-      <button-edit></button-edit>
-      <button-delete></button-delete>
+      <button-round><i class="fa-solid fa-pen"></i></button-round>
+      <button-round><i class="fa-solid fa-trash"></i></button-round>
     </div>
   </div>
 </template>
 
 <script>
-import ButtonEdit from "./ButtonEdit.vue";
-import ButtonDelete from "./ButtonDelete.vue";
-
 export default {
-  components: { ButtonEdit, ButtonDelete },
   props: ["data"],
 };
 </script>
