@@ -1,5 +1,8 @@
 <template>
-  <button :style="{ color: btnColor, background: bg }">
+  <button
+    :style="{ color: btnColor, background: bg }"
+    @click="$emit('clickEvent')"
+  >
     <slot><i class="fa-solid fa-plus"></i></slot>
   </button>
 </template>
