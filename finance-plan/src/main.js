@@ -6,6 +6,7 @@ import ButtonRectangle from "./components/base/ButtonRectangle.vue";
 import BackDrop from "./components/base/BackDrop.vue";
 import BaseCard from "./components/base/BaseCard.vue";
 import BaseForm from "./components/base/BaseForm.vue";
+import BaseInput from "./components/base/BaseInput.vue";
 
 const app = createApp(App);
 
@@ -14,5 +15,6 @@ app.component("ButtonRectangle", ButtonRectangle);
 app.component("BackDrop", BackDrop);
 app.component("BaseCard", BaseCard);
 app.component("BaseForm", BaseForm);
+app.component("BaseInput", BaseInput);
 
 app.mount("#app");
