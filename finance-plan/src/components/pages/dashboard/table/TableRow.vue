@@ -1,19 +1,28 @@
 <template>
-  <div class="tableRow">
-    <p>{{ data.date }}</p>
-    <p>{{ data.amount }}€</p>
-    <p>{{ data.description }}</p>
-    <p>{{ data.category }}</p>
-    <div class="buttonList">
-      <button-round><i class="fa-solid fa-pen"></i></button-round>
-      <button-round><i class="fa-solid fa-trash"></i></button-round>
+  <transition name="fadeIn">
+    <div class="tableRow" v-if="data">
+      <p>{{ data.date }}</p>
+      <p>{{ data.amount }}€</p>
+      <p>{{ data.description }}</p>
+      <p>{{ data.category }}</p>
+      <div class="buttonList">
+        <button-round><i class="fa-solid fa-pen"></i></button-round>
+        <button-round @click="deleteTransaction(index)"
+          ><i class="fa-solid fa-trash"></i
+        ></button-round>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  props: ["data"],
+  props: ["data", "index"],
+  methods: {
+    ...mapActions("transactionList", ["deleteTransaction"]),
+  },
 };
 </script>
 
@@ -22,9 +31,24 @@ export default {
   display: flex;
   flex-direction: row;
   border-top: 1px solid;
-  /*   background-color: #17253e;
- */
   padding: 1vh;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-enter-active {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.fade-leave-active {
+  animation: fadeIn 0.5s ease-in reverse;
 }
 
 .buttonList {

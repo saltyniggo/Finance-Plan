@@ -1,11 +1,14 @@
 <template>
   <div class="tableSec">
     <table-head></table-head>
-    <table-row
-      v-for="data in getTransactions"
-      :key="data"
-      :data="data"
-    ></table-row>
+    <transition-group name="fade" tag="ul">
+      <table-row
+        v-for="(data, index) in getTransactions"
+        :key="data"
+        :data="data"
+        :index="index"
+      ></table-row>
+    </transition-group>
   </div>
 </template>
 
@@ -32,8 +35,32 @@ export default {
   border-top-right-radius: 5vh;
   border-bottom-left-radius: 4vh;
   border-bottom-right-radius: 4vh;
-  /*   border: #152032 2px solid;
- */
   box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease-in;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.fade-leave-from {
+  position: absolute;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-move {
+  transition: transform 0.5s ease;
 }
 </style>
