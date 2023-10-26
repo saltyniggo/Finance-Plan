@@ -30,10 +30,7 @@
 </template>
 
 <script>
-import BackDrop from "../BackDrop.vue";
-
 export default {
-  components: { BackDrop },
   data() {
     return {
       openBackdrop: false,

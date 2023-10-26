@@ -18,9 +18,7 @@
 </template>
 
 <script>
-import BaseForm from "./BaseForm.vue";
 export default {
-  components: { BaseForm },
   methods: {
     toggleRegisterStatus() {
       this.$emit("toggle-register-status");

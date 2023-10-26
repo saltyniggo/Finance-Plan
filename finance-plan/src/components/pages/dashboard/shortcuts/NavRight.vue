@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import BackDrop from "../BackDrop.vue";
 import ButtonExpense from "./ButtonExpense.vue";
 import ButtonAim from "./ButtonAim.vue";
 import ButtonIncome from "./ButtonIncome.vue";
@@ -38,7 +37,7 @@ import ButtonIncome from "./ButtonIncome.vue";
 export default {
   props: ["openModal"],
   emits: ["addExpense", "addIncome", "closeModal"],
-  components: { ButtonExpense, ButtonAim, ButtonIncome, BackDrop },
+  components: { ButtonExpense, ButtonAim, ButtonIncome },
   data() {
     return {
       openBackdrop: false,

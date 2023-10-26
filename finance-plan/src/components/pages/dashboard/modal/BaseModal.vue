@@ -14,11 +14,10 @@
 <script>
 import ExpenseMenu from "./ExpenseMenu.vue";
 import IncomeMenu from "./IncomeMenu.vue";
-import BackDrop from "../BackDrop.vue";
 
 export default {
   props: ["chosenModal", "openModal"],
-  components: { ExpenseMenu, IncomeMenu, BackDrop },
+  components: { ExpenseMenu, IncomeMenu },
   data() {
     return {
       openBackdrop: false,

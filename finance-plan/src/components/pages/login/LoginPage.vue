@@ -16,10 +16,9 @@
 <script>
 import LoginForm from "./LoginForm.vue";
 import RegisterForm from "./RegisterForm.vue";
-import BaseCard from "./BaseCard.vue";
 
 export default {
-  components: { LoginForm, RegisterForm, BaseCard },
+  components: { LoginForm, RegisterForm },
   data() {
     return {
       isRegistered: false,

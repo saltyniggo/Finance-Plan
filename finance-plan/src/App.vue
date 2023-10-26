@@ -25,13 +25,12 @@
 </template>
 
 <script>
-import TableTransactions from "./components/table/TableTransactions.vue";
-import TheHeader from "./components/header/TheHeader.vue";
-import NavLeft from "./components/nav/NavLeft.vue";
-import BaseModal from "./components/modal/BaseModal.vue";
-import NavRight from "./components/shortcuts/NavRight.vue";
-
-import LoginPage from "./components/login/LoginPage.vue";
+import TableTransactions from "./components/pages/dashboard/table/TableTransactions.vue";
+import TheHeader from "./components/pages/dashboard/header/TheHeader.vue";
+import NavLeft from "./components/pages/dashboard/nav/NavLeft.vue";
+import BaseModal from "./components/pages/dashboard/modal/BaseModal.vue";
+import NavRight from "./components/pages/dashboard/shortcuts/NavRight.vue";
+import LoginPage from "./components/pages/login/LoginPage.vue";
 
 export default {
   components: {
@@ -40,7 +39,6 @@ export default {
     NavLeft,
     NavRight,
     BaseModal,
-
     LoginPage,
   },
 
