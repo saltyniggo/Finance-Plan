@@ -1,12 +1,12 @@
 <template>
   <transition name="smoothBackdrop">
-    <div v-if="open" class="backdrop" @click="closeBackDrop"></div>
+    <div v-if="openBackdrop" class="backdrop" @click="closeBackDrop"></div>
   </transition>
 </template>
 
 <script>
 export default {
-  props: { open },
+  props: ["openBackdrop"],
   methods: {
     closeBackDrop() {
       this.$emit("backdropClicked");

@@ -1,7 +1,8 @@
 <template>
-  <transition name="smoothBackdrop">
-    <div v-if="openBackdrop" class="backdrop" @click="closeNav"></div
-  ></transition>
+  <back-drop
+    @backdropClicked="closeNav"
+    :openBackdrop="openBackdrop"
+  ></back-drop>
 
   <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
     <i class="fa-solid fa-plus"></i>
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+import BackDrop from "../BackDrop.vue";
 import ButtonExpense from "./ButtonExpense.vue";
 import ButtonAim from "./ButtonAim.vue";
 import ButtonIncome from "./ButtonIncome.vue";
@@ -36,7 +38,7 @@ import ButtonIncome from "./ButtonIncome.vue";
 export default {
   props: ["openModal"],
   emits: ["addExpense", "addIncome", "closeModal"],
-  components: { ButtonExpense, ButtonAim, ButtonIncome },
+  components: { ButtonExpense, ButtonAim, ButtonIncome, BackDrop },
   data() {
     return {
       openBackdrop: false,

@@ -1,6 +1,6 @@
 <template>
   <h1>Ausgabe eintragen:</h1>
-  <form @submit.prevent="onSubmit" class="inputArea">
+  <form @submit.prevent="onSubmit" class="inputArea" name="expenseForm">
     <label>Wie viel?</label>
     <input type="number" min="0.00" step="1" placeholder="00.00" />
     <label>Wofür?</label>
