@@ -1,9 +1,15 @@
 <template>
   <div v-if="isRegistered">
-    <base-card><login-form></login-form></base-card>
+    <base-card
+      ><login-form @toggle-register-status="changeRegisterStatus"></login-form
+    ></base-card>
   </div>
   <div v-else>
-    <base-card><register-form></register-form></base-card>
+    <base-card
+      ><register-form
+        @toggle-register-status="changeRegisterStatus"
+      ></register-form
+    ></base-card>
   </div>
 </template>
 
@@ -16,8 +22,13 @@ export default {
   components: { LoginForm, RegisterForm, BaseCard },
   data() {
     return {
-      isRegistered: true,
+      isRegistered: false,
     };
+  },
+  methods: {
+    changeRegisterStatus() {
+      this.isRegistered = !this.isRegistered;
+    },
   },
 };
 </script>
