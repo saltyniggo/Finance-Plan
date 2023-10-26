@@ -1,7 +1,7 @@
 import rootMutations from "./mutations.js";
 import rootActions from "./actions.js";
-/* import rootGetters from "./getter.js";
- */
+import rootGetters from "./getter.js";
+
 export default {
   namespaced: true,
   state() {
@@ -48,9 +48,5 @@ export default {
   },
   mutations: rootMutations,
   actions: rootActions,
-  getters: {
-    getTransactions(state) {
-      return state.transactions;
-    },
-  },
+  getters: rootGetters,
 };
