@@ -1,4 +1,5 @@
 <template>
+  <edit-modal></edit-modal>
   <div class="tableSec">
     <table-head></table-head>
     <transition-group name="fade" tag="ul">
@@ -15,9 +16,10 @@
 <script>
 import TableRow from "./TableRow.vue";
 import TableHead from "./TableHead.vue";
+import EditModal from "./edit/EditModal.vue";
 
 export default {
-  components: { TableRow, TableHead },
+  components: { TableRow, TableHead, EditModal },
   computed: {
     getTransactions() {
       return this.$store.getters["transactionList/getTransactions"];

@@ -10,4 +10,10 @@ export default {
       .padStart(2, "0")}.${year}`;
     context.commit("addTransaction", packet);
   },
+  openEditModal(context, index) {
+    context.commit("openEditModal", index);
+  },
+  submitEdit(context, packet) {
+    context.commit("submitEdit", packet);
+  },
 };

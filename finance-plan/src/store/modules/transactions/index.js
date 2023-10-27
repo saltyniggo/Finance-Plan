@@ -6,6 +6,8 @@ export default {
   namespaced: true,
   state() {
     return {
+      isEditModalOpen: false,
+      toEditIndex: null,
       transactions: [
         {
           date: "01.11.2003",

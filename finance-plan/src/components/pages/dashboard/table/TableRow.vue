@@ -22,17 +22,8 @@ import { mapActions } from "vuex";
 
 export default {
   props: ["data", "index"],
-  data() {
-    return {
-      openModal: false,
-    };
-  },
   methods: {
-    openEditModal(index) {
-      this.openModal = true;
-      console.log(index);
-    },
-    ...mapActions("transactionList", ["deleteTransaction"]),
+    ...mapActions("transactionList", ["deleteTransaction", "openEditModal"]),
   },
 };
 </script>

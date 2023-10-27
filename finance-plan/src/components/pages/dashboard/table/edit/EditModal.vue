@@ -4,20 +4,30 @@
     :openBackdrop="openBackdrop"
   ></back-drop>
   <transition name="modalPopup">
-    <div v-if="openModal" id="baseModal"></div>
+    <div v-if="isEditModalOpen" id="baseModal">
+      <input type="number" v-model="newAmount" />
+      <button @click="submitEdit(newAmount)">Hallo</button>
+    </div>
   </transition>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  props: ["openModal"],
-  components: { ExpenseMenu, IncomeMenu },
   data() {
     return {
+      newAmount: null,
       openBackdrop: false,
     };
   },
+  computed: {
+    isEditModalOpen() {
+      return this.$store.getters["transactionList/isEditModalOpen"];
+    },
+  },
   methods: {
+    ...mapActions("transactionList", ["submitEdit"]),
     closeBackdrop() {
       this.openBackdrop = false;
     },

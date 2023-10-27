@@ -10,4 +10,11 @@ export default {
       category: packet.category,
     });
   },
+  openEditModal(state, index) {
+    state.isEditModalOpen = true;
+    state.toEditIndex = index;
+  },
+  submitEdit(state, packet) {
+    state.transactions[state.toEditIndex].amount = packet;
+  },
 };
