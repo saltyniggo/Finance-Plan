@@ -5,8 +5,32 @@
   ></back-drop>
   <transition name="modalPopup">
     <div v-if="isEditModalOpen" id="baseModal">
-      <input type="number" v-model="newAmount" />
-      <button @click="submitEdit(newAmount)">Hallo</button>
+      <form class="inputArea">
+        <label>Wie viel?</label>
+        <input
+          type="number"
+          min="0.00"
+          step="0.01"
+          placeholder="00.00"
+          v-model="newAmount"
+        />
+        <label>Woher?</label>
+        <input type="text" v-model="newDescription" />
+        <label>An welchem Tag?</label>
+        <input type="date" v-model="newDate" />
+        <label>Kategorie</label>
+        <select v-model="newCategory">
+          <option value="">---</option>
+          <option value="Haushalt">Haushalt</option>
+          <option value="Essen">Essen</option>
+          <option value="Freizeit">Freizeit</option>
+          <option value="Auto">Auto</option>
+          <option value="Hund">Hund</option>
+          <option value="Katze">Katze</option>
+          <option value="Maus">Maus</option>
+        </select>
+        <button @submit.prevent @click="processEdit">SUBMIT</button>
+      </form>
     </div>
   </transition>
 </template>
@@ -18,6 +42,9 @@ export default {
   data() {
     return {
       newAmount: null,
+      newDescription: null,
+      newDate: null,
+      newCategory: null,
       openBackdrop: false,
     };
   },
@@ -27,6 +54,14 @@ export default {
     },
   },
   methods: {
+    processEdit() {
+      this.submitEdit({
+        date: this.newDate,
+        amount: this.newAmount,
+        description: this.newDescription,
+        category: this.newCategory,
+      });
+    },
     ...mapActions("transactionList", ["submitEdit"]),
     closeBackdrop() {
       this.openBackdrop = false;
@@ -46,6 +81,44 @@ export default {
   border-radius: 5vh;
   box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
   margin-left: 35%;
+}
+
+.inputArea {
+  padding: 2.5%;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  padding: 2%;
+  text-align: center;
+}
+
+label {
+  font-size: 2vh;
+  margin-left: 10%;
+  margin-bottom: 1vh;
+}
+
+input,
+select {
+  background-color: #17253e;
+  color: #ffffff;
+  border: none;
+  width: 80%;
+  height: 2.5vh;
+  margin-left: 10%;
+  margin-bottom: 4%;
+}
+button {
+  width: 22%;
+  padding: 2%;
+  margin: 2% 39%;
+  background: linear-gradient(135deg, #20639b, #05da93);
+  color: #ffffff;
+  font-size: 1vw;
+  font-weight: 600;
+  border-radius: 2vh;
 }
 
 .modalPopup-enter-active {
