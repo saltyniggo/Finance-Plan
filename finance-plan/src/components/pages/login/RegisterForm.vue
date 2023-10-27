@@ -39,6 +39,9 @@
       <base-input :rightTwice="rightTwice" @input-change="handlePasswordRepeat">
         <template v-slot:label>Passwort wiederholen:</template></base-input
       >
+      <p v-if="!rightTwice" :style="{ fontSize: 'small', color: 'red' }">
+        Das Passwort ist nicht identisch mit dem zuvor erstellten
+      </p>
     </template>
 
     <template v-slot:buttonSubmit> </template>
@@ -64,6 +67,7 @@ export default {
       lowerCheck: false,
       signCheck: false,
       justNumbers: false,
+      rightTwice: true,
     };
   },
   methods: {
@@ -121,10 +125,8 @@ export default {
         !justNumbers
       ) {
         console.log("Saved");
-        this.requirementsTrue = true;
       } else {
         console.log("Check Requirements");
-        this.requirementsTrue = false;
       }
     },
 

@@ -5,6 +5,7 @@
     :type="inputType"
     v-model="inputValue"
     @input="emitInputValue"
+    :required="required"
   />
   <select v-if="select" v-model="selectvalue" @change="emitSelectValue">
     <slot v-if="select"></slot>
@@ -22,6 +23,10 @@ export default {
     currentComponent: {
       type: String,
       default: "input",
+    },
+    required: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
