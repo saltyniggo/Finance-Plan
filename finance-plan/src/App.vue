@@ -43,10 +43,15 @@ export default {
 
   data() {
     return {
-      isAuth: false,
       openModal: false,
       chosenModal: false,
     };
+  },
+
+  computed: {
+    isAuth() {
+      return this.$store.state.registerModule.isAuth;
+    },
   },
   methods: {
     openInputModal(value) {
