@@ -3,16 +3,18 @@
   <input
     v-if="currentComponent == 'input'"
     :type="inputType"
-    v-model="inputValue"
-    @input="emitInputValue"
+    :value="inputValue"
+    @input="updateInputValue"
     :required="required"
+    :field="field"
   />
-  <select v-if="select" v-model="selectvalue" @change="emitSelectValue">
+  <!--  <select v-if="select" v-model="selectvalue" @change="emitSelectValue">
     <slot v-if="select"></slot>
-  </select>
+  </select> -->
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   emits: ["input-change"],
   props: {
@@ -28,23 +30,46 @@ export default {
       type: Boolean,
       default: true,
     },
+    field: { type: String },
   },
-  data() {
+
+  computed: {
+    inputValue: {
+      get() {
+        return this.$store.getters["registerModule/inputValue"](this.field);
+      },
+      set(value) {
+        this.$store.dispatch("registerModule/updateFormData", {
+          field: this.field,
+          value,
+        });
+      },
+    },
+  },
+
+  methods: {
+    ...mapActions("registerModule", [
+      "updatePasswordAction",
+      "updatePasswordRepeatAction",
+    ]),
+
+    updateInputValue(event) {
+      this.inputValue = event.target.value;
+      this.updatePasswordRepeatAction();
+      this.updatePasswordAction();
+    },
+  },
+
+  /*   data() {
     return {
-      inputValue: "",
       selectedValue: "option1",
     };
   },
   methods: {
-    emitInputValue() {
-      console.log("emit");
-      console.log(this.inputType);
-      this.$emit("input-change", this.inputValue);
-    },
     emitSelectValue() {
       this.$emit("select-change", this.selectedValue);
     },
-  },
+  }, */
 };
 </script>
 

@@ -2,27 +2,44 @@
   <base-form @submitEvent="register">
     <template v-slot:title>Registrieren</template>
     <template v-slot:default>
-      <base-input @input-change="(value) => handleFirstName(value)">
-        <template v-slot:label>Vorname:</template></base-input
+      <base-input v-model="formData.firstName" :field="'firstName'">
+        <template v-slot:label>Vorname:</template>
+      </base-input>
+
+      <base-input v-model="formData.lastName" :field="'lastName'">
+        <template v-slot:label>Nachname:</template>
+      </base-input>
+
+      <base-input
+        :inputType="'email'"
+        v-model="formData.email"
+        :field="'email'"
       >
-      <base-input @input-change="handleLastName">
-        <template v-slot:label>Nachname:</template></base-input
-      >
-      <base-input :inputType="'email'" @input-change="handleEmail">
-        <template v-slot:label>Email:</template></base-input
-      >
+        <template v-slot:label>Email:</template>
+      </base-input>
 
       <h4>Passwortanforderungen:</h4>
       <ul>
-        <li :style="{ color: lengthCheck ? 'green' : 'red' }">8 Buchstaben</li>
+        <li :style="{ color: formData.lengthCheck ? 'green' : 'red' }">
+          8 Buchstaben
+        </li>
         <li
           :style="{
-            color: capitalCheck && lowerCheck && !justNumbers ? 'green' : 'red',
+            color:
+              formData.capitalCheck &&
+              formData.lowerCheck &&
+              !formData.justNumbers
+                ? 'green'
+                : 'red',
           }"
         >
           Groß- und Kleinschreibung
         </li>
-        <li :style="{ color: numberCheck && signCheck ? 'green' : 'red' }">
+        <li
+          :style="{
+            color: formData.numberCheck && formData.signCheck ? 'green' : 'red',
+          }"
+        >
           mindestens eine Zahl und ein Sonderzeichen
           (!@#$%^&*()_+\-=\[]{?};':"|,.&lt;&gt;)
         </li>
@@ -31,15 +48,24 @@
       <br />
 
       <base-input
-        :requirementsTrue="requirementsTrue"
-        @input-change="handlePassword"
+        :requirementsOk="formData.requirementsOk"
+        :field="'password'"
+        v-model="formData.password"
       >
         <template v-slot:label>Passwort:</template></base-input
       >
-      <base-input :rightTwice="rightTwice" @input-change="handlePasswordRepeat">
+      <base-input
+        :rightTwice="formData.rightTwice"
+        :field="'passwordRepeat'"
+        v-model="formData.passwordRepeat"
+      >
         <template v-slot:label>Passwort wiederholen:</template></base-input
       >
-      <p v-if="!rightTwice" :style="{ fontSize: 'small', color: 'red' }">
+
+      <p
+        v-if="!formData.rightTwice"
+        :style="{ fontSize: 'small', color: 'red' }"
+      >
         Das Passwort ist nicht identisch mit dem zuvor erstellten
       </p>
     </template>
@@ -54,21 +80,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      passwordRepeat: "",
-      lengthCheck: false,
-      numberCheck: false,
-      capitalCheck: false,
-      lowerCheck: false,
-      signCheck: false,
-      justNumbers: false,
-      rightTwice: true,
-    };
+  computed: {
+    formData() {
+      return this.$store.getters["registerModule/getFormData"];
+    },
   },
   methods: {
     toggleRegisterStatus() {
@@ -76,68 +91,7 @@ export default {
     },
 
     register() {
-      console.log("register");
-    },
-    handleFirstName(value) {
-      this.firstName = value;
-    },
-
-    handleLastName(value) {
-      this.lastName = value;
-    },
-
-    handleEmail(value) {
-      this.email = value;
-    },
-
-    handlePassword(value) {
-      this.password = value.trim();
-      this.checkPassword();
-    },
-
-    handlePasswordRepeat(value) {
-      this.passwordRepeat = value;
-      this.doubleCheckPassword();
-    },
-
-    checkPassword() {
-      const password = this.password;
-      const lengthCheck = password.length >= 8;
-      const numberCheck = /[0-9]/.test(password);
-      const capitalCheck = /[A-Z]/.test(password);
-      const lowerCheck = /[a-z]/.test(password);
-      const signCheck = /[!@#$%^&*()_+\-={};':"|,.<>?]/.test(password);
-      const justNumbers = /^[0-9]+$/.test(password);
-
-      this.lengthCheck = lengthCheck;
-      this.numberCheck = numberCheck;
-      this.capitalCheck = capitalCheck;
-      this.lowerCheck = lowerCheck;
-      this.signCheck = signCheck;
-      this.justNumbers = justNumbers;
-
-      if (
-        lengthCheck &&
-        numberCheck &&
-        capitalCheck &&
-        lowerCheck &&
-        signCheck &&
-        !justNumbers
-      ) {
-        console.log("Saved");
-      } else {
-        console.log("Check Requirements");
-      }
-    },
-
-    doubleCheckPassword() {
-      if (this.password === this.passwordRepeat) {
-        console.log("2x right");
-        this.rightTwice = true;
-      } else {
-        console.log("nope");
-        this.rightTwice = false;
-      }
+      this.$store.dispatch("registerModule/register");
     },
   },
 };
