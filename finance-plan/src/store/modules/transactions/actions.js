@@ -9,11 +9,15 @@ export default {
       .toString()
       .padStart(2, "0")}.${year}`;
     context.commit("addTransaction", packet);
+    context.commit("checkTransactionList");
   },
   openEditModal(context, index) {
     context.commit("openEditModal", index);
   },
   submitEdit(context, packet) {
     context.commit("submitEdit", packet);
+  },
+  checkTransactionList(context) {
+    context.commit("checkTransactionList");
   },
 };

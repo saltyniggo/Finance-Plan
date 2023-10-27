@@ -9,6 +9,7 @@ export default {
       description: packet.description,
       category: packet.category,
     });
+    console.log(state.transactions);
   },
   openEditModal(state, index) {
     state.isEditModalOpen = true;
@@ -24,5 +25,12 @@ export default {
       state.transactions[state.toEditIndex].category = packet.category;
     state.isEditModalOpen = false;
     state.toEditIndex = null;
+  },
+  checkTransactionList(state) {
+    if (state.transactions.length <= 0) {
+      state.transactionsEmpty = true;
+    } else {
+      state.transactionsEmpty = false;
+    }
   },
 };

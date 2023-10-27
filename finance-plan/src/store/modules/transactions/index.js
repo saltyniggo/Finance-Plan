@@ -7,7 +7,8 @@ export default {
   state() {
     return {
       isEditModalOpen: false,
-      toEditIndex: null,
+      toEditIndex: undefined,
+      transactionsEmpty: undefined,
       transactions: [
         {
           date: "01.11.2003",
@@ -25,24 +26,6 @@ export default {
           date: "16.12.1998",
           amount: 20,
           description: "Neues Katzenklo",
-          category: "Katze",
-        },
-        {
-          date: "16.12.1998",
-          amount: 20,
-          description: "Neues Katzenkino",
-          category: "Katze",
-        },
-        {
-          date: "16.12.1998",
-          amount: 20,
-          description: "Neues Katzenpferd",
-          category: "Katze",
-        },
-        {
-          date: "16.12.1998",
-          amount: 20,
-          description: "Neues Katzentoilette",
           category: "Katze",
         },
       ],

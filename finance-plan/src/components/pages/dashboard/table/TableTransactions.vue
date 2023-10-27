@@ -1,6 +1,6 @@
 <template>
   <edit-modal></edit-modal>
-  <div class="tableSec">
+  <div v-show="!transactionsEmpty" class="tableSec">
     <table-head></table-head>
     <transition-group name="fade" tag="ul">
       <table-row
@@ -11,9 +11,15 @@
       ></table-row>
     </transition-group>
   </div>
+  <div v-show="transactionsEmpty" class="emptyListMessage">
+    <h1>Bisher sind keine Transaktionen gespeichert!</h1>
+    <h2>Füge jetzt deine erste Transaktion hinzu!</h2>
+  </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import TableRow from "./TableRow.vue";
 import TableHead from "./TableHead.vue";
 import EditModal from "./edit/EditModal.vue";
@@ -21,9 +27,18 @@ import EditModal from "./edit/EditModal.vue";
 export default {
   components: { TableRow, TableHead, EditModal },
   computed: {
+    transactionsEmpty() {
+      return this.$store.getters["transactionList/transactionsEmpty"];
+    },
     getTransactions() {
       return this.$store.getters["transactionList/getTransactions"];
     },
+  },
+  methods: {
+    ...mapActions("transactionList", ["checkTransactionList"]),
+  },
+  mounted() {
+    this.checkTransactionList();
   },
 };
 </script>
@@ -38,6 +53,13 @@ export default {
   border-bottom-left-radius: 4vh;
   border-bottom-right-radius: 4vh;
   box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
+}
+
+.emptyListMessage {
+  margin-top: 12.5%;
+  padding: 2.5%;
+  text-align: center;
+  color: #ffffff;
 }
 
 .fade-enter-from {

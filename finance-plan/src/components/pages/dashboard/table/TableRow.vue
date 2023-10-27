@@ -9,7 +9,11 @@
         <button-round @click="openEditModal(index)"
           ><i class="fa-solid fa-pen"></i
         ></button-round>
-        <button-round @click="deleteTransaction(index)"
+        <button-round
+          @click="
+            deleteTransaction(index);
+            checkTransactionList();
+          "
           ><i class="fa-solid fa-trash"></i
         ></button-round>
       </div>
@@ -23,7 +27,11 @@ import { mapActions } from "vuex";
 export default {
   props: ["data", "index"],
   methods: {
-    ...mapActions("transactionList", ["deleteTransaction", "openEditModal"]),
+    ...mapActions("transactionList", [
+      "deleteTransaction",
+      "openEditModal",
+      "checkTransactionList",
+    ]),
   },
 };
 </script>
