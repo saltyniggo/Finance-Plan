@@ -5,7 +5,7 @@ import rootGetters from "./getters.js";
 export default {
   namespaced: true,
   state: {
-    isAuth: false,
+    isAuth: true,
     isLoggedIn: false,
     formData: {
       firstName: "",
@@ -31,6 +31,9 @@ export default {
       passwordRight: false,
       emailRight: false,
       showError: false,
+
+      firstName: "Frieda",
+      lastName: "Ewers",
     },
   },
   mutations: rootMutations,

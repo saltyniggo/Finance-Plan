@@ -1,4 +1,5 @@
 <template>
+  <profile-edit-modal></profile-edit-modal>
   <header>
     <h2>Finance Plan</h2>
     <div v-if="isAuth" class="right-container">
@@ -16,15 +17,24 @@
 import ButtonLogin from "./ButtonLogin.vue";
 import ButtonLogout from "./ButtonLogout.vue";
 import ButtonEditProfile from "./ButtonEditProfile.vue";
+import profileEditModal from "./profileEditModal.vue";
 
 export default {
   components: {
     ButtonEditProfile,
     ButtonLogin,
     ButtonLogout,
+    profileEditModal,
   },
 
   props: ["isAuth"],
+
+  methods: {
+    openEditModal(data) {
+      // this.receivedData = data;
+      console.log("open", data);
+    },
+  },
 };
 </script>
 
