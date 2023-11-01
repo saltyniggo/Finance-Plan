@@ -59,4 +59,39 @@ export default {
       state.isAuth = true;
     }
   },
+
+  checkLoginEmail(state) {
+    if (state.formData.loginEmail != state.loginData.userEmail) {
+      console.log("worng email");
+      state.loginData.emailRight = false;
+    }
+    if (state.formData.loginEmail == state.loginData.userEmail) {
+      state.loginData.emailRight = true;
+    }
+  },
+
+  checkLoginPassword(state) {
+    if (state.formData.loginPassword != state.loginData.userPassword) {
+      console.log("worng password");
+      state.loginData.passwordRight = false;
+    }
+    if (state.formData.loginPassword == state.loginData.userPassword) {
+      state.loginData.passwordRight = true;
+    }
+  },
+
+  login(state) {
+    if (state.loginData.emailRight && state.loginData.passwordRight) {
+      console.log("nice both right");
+      state.loginData.showError = false;
+      state.isAuth = true;
+    } else {
+      console.log("nope");
+      state.loginData.showError = true;
+    }
+  },
+
+  logout(state) {
+    state.isAuth = false;
+  },
 };

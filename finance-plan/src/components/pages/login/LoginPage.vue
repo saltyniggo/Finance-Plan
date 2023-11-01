@@ -19,9 +19,10 @@ import RegisterForm from "./RegisterForm.vue";
 
 export default {
   components: { LoginForm, RegisterForm },
+
   data() {
     return {
-      isRegistered: false,
+      isRegistered: true,
     };
   },
   methods: {

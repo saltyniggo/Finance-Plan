@@ -1,9 +1,22 @@
 <template>
   <base-form @submitEvent="login">
     <template v-slot:title>Login</template>
+
     <template v-slot:default>
-      <base-input> <template v-slot:label>Email</template></base-input>
-      <base-input> <template v-slot:label>Passwort</template></base-input>
+      <base-input v-model="formData.loginEmail" :field="'loginEmail'">
+        <template v-slot:label>Email:</template>
+      </base-input>
+      <base-input
+        v-model="formData.loginPassword"
+        :inputType="'password'"
+        :field="'loginPassword'"
+      >
+        <template v-slot:label>Password:</template>
+      </base-input>
+
+      <p v-if="loginData.showError" :style="{ color: 'red' }">
+        Passwort oder Email sind falsch. Bitte versuch es nochmal
+      </p>
     </template>
 
     <template v-slot:buttonSubmit> </template>
@@ -16,12 +29,20 @@
 
 <script>
 export default {
+  computed: {
+    formData() {
+      return this.$store.getters["registerModule/getFormData"];
+    },
+    loginData() {
+      return this.$store.getters["registerModule/getLoginData"];
+    },
+  },
   methods: {
     toggleRegisterStatus() {
       this.$emit("toggle-register-status");
     },
     login() {
-      console.log("login");
+      this.$store.dispatch("registerModule/login");
     },
   },
 };

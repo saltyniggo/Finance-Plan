@@ -2,6 +2,9 @@ export default {
   getFormData(state) {
     return state.formData;
   },
+  getLoginData(state) {
+    return state.loginData;
+  },
   inputValue: (state) => (field) => {
     return state.formData[field];
   },

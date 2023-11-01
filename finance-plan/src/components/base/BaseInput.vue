@@ -36,27 +36,41 @@ export default {
   computed: {
     inputValue: {
       get() {
+        // return [
+        //   this.$store.getters["registerModule/inputValue"](this.field),
+        //   this.$store.getters["loginModule/inputValue"](this.field),
+        // ];
+
         return this.$store.getters["registerModule/inputValue"](this.field);
+        // return this.$store.getters["loginModule/inputValue"](this.field);
       },
       set(value) {
         this.$store.dispatch("registerModule/updateFormData", {
           field: this.field,
           value,
         });
+        // this.$store.dispatch("loginModule/updateFormData", {
+        //   field: this.field,
+        //   value,
+        // });
       },
     },
   },
 
   methods: {
     ...mapActions("registerModule", [
-      "updatePasswordAction",
-      "updatePasswordRepeatAction",
+      "checkPassword",
+      "checkPasswordRepeat",
+      "checkLoginEmail",
+      "checkLoginPassword",
     ]),
 
     updateInputValue(event) {
       this.inputValue = event.target.value;
-      this.updatePasswordRepeatAction();
-      this.updatePasswordAction();
+      this.checkPasswordRepeat();
+      this.checkPassword();
+      this.checkLoginEmail();
+      this.checkLoginPassword();
     },
   },
 

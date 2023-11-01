@@ -6,6 +6,7 @@ export default {
   namespaced: true,
   state: {
     isAuth: false,
+    isLoggedIn: false,
     formData: {
       firstName: "",
       lastName: "",
@@ -20,6 +21,16 @@ export default {
       justNumbers: false,
       requirementsOk: false,
       rightTwice: true,
+      loginEmail: "",
+      LoginPassword: "",
+    },
+    loginData: {
+      userEmail: "heyjoo.3@gmail.com",
+      userPassword: "abCD12!?",
+
+      passwordRight: false,
+      emailRight: false,
+      showError: false,
     },
   },
   mutations: rootMutations,
