@@ -46,7 +46,6 @@ export default {
 
 <style scoped>
 .tableSec {
-  position: relative;
   width: 80%;
   margin: 10%;
   background: linear-gradient(135deg, #20639b, #05da93);
@@ -80,35 +79,10 @@ export default {
 }
 
 .row-leave-to {
-  transform: translateX(10%);
+  transform: translateX(5%);
 }
 
 .row-leave-active {
   position: absolute;
 }
-/* .fade-enter-from {
-  opacity: 0;
-  transform: translateX(-30px);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.5s ease-in;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.fade-leave-from {
-  position: absolute;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.fade-move {
-  transition: transform 0.5s ease;
-} */
 </style>
