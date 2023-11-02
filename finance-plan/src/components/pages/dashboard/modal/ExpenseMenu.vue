@@ -8,11 +8,12 @@
       step="0.01"
       placeholder="00.00"
       v-model="amount"
+      required
     />
     <label>Wofür?</label>
-    <input type="text" v-model="description" />
+    <input type="text" v-model="description" required />
     <label>An welchem Tag?</label>
-    <input type="date" v-model="date" />
+    <input type="date" v-model="date" required />
     <label>Kategorie</label>
     <select v-model="category">
       <option value="">---</option>

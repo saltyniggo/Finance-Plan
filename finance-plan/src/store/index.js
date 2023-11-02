@@ -11,7 +11,9 @@ const store = createStore({
     userModule: userModule,
   },
   state() {
-    return {};
+    return {
+      backdropIsVisible: false,
+    };
   },
 });
 
