@@ -65,9 +65,6 @@
 export default {
   data() {
     return {
-      firstName: this.$store.getters["userModule/getFirstName"],
-      lastName: this.$store.getters["userModule/getLastName"],
-      userEmail: this.$store.getters["userModule/getEmail"],
       oldPassword: "",
       newPassword: "",
       oldPasswordWrong: false,
@@ -75,6 +72,15 @@ export default {
   },
 
   computed: {
+    firstName() {
+      return this.$store.getters["userModule/getFirstName"];
+    },
+    lastName() {
+      return this.$store.getters["userModule/getLastName"];
+    },
+    userEmail() {
+      return this.$store.getters["userModule/getEmail"];
+    },
     isEditModalOpen() {
       return this.$store.getters["userModule/getEditProfile"];
     },

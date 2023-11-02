@@ -9,6 +9,7 @@ export default {
       isEditModalOpen: false,
       toEditIndex: undefined,
       transactionsEmpty: undefined,
+      sum: 120,
       transactions: [
         {
           date: "01.11.2003",

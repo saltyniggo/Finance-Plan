@@ -1,6 +1,9 @@
 export default {
   getTransactions(state) {
-    return state.transactions;
+    return {
+      transactions: state.transactions,
+      sum: state.sum + "€",
+    };
   },
   isEditModalOpen(state) {
     return state.isEditModalOpen;
