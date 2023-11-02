@@ -2,12 +2,13 @@
   <edit-modal></edit-modal>
   <div v-show="!transactionsEmpty" class="tableSec">
     <table-head></table-head>
-    <transition-group name="fade" tag="ul">
+    <transition-group name="row" tag="ul">
       <table-row
         v-for="(data, index) in getTransactions"
         :key="data"
         :data="data"
         :index="index"
+        class="rows"
       ></table-row>
     </transition-group>
   </div>
@@ -45,6 +46,7 @@ export default {
 
 <style scoped>
 .tableSec {
+  position: relative;
   width: 80%;
   margin: 10%;
   background: linear-gradient(135deg, #20639b, #05da93);
@@ -62,7 +64,29 @@ export default {
   color: #ffffff;
 }
 
-.fade-enter-from {
+.rows {
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.row-enter,
+.row-leave-to {
+  opacity: 0;
+}
+
+.row-enter {
+  transform: translateY(30%);
+}
+
+.row-leave-to {
+  transform: translateX(10%);
+}
+
+.row-leave-active {
+  position: absolute;
+}
+/* .fade-enter-from {
   opacity: 0;
   transform: translateX(-30px);
 }
@@ -86,5 +110,5 @@ export default {
 
 .fade-move {
   transition: transform 0.5s ease;
-}
+} */
 </style>

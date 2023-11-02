@@ -1,6 +1,6 @@
 <template>
   <h1>Ausgabe eintragen:</h1>
-  <form @submit.prevent="onSubmit" class="inputArea" name="expenseForm">
+  <form @submit.prevent="submitExpense" class="inputArea" name="expenseForm">
     <label>Wie viel?</label>
     <input
       type="number"
@@ -24,7 +24,7 @@
       <option value="Katze">Katze</option>
       <option value="Maus">Maus</option>
     </select>
-    <button @submit.prevent @click="submitExpense">SUBMIT</button>
+    <button>SUBMIT</button>
   </form>
 </template>
 
