@@ -70,6 +70,10 @@ export default {
   },
 
   actions: {
+    toggleEditProfile({ commit }) {
+      commit("toggleEditProfile");
+    },
+
     updateFirstName({ commit }, newFirst) {
       commit("updateFirstName", newFirst);
     },
