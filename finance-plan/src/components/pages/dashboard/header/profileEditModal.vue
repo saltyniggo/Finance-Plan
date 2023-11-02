@@ -15,6 +15,12 @@
         <input v-model="userEmail" />
         <label>altes Passwort</label>
         <input v-model="oldPassword" />
+        <p v-if="oldPasswordWrong" :style="{ color: 'red' }">
+          Ist das alte Passwort richtig? Soll es nicht verändert werden, lösche
+          den Inhalt der Passwortfelder
+        </p>
+        <label>neues Passwort</label>
+        <input v-model="newPassword" />
         <h4>Passwortanforderungen:</h4>
         <ul>
           <li
@@ -49,10 +55,7 @@
             (!@#$%^&*()_+\-=\[]{?};':"|,.&lt;&gt;)
           </li>
         </ul>
-
-        <label>neues Passwort</label>
-        <input v-model="newPassword" />
-        <button type="submit" @click="processEdit">SUBMIT</button>
+        <button type="submit">SUBMIT</button>
       </form>
     </div>
   </transition>
@@ -62,17 +65,24 @@
 export default {
   data() {
     return {
-      isEditModalOpen: this.$store.getters["userModule/getEditProfile"],
-      openBackdrop: true,
       firstName: this.$store.getters["userModule/getFirstName"],
       lastName: this.$store.getters["userModule/getLastName"],
       userEmail: this.$store.getters["userModule/getEmail"],
       oldPassword: "",
       newPassword: "",
+      oldPasswordWrong: false,
     };
   },
 
   computed: {
+    isEditModalOpen() {
+      return this.$store.getters["userModule/getEditProfile"];
+    },
+
+    openBackdrop() {
+      return this.$store.getters["userModule/getEditProfile"];
+    },
+
     userPassword() {
       return this.$store.getters["userModule/getPassword"];
     },
@@ -95,30 +105,34 @@ export default {
       this.$store.dispatch("userModule/updateEmail", this.userEmail);
 
       if (this.userPassword === this.oldPassword) {
+        this.oldPasswordWrong = false;
         console.log("old password correct");
         if (this.newPassword.trim == "") {
           console.log("empty input");
         } else {
           if (this.passwordRequirements.requirementsOk) {
             this.$store.dispatch("userModule/updatePassword", this.newPassword);
-            this.isEditModalOpen = false;
+            this.$store.dispatch("userModule/toggleEditProfile");
             this.openBackdrop = false;
           } else {
             console.log("check password requirements");
           }
         }
       } else if (this.oldPassword == "" && this.newPassword == "") {
-        this.isEditModalOpen = false;
+        this.$store.dispatch("userModule/toggleEditProfile");
         this.openBackdrop = false;
         console.log("no Password changes");
+        this.oldPasswordWrong = false;
       } else {
         console.log("type in correct old password");
+        this.oldPasswordWrong = true;
       }
     },
 
     closeBackdrop() {
+      console.log("puff");
       this.openBackdrop = false;
-      this.isEditModalOpen = false;
+      this.$store.dispatch("userModule/toggleEditProfile");
     },
   },
 };
@@ -151,7 +165,8 @@ h1 {
 h4 {
   margin: 0 10%;
 }
-li {
+li,
+p {
   font-size: small;
   margin: 0 15%;
 }

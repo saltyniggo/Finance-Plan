@@ -16,7 +16,7 @@ export default {
       requirementsOk: false,
     },
 
-    editProfile: true,
+    editProfile: false,
   },
 
   mutations: {
@@ -70,6 +70,10 @@ export default {
   },
 
   actions: {
+    toggleEditProfile({ commit }) {
+      commit("toggleEditProfile");
+    },
+
     updateFirstName({ commit }, newFirst) {
       commit("updateFirstName", newFirst);
     },
