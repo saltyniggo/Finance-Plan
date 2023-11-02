@@ -5,7 +5,7 @@
   ></back-drop>
   <transition name="modalPopup">
     <div v-if="isEditModalOpen" id="baseModal">
-      <form class="inputArea">
+      <form class="inputArea" @submit.prevent="processEdit">
         <label>Wie viel?</label>
         <input
           type="number"
@@ -29,7 +29,7 @@
           <option value="Katze">Katze</option>
           <option value="Maus">Maus</option>
         </select>
-        <button @submit.prevent @click="processEdit">SUBMIT</button>
+        <button>SUBMIT</button>
       </form>
     </div>
   </transition>
