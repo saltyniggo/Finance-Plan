@@ -20,6 +20,9 @@ export default {
   },
 
   mutations: {
+    toggleEditProfile(state) {
+      state.editProfile = !state.editProfile;
+    },
     updateFirstName(state, newFirst) {
       state.firstName = newFirst;
     },
