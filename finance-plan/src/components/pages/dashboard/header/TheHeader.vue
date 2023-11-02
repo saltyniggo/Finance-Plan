@@ -33,10 +33,10 @@ export default {
     fullName() {
       return this.$store.getters["userModule/getFullName"];
     },
-    methods: {
-      openEditModal(data) {
-        console.log("open", data);
-      },
+  },
+  methods: {
+    openEditModal(data) {
+      console.log("open", data);
     },
   },
 };
