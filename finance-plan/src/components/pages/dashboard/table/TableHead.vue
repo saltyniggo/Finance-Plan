@@ -1,4 +1,8 @@
 <template>
+  <div class="tableSum">
+    <h2>"Account Name"</h2>
+    <h2>Bilanz: {{ tableSum }}</h2>
+  </div>
   <div class="tableHead">
     <h3>Datum</h3>
     <h3>Betrag</h3>
@@ -10,20 +14,24 @@
 
 <script>
 export default {
-  props: ["data"],
+  props: ["data", "tableSum"],
 };
 </script>
 
 <style scoped>
-.tableHead {
+.tableHead,
+.tableSum {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   background-color: #17253e;
-  border-top-left-radius: 4vh;
-  border-top-right-radius: 4vh;
   color: white;
   padding: 2vh;
+}
+
+.tableSum {
+  border-top-left-radius: 4vh;
+  border-top-right-radius: 4vh;
 }
 
 .placeholder {

@@ -1,10 +1,10 @@
 <template>
   <edit-modal></edit-modal>
   <div v-show="!transactionsEmpty" class="tableSec">
-    <table-head></table-head>
+    <table-head :tableSum="getTransactions.sum"></table-head>
     <transition-group name="row" tag="ul">
       <table-row
-        v-for="(data, index) in getTransactions"
+        v-for="(data, index) in getTransactions.transactions"
         :key="data"
         :data="data"
         :index="index"
