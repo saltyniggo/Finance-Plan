@@ -3,7 +3,8 @@
   <header>
     <h2>Finance Plan</h2>
     <div v-if="isAuth" class="right-container">
-      <img src="https://robohash.org/avatar" />
+      <img :src="`https://robohash.org/${this.fullName}`" />
+
       <div class="btn-container">
         <button-edit-profile></button-edit-profile>
         <button-login></button-login>
@@ -28,11 +29,14 @@ export default {
   },
 
   props: ["isAuth"],
-
-  methods: {
-    openEditModal(data) {
-      // this.receivedData = data;
-      console.log("open", data);
+  computed: {
+    fullName() {
+      return this.$store.getters["userModule/getFullName"];
+    },
+    methods: {
+      openEditModal(data) {
+        console.log("open", data);
+      },
     },
   },
 };

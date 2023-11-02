@@ -63,7 +63,7 @@ export default {
   data() {
     return {
       isEditModalOpen: this.$store.getters["userModule/getEditProfile"],
-      openBackdrop: true,
+      openBackdrop: false,
       firstName: this.$store.getters["userModule/getFirstName"],
       lastName: this.$store.getters["userModule/getLastName"],
       userEmail: this.$store.getters["userModule/getEmail"],

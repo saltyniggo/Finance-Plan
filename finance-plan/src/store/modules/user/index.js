@@ -16,7 +16,7 @@ export default {
       requirementsOk: false,
     },
 
-    editProfile: true,
+    editProfile: false,
   },
 
   mutations: {
@@ -94,5 +94,6 @@ export default {
     getPassword: (state) => state.password,
     getPasswordRequirements: (state) => state.passwordRequirements,
     getEditProfile: (state) => state.editProfile,
+    getFullName: (state) => state.firstName + state.lastName,
   },
 };
