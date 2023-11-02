@@ -3,6 +3,10 @@
     <h2>"Account Name"</h2>
     <h2>Bilanz: {{ tableSum }}</h2>
   </div>
+  <div class="tableSum">
+    <h2>"Account Name"</h2>
+    <h2>Bilanz: {{ tableSum }}</h2>
+  </div>
   <div class="tableHead">
     <h3>Datum</h3>
     <h3>Betrag</h3>
@@ -35,6 +39,7 @@ export default {
   border-image: linear-gradient(to right, #20639b, #05da93) 1;
   border-bottom: 2px solid;
 }
+
 .placeholder {
   width: 10%;
 }
