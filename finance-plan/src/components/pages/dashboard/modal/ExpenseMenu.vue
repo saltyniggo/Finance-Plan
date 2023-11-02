@@ -1,6 +1,6 @@
 <template>
   <h1>Ausgabe eintragen:</h1>
-  <form @submit.prevent="onSubmit" class="inputArea" name="expenseForm">
+  <form @submit.prevent="submitExpense" class="inputArea" name="expenseForm">
     <label>Wie viel?</label>
     <input
       type="number"
@@ -8,11 +8,12 @@
       step="0.01"
       placeholder="00.00"
       v-model="amount"
+      required
     />
     <label>Wofür?</label>
-    <input type="text" v-model="description" />
+    <input type="text" v-model="description" required />
     <label>An welchem Tag?</label>
-    <input type="date" v-model="date" />
+    <input type="date" v-model="date" required />
     <label>Kategorie</label>
     <select v-model="category">
       <option value="">---</option>
@@ -24,7 +25,7 @@
       <option value="Katze">Katze</option>
       <option value="Maus">Maus</option>
     </select>
-    <button @submit.prevent @click="submitExpense">SUBMIT</button>
+    <button>SUBMIT</button>
   </form>
 </template>
 
