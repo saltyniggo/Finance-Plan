@@ -41,10 +41,10 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      newAmount: null,
-      newDescription: null,
-      newDate: null,
-      newCategory: null,
+      newAmount: undefined,
+      newDescription: undefined,
+      newDate: undefined,
+      newCategory: undefined,
       openBackdrop: false,
     };
   },
@@ -61,6 +61,10 @@ export default {
         description: this.newDescription,
         category: this.newCategory,
       });
+      this.date = undefined;
+      this.amount = undefined;
+      this.description = undefined;
+      this.category = undefined;
     },
     ...mapActions("transactionList", ["submitEdit"]),
     closeBackdrop() {

@@ -52,6 +52,10 @@ export default {
         description: this.description,
         category: this.category,
       });
+      this.date = undefined;
+      this.amount = undefined;
+      this.description = undefined;
+      this.category = undefined;
     },
     ...mapActions("transactionList", ["addTransaction"]),
   },
