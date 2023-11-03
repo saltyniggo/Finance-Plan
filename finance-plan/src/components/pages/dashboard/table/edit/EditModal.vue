@@ -17,7 +17,7 @@
         <label>Woher?</label>
         <input type="text" v-model="newDescription" />
         <label>An welchem Tag?</label>
-        <input type="date" v-model="newDate" />
+        <input type="date" v-model="newDate" max="9999-12-31" />
         <label>Kategorie</label>
         <select v-model="newCategory">
           <option value="">---</option>
