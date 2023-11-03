@@ -1,9 +1,4 @@
 <template>
-  <back-drop
-    @backdropClicked="closeNav"
-    :openBackdrop="openBackdrop"
-  ></back-drop>
-
   <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
     <i class="fa-solid fa-bars"> </i>
 

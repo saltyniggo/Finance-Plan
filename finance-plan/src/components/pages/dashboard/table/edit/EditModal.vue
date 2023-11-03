@@ -1,5 +1,4 @@
 <template>
-  <back-drop @backdropClicked="closeBackdrop"></back-drop>
   <transition name="modalPopup">
     <div v-if="isEditModalOpen" id="baseModal">
       <form class="inputArea" @submit.prevent="processEdit">
@@ -61,11 +60,11 @@ export default {
       this.amount = undefined;
       this.description = undefined;
       this.category = undefined;
+      this.closeBackdrop();
       this.closeEditModal();
     },
     ...mapActions("transactionList", ["submitEdit"]),
-    ...mapActions("popupModule", ["closeEditModal"]),
-    closeBackdrop() {},
+    ...mapActions("popupModule", ["closeEditModal", "closeBackdrop"]),
   },
 };
 </script>
