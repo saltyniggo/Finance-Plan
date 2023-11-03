@@ -11,4 +11,16 @@ export default {
   closeEditModal(context) {
     context.commit("closeEditModal");
   },
+  openNavRight(context) {
+    context.commit("openNavRight");
+  },
+  closeNavRight(context) {
+    context.commit("closeNavRight");
+  },
+  openAddModal(context, modal) {
+    context.commit("openAddModal", modal);
+  },
+  closeAddModal(context) {
+    context.commit("closeAddModal");
+  },
 };

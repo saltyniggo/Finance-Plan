@@ -14,23 +14,9 @@ export default {
   components: {
     BackDrop,
   },
-
-  data() {
-    return {
-      openModal: false,
-      chosenModal: false,
-    };
-  },
-
   computed: {
     isAuth() {
       return this.$store.state.registerModule.isAuth;
-    },
-  },
-  methods: {
-    openInputModal(value) {
-      this.openModal = true;
-      this.chosenModal = value;
     },
   },
 };

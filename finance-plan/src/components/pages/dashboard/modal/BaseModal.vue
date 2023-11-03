@@ -1,8 +1,8 @@
 <template>
   <transition name="modalPopup">
-    <div v-if="openModal" id="baseModal">
-      <expense-menu v-if="chosenModal === 'expense'"></expense-menu>
-      <income-menu v-else-if="chosenModal === 'income'"></income-menu>
+    <div v-if="isAddModalOpen" id="baseModal">
+      <expense-menu v-if="chosenAddModal === 'expense'"></expense-menu>
+      <income-menu v-else-if="chosenAddModal === 'income'"></income-menu>
     </div>
   </transition>
 </template>
@@ -12,16 +12,13 @@ import ExpenseMenu from "./ExpenseMenu.vue";
 import IncomeMenu from "./IncomeMenu.vue";
 
 export default {
-  props: ["chosenModal", "openModal"],
   components: { ExpenseMenu, IncomeMenu },
-  data() {
-    return {
-      openBackdrop: false,
-    };
-  },
-  methods: {
-    closeBackdrop() {
-      this.openBackdrop = false;
+  computed: {
+    isAddModalOpen() {
+      return this.$store.getters["popupModule/isAddModalOpen"];
+    },
+    chosenAddModal() {
+      return this.$store.getters["popupModule/chosenAddModal"];
     },
   },
 };

@@ -56,10 +56,10 @@ export default {
         description: this.newDescription,
         category: this.newCategory,
       });
-      this.date = undefined;
-      this.amount = undefined;
-      this.description = undefined;
-      this.category = undefined;
+      this.newDate = undefined;
+      this.newAmount = undefined;
+      this.newDescription = undefined;
+      this.ategory = undefined;
       this.closeBackdrop();
       this.closeEditModal();
     },
