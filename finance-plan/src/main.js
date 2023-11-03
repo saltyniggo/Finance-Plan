@@ -4,6 +4,7 @@ import { createApp } from "vue";
 
 import App from "./App.vue";
 import store from "./store/index.js";
+import router from "./router.js";
 
 import ButtonRound from "./components/base/ButtonRound.vue";
 import ButtonRectangle from "./components/base/ButtonRectangle.vue";
@@ -24,5 +25,6 @@ app.component("BaseForm", BaseForm);
 app.component("BaseInput", BaseInput);
 
 app.use(store);
+app.use(router);
 
 app.mount("#app");

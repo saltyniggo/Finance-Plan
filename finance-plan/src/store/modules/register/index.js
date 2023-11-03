@@ -5,7 +5,7 @@ import rootGetters from "./getters.js";
 export default {
   namespaced: true,
   state: {
-    isAuth: true,
+    isAuth: false,
     isLoggedIn: false,
     formData: {
       firstName: "",

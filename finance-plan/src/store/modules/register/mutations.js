@@ -1,3 +1,4 @@
+import router from "@/router";
 export default {
   updateFormData(state, { field, value }) {
     state.formData[field] = value;
@@ -57,6 +58,7 @@ export default {
     if (state.formData.requirementsOk && state.formData.rightTwice) {
       console.log("register");
       state.isAuth = true;
+      router.push("/accounts");
     }
   },
 
@@ -85,6 +87,8 @@ export default {
       console.log("nice both right");
       state.loginData.showError = false;
       state.isAuth = true;
+
+      router.push("/accounts");
     } else {
       console.log("nope");
       state.loginData.showError = true;

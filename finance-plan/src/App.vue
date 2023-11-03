@@ -1,5 +1,11 @@
 <template>
-  <the-header :isAuth="isAuth"></the-header>
+  <router-view name="header"></router-view>
+  <router-view name="content"></router-view>
+  <router-view name="rightNav"></router-view>
+  <router-view name="leftNav"></router-view>
+  <router-view></router-view>
+
+  <!-- <the-header :isAuth="isAuth"></the-header>
   <div v-if="isAuth">
     <base-modal :openModal="openModal" :chosenModal="chosenModal"></base-modal>
     <nav-left></nav-left>
@@ -21,28 +27,28 @@
 
   <div v-else>
     <login-page></login-page>
-  </div>
+  </div> -->
 </template>
 
 <script>
-import TableTransactions from "./components/pages/dashboard/table/TableTransactions.vue";
-import TheHeader from "./components/pages/dashboard/header/TheHeader.vue";
-import NavLeft from "./components/pages/dashboard/nav/NavLeft.vue";
-import BaseModal from "./components/pages/dashboard/modal/BaseModal.vue";
-import NavRight from "./components/pages/dashboard/shortcuts/NavRight.vue";
-import LoginPage from "./components/pages/login/LoginPage.vue";
-import AccountOverview from "./components/pages/accounts/AccountOverview.vue";
+// import TableTransactions from "./components/pages/dashboard/table/TableTransactions.vue";
+// import TheHeader from "./components/pages/dashboard/header/TheHeader.vue";
+// import NavLeft from "./components/pages/dashboard/nav/NavLeft.vue";
+// import BaseModal from "./components/pages/dashboard/modal/BaseModal.vue";
+// import NavRight from "./components/pages/dashboard/shortcuts/NavRight.vue";
+// import LoginPage from "./components/pages/login/LoginPage.vue";
+// import AccountOverview from "./components/pages/accounts/AccountOverview.vue";
 
 export default {
-  components: {
-    TableTransactions,
-    TheHeader,
-    NavLeft,
-    NavRight,
-    BaseModal,
-    LoginPage,
-    AccountOverview,
-  },
+  // components: {
+  //   TableTransactions,
+  //   TheHeader,
+  //   NavLeft,
+  //   NavRight,
+  //   BaseModal,
+  //   LoginPage,
+  //   AccountOverview,
+  // },
 
   data() {
     return {
