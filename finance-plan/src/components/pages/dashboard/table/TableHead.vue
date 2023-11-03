@@ -39,7 +39,6 @@ export default {
   border-image: linear-gradient(to right, #20639b, #05da93) 1;
   border-bottom: 2px solid;
 }
-
 .placeholder {
   width: 10%;
 }
