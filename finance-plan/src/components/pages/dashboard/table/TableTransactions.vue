@@ -1,7 +1,10 @@
 <template>
   <edit-modal></edit-modal>
   <div v-show="!transactionsEmpty" class="tableSec">
-    <table-head :tableSum="getTransactions.sum"></table-head>
+    <table-head
+      :tableSum="$route.params.balance"
+      :name="$route.params.name"
+    ></table-head>
     <transition-group name="row" tag="ul">
       <table-row
         v-for="(data, index) in getTransactions.transactions"

@@ -6,7 +6,11 @@
         class="navBtn"
         :to="{
           name: 'account',
-          params: { name: account.name, id: account.id },
+          params: {
+            name: account.name,
+            id: account.id,
+            balance: account.balance,
+          },
         }"
       >
         <span>{{ account.name }}</span

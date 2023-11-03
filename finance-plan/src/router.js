@@ -20,11 +20,6 @@ const router = createRouter({
     {
       path: "/login",
       components: { header: TheHeader, content: LoginPage },
-      beforeEnter(to, from, next) {
-        console.log("users beforeEnter");
-        console.log(to, from);
-        next();
-      },
     },
 
     {
@@ -33,8 +28,6 @@ const router = createRouter({
       meta: { needsAuth: true },
       components: {
         header: TheHeader,
-
-        leftNav: NavLeft,
         content: AccountOverview,
       },
     },
