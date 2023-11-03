@@ -27,7 +27,8 @@
 
   <div v-else>
     <login-page></login-page>
-  </div> -->
+  </div>
+  -->
 </template>
 
 <script>

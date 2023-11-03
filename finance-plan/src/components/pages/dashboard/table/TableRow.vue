@@ -6,7 +6,7 @@
       <p>{{ data.description }}</p>
       <p>{{ data.category }}</p>
       <div class="buttonList">
-        <button-round @click="openEditModal(index)"
+        <button-round @click="openEditModal(index), openBackdrop()"
           ><i class="fa-solid fa-pen"></i
         ></button-round>
         <button-round
@@ -31,7 +31,7 @@ export default {
       "deleteTransaction",
       "checkTransactionList",
     ]),
-    ...mapActions("popupModule", ["openEditModal"]),
+    ...mapActions("popupModule", ["openEditModal", "openBackdrop"]),
   },
 };
 </script>

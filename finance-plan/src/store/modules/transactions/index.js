@@ -6,8 +6,6 @@ export default {
   namespaced: true,
   state() {
     return {
-      isEditModalOpen: false,
-      toEditIndex: undefined,
       transactionsEmpty: undefined,
       sum: 420,
       transactions: [
