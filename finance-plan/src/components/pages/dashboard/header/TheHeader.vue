@@ -28,8 +28,10 @@ export default {
     profileEditModal,
   },
 
-  props: ["isAuth"],
   computed: {
+    isAuth() {
+      return this.$store.getters["registerModule/getIsAuth"];
+    },
     fullName() {
       return this.$store.getters["userModule/getFullName"];
     },

@@ -23,4 +23,8 @@ export default {
   requirementsOK(state) {
     return state.formData.requirementsOk;
   },
+
+  getIsAuth(state) {
+    return state.isAuth;
+  },
 };

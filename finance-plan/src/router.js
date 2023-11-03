@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "./store/index.js";
 import NotFound from "./components/pages/NotFound.vue";
 
 //import vueComponetent here
@@ -38,8 +39,9 @@ const router = createRouter({
       },
     },
     {
-      path: "/account/:name",
+      path: "/accounts/:name",
       name: "account",
+      meta: { needsAuth: true },
       components: {
         header: TheHeader,
         rightNav: NavRight,
@@ -55,6 +57,24 @@ const router = createRouter({
       components: { header: TheHeader, content: NotFound },
     },
   ],
+});
+
+router.afterEach(function (to, from) {
+  console.log(to, from);
+  //runs after a navigatino has been confirmed
+  if (to.meta.needsAuth) {
+    console.log("need authentification");
+
+    let isAuth = store.getters["registerModule/getIsAuth"];
+    console.log(isAuth);
+
+    if (isAuth === true) {
+      console.log(isAuth);
+    } else {
+      console.log("no Auth");
+      router.push("/login");
+    }
+  }
 });
 
 export default router;
