@@ -4,6 +4,7 @@
   <router-view name="content"></router-view>
   <router-view name="rightNav"></router-view>
   <router-view name="leftNav"></router-view>
+  <router-view name="modal"></router-view>
   <router-view></router-view>
 </template>
 
