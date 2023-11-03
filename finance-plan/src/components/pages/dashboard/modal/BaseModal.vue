@@ -34,7 +34,7 @@ export default {
 <style scoped>
 #baseModal {
   z-index: 2;
-  position: absolute;
+  position: fixed;
   min-width: 30%;
   min-height: 30%;
   background-color: #152032;
@@ -42,6 +42,7 @@ export default {
   border-radius: 5vh;
   box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
   margin-left: 35%;
+  margin-top: -3%;
 }
 
 .modalPopup-enter-active {

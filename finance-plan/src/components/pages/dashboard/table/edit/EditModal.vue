@@ -41,10 +41,10 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      newAmount: null,
-      newDescription: null,
-      newDate: null,
-      newCategory: null,
+      newAmount: undefined,
+      newDescription: undefined,
+      newDate: undefined,
+      newCategory: undefined,
       openBackdrop: false,
     };
   },
@@ -61,6 +61,10 @@ export default {
         description: this.newDescription,
         category: this.newCategory,
       });
+      this.date = undefined;
+      this.amount = undefined;
+      this.description = undefined;
+      this.category = undefined;
     },
     ...mapActions("transactionList", ["submitEdit"]),
     closeBackdrop() {
@@ -73,7 +77,7 @@ export default {
 <style scoped>
 #baseModal {
   z-index: 2;
-  position: absolute;
+  position: fixed;
   min-width: 30%;
   min-height: 30%;
   background-color: #152032;
@@ -81,6 +85,7 @@ export default {
   border-radius: 5vh;
   box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
   margin-left: 35%;
+  margin-top: -3%;
 }
 
 .inputArea {
