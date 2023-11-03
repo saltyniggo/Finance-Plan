@@ -8,9 +8,6 @@
     :required="required"
     :field="field"
   />
-  <!--  <select v-if="select" v-model="selectvalue" @change="emitSelectValue">
-    <slot v-if="select"></slot>
-  </select> -->
 </template>
 
 <script>
@@ -36,23 +33,13 @@ export default {
   computed: {
     inputValue: {
       get() {
-        // return [
-        //   this.$store.getters["registerModule/inputValue"](this.field),
-        //   this.$store.getters["loginModule/inputValue"](this.field),
-        // ];
-
         return this.$store.getters["registerModule/inputValue"](this.field);
-        // return this.$store.getters["loginModule/inputValue"](this.field);
       },
       set(value) {
         this.$store.dispatch("registerModule/updateFormData", {
           field: this.field,
           value,
         });
-        // this.$store.dispatch("loginModule/updateFormData", {
-        //   field: this.field,
-        //   value,
-        // });
       },
     },
   },
@@ -73,17 +60,6 @@ export default {
       this.checkLoginPassword();
     },
   },
-
-  /*   data() {
-    return {
-      selectedValue: "option1",
-    };
-  },
-  methods: {
-    emitSelectValue() {
-      this.$emit("select-change", this.selectedValue);
-    },
-  }, */
 };
 </script>
 

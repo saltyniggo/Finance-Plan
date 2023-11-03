@@ -46,12 +46,9 @@ export default {
 
 <style scoped>
 header {
-  /*   position: fixed;
-  top: 0; */
   width: 100vw;
   height: 4.5rem;
   box-shadow: 0px 1px 10px #20639b;
-  /* background-color: #152032; */
   background-color: #17253e;
   display: flex;
   justify-content: space-between;
