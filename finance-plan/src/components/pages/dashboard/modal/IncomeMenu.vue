@@ -1,7 +1,6 @@
 <template>
   <h1>Einkommen eintragen:</h1>
   <form @submit.prevent="submitIncome" class="inputArea" name="incomeForm">
-  <form @submit.prevent="submitIncome" class="inputArea" name="incomeForm">
     <label>Wie viel?</label>
     <input
       type="number"
@@ -10,10 +9,8 @@
       placeholder="00.00"
       v-model="amount"
       required
-      required
     />
     <label>Woher?</label>
-    <input type="text" v-model="description" required />
     <input type="text" v-model="description" required />
     <label>An welchem Tag?</label>
     <input type="date" v-model="date" required max="9999-12-31" />
