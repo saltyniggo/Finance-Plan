@@ -13,7 +13,7 @@
     <label>Wofür?</label>
     <input type="text" v-model="description" required />
     <label>An welchem Tag?</label>
-    <input type="date" v-model="date" required max="9999-12-31"/>
+    <input type="date" v-model="date" required max="9999-12-31" />
     <label>Kategorie</label>
     <select v-model="category">
       <option value="">---</option>
@@ -52,6 +52,10 @@ export default {
         description: this.description,
         category: this.category,
       });
+      this.date = undefined;
+      this.amount = undefined;
+      this.description = undefined;
+      this.category = undefined;
     },
     ...mapActions("transactionList", ["addTransaction"]),
   },
