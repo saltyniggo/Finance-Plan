@@ -1,7 +1,7 @@
 <template>
   <div class="tableSum">
     <h2>{{ name }}</h2>
-    <h2>Bilanz: {{ tableSum }}</h2>
+    <h2>Bilanz: {{ tableSum }}€</h2>
   </div>
   <div class="tableHead">
     <h3>Datum</h3>
