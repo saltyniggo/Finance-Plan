@@ -13,4 +13,18 @@ export default {
     state.isEditModalOpen = false;
     state.toEditIndex = undefined;
   },
+  openNavRight(state) {
+    state.navRightOpen = true;
+  },
+  closeNavRight(state) {
+    state.navRightOpen = false;
+  },
+  openAddModal(state, modal) {
+    state.isAddModalOpen = true;
+    state.chosenAddModal = modal;
+  },
+  closeAddModal(state) {
+    state.isAddModalOpen = false;
+    state.chosenAddModal = undefined;
+  },
 };

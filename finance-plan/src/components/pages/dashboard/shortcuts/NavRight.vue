@@ -1,23 +1,20 @@
 <template>
   <div class="menu-symbol" @mouseenter="openNav" @mouseleave="closeNav">
     <i class="fa-solid fa-plus"></i>
-
     <div>
       <div class="nav">
         <transition name="smoothOpening">
-          <div v-if="openSide">
-            <button-expense @click="$emit('addExpense')"></button-expense>
+          <div v-if="navRightOpen">
+            <button-expense @click="openAddModal('expense')"></button-expense>
           </div>
         </transition>
-
         <transition name="smoothOpening">
-          <div v-if="openSide">
-            <button-income @click="$emit('addIncome')"></button-income>
+          <div v-if="navRightOpen">
+            <button-income @click="openAddModal('income')"></button-income>
           </div>
         </transition>
-
         <transition name="smoothOpening">
-          <div v-if="openSide"><button-aim></button-aim></div>
+          <div v-if="navRightOpen"><button-aim></button-aim></div>
         </transition>
       </div>
     </div>
@@ -25,42 +22,49 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import ButtonExpense from "./ButtonExpense.vue";
 import ButtonAim from "./ButtonAim.vue";
 import ButtonIncome from "./ButtonIncome.vue";
 
 export default {
-  props: ["openModal"],
-  emits: ["addExpense", "addIncome", "closeModal"],
   components: { ButtonExpense, ButtonAim, ButtonIncome },
   data() {
     return {
-      openBackdrop: false,
-      openSide: false,
       closeNavTimeout: null,
     };
   },
-
+  computed: {
+    navRightOpen() {
+      return this.$store.getters["popupModule/navRightOpen"];
+    },
+    isAddModalOpen() {
+      return this.$store.getters["popupModule/isAddModalOpen"];
+    },
+  },
   methods: {
+    ...mapActions("popupModule", [
+      "openNavRight",
+      "closeNavRight",
+      "openBackdrop",
+      "closeBackdrop",
+      "openAddModal",
+    ]),
     openNav() {
-      this.openSide = true;
-      this.openBackdrop = true;
+      this.openNavRight();
+      this.openBackdrop();
       clearTimeout(this.closeNavTimeout);
     },
 
     closeNav() {
-      if (this.openSide === false) {
-        this.openBackdrop = false;
-        this.$emit("closeModal");
-        return;
-      }
       this.closeNavTimeout = setTimeout(() => {
-        if (this.openModal === true) {
-          this.openSide = false;
-          return;
+        if (this.isAddModalOpen === true) {
+          this.closeNavRight();
+        } else {
+          this.closeNavRight();
+          this.closeBackdrop();
         }
-        this.openSide = false;
-        this.openBackdrop = false;
       }, 400);
     },
   },

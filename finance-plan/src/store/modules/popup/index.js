@@ -8,6 +8,7 @@ export default {
     backdropIsVisible: false,
     isEditModalOpen: false,
     toEditIndex: undefined,
+    navRightOpen: false,
     isAddModalOpen: false,
     chosenAddModal: undefined,
   },

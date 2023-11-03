@@ -42,6 +42,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("popupModule", ["closeAddModal", "closeBackdrop"]),
     submitIncome() {
       if (this.category === null || "") {
         this.category = "Sonstiges";
@@ -56,6 +57,8 @@ export default {
       this.amount = undefined;
       this.description = undefined;
       this.category = undefined;
+      this.closeAddModal();
+      this.closeBackdrop();
     },
     ...mapActions("transactionList", ["addTransaction"]),
   },

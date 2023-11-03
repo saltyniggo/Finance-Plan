@@ -4,22 +4,12 @@
   <div v-if="isAuth">
     <base-modal :openModal="openModal" :chosenModal="chosenModal"></base-modal>
     <nav-left></nav-left>
-    <nav-right
-      @addExpense="openInputModal('expense')"
-      @addIncome="openInputModal('income')"
-      @closeModal="
-        {
-          this.openModal = false;
-        }
-      "
-      :openModal="openModal"
-    ></nav-right>
+    <nav-right></nav-right>
     <div class="content">
       <account-overview></account-overview>
       <table-transactions> </table-transactions>
     </div>
   </div>
-
   <div v-else>
     <login-page></login-page>
   </div>
@@ -46,23 +36,9 @@ export default {
     AccountOverview,
     BackDrop,
   },
-
-  data() {
-    return {
-      openModal: false,
-      chosenModal: false,
-    };
-  },
-
   computed: {
     isAuth() {
       return this.$store.state.registerModule.isAuth;
-    },
-  },
-  methods: {
-    openInputModal(value) {
-      this.openModal = true;
-      this.chosenModal = value;
     },
   },
 };
