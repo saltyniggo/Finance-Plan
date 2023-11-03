@@ -29,9 +29,9 @@ export default {
   methods: {
     ...mapActions("transactionList", [
       "deleteTransaction",
-      "openEditModal",
       "checkTransactionList",
     ]),
+    ...mapActions("popupModule", ["openEditModal"]),
   },
 };
 </script>

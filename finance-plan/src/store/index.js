@@ -4,6 +4,7 @@ import transactionModule from "./modules/transactions/index.js";
 import registerModule from "./modules/register/index.js";
 import userModule from "./modules/user";
 import accountsModule from "./modules/accounts/index.js";
+import popupModule from "./modules/popup/index.js";
 
 const store = createStore({
   modules: {
@@ -11,6 +12,7 @@ const store = createStore({
     registerModule: registerModule,
     userModule: userModule,
     accountsModule: accountsModule,
+    popupModule: popupModule,
   },
   state() {
     return {

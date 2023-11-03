@@ -1,8 +1,5 @@
 <template>
-  <back-drop
-    @backdropClicked="closeBackdrop"
-    :openBackdrop="openBackdrop"
-  ></back-drop>
+  <back-drop @backdropClicked="closeBackdrop"></back-drop>
   <transition name="modalPopup">
     <div v-if="isEditModalOpen" id="baseModal">
       <form class="inputArea" @submit.prevent="processEdit">
@@ -45,12 +42,11 @@ export default {
       newDescription: undefined,
       newDate: undefined,
       newCategory: undefined,
-      openBackdrop: false,
     };
   },
   computed: {
     isEditModalOpen() {
-      return this.$store.getters["transactionList/isEditModalOpen"];
+      return this.$store.getters["popupModule/isEditModalOpen"];
     },
   },
   methods: {
@@ -65,11 +61,11 @@ export default {
       this.amount = undefined;
       this.description = undefined;
       this.category = undefined;
+      this.closeEditModal();
     },
     ...mapActions("transactionList", ["submitEdit"]),
-    closeBackdrop() {
-      this.openBackdrop = false;
-    },
+    ...mapActions("popupModule", ["closeEditModal"]),
+    closeBackdrop() {},
   },
 };
 </script>
