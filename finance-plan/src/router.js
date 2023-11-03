@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "./store/index.js";
 import NotFound from "./components/pages/NotFound.vue";
 
 //import vueComponetent here
@@ -10,6 +11,7 @@ import NavLeft from "./components/pages/dashboard/nav/NavLeft.vue";
 import NavRight from "./components/pages/dashboard/shortcuts/NavRight.vue";
 import LoginPage from "./components/pages/login/LoginPage.vue";
 import AccountOverview from "./components/pages/accounts/AccountOverview.vue";
+
 //import transactions from "./store/modules/transactions";
 
 const router = createRouter({
@@ -44,29 +46,17 @@ const router = createRouter({
         leftNav: NavLeft,
         content: AccountOverview,
       },
-
-      // children: [
-      //   {
-      //     //   name: ":accounts.name",
-      //     //   path: ":accounts.name + accounts.id",
-      //     path: "/transaction",
-      //     component: { content: TableTransactions },
-      //     props: true,
-      //   },
-      // ],
     },
     {
-      path: "/account/:name",
+      path: "/accounts/:name",
       name: "account",
-      component: () =>
-        import("./components/pages/dashboard/table/TableTransactions.vue"),
-    },
-    {
-      //   name: ":accounts.name",
-      //   path: ":accounts.name + accounts.id",
-      path: "/transaction",
-      components: { header: TheHeader, content: TableTransactions },
-      props: true,
+      meta: { needsAuth: true },
+      components: {
+        header: TheHeader,
+        rightNav: NavRight,
+        leftNav: NavLeft,
+        content: TableTransactions,
+      },
     },
 
     {
@@ -75,37 +65,24 @@ const router = createRouter({
       components: { header: TheHeader, content: NotFound },
     },
   ],
-  //   linkActiveClass: "active",
-  //   scrollBehavior(_, _2, savedPosition) {
-  //     // console.log(to);
-  //     // console.log(from);
-  //     // console.log(savedPosition);
-  //     if (savedPosition) {
-  //       return savedPosition;
-  //     }
-  //     return { left: 0, top: 0 }; // jump to top uof page
-  //   },
 });
-// router.beforeEach(function (to, from, next) {
-//   console.log("Global beforeEach");
-//   console.log(to, from);
-//   // if (to.name === 'team-members') {
-//   //   next();
-//   // } else {
-//   //   next({ name: 'team-members', params: { teamId: 't2' } });
-//   // }
-//   next();
-// });
 
-// router.afterEach(function (to, from) {
-//   //runs after a navigatino has been confirmed
-//   //e.g sending analytics data
-//   console.log("global after each");
-//   console.log(to, from);
+router.afterEach(function (to, from) {
+  console.log(to, from);
+  //runs after a navigatino has been confirmed
+  if (to.meta.needsAuth) {
+    console.log("need authentification");
 
-//   if (to.meta.needsAuth) {
-//     console.log("need authentification");
-//   }
-// });
+    let isAuth = store.getters["registerModule/getIsAuth"];
+    console.log(isAuth);
+
+    if (isAuth === true) {
+      console.log(isAuth);
+    } else {
+      console.log("no Auth");
+      router.push("/login");
+    }
+  }
+});
 
 export default router;

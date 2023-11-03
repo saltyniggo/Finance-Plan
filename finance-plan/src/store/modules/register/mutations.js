@@ -97,5 +97,6 @@ export default {
 
   logout(state) {
     state.isAuth = false;
+    router.push("/login");
   },
 };
