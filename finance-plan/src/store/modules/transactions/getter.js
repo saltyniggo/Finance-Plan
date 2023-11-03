@@ -5,7 +5,6 @@ export default {
       sum: state.sum + "€",
     };
   },
-
   transactionsEmpty(state) {
     return state.transactionsEmpty;
   },

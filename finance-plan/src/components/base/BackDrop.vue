@@ -1,6 +1,6 @@
 <template>
   <transition name="smoothBackdrop">
-    <div v-if="openBackdrop" class="backdrop" @click="closeBackDrop"></div>
+    <div v-if="backdropStatus" class="backdrop" @click="closeBackDrop"></div>
   </transition>
 </template>
 
@@ -10,6 +10,11 @@ export default {
   methods: {
     closeBackDrop() {
       this.$emit("backdropClicked");
+    },
+  },
+  computed: {
+    backdropStatus() {
+      return this.$store.getters["popupModule/backdropStatus"];
     },
   },
 };

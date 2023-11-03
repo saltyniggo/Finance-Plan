@@ -9,7 +9,6 @@ export default {
       description: packet.description,
       category: packet.category,
     });
-    console.log(state.transactions);
   },
   submitEdit(state, payload) {
     const { packet, index } = payload;

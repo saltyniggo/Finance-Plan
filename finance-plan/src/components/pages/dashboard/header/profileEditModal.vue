@@ -1,8 +1,4 @@
 <template>
-  <back-drop
-    @backdropClicked="closeBackdrop"
-    :openBackdrop="openBackdrop"
-  ></back-drop>
   <transition name="modalPopup">
     <div v-if="isEditModalOpen" id="baseModal">
       <form class="inputArea" @submit.prevent="processEdit">
