@@ -14,6 +14,7 @@
       :openModal="openModal"
     ></nav-right>
     <div class="content">
+      <account-overview></account-overview>
       <table-transactions> </table-transactions>
     </div>
   </div>
@@ -30,6 +31,7 @@ import NavLeft from "./components/pages/dashboard/nav/NavLeft.vue";
 import BaseModal from "./components/pages/dashboard/modal/BaseModal.vue";
 import NavRight from "./components/pages/dashboard/shortcuts/NavRight.vue";
 import LoginPage from "./components/pages/login/LoginPage.vue";
+import AccountOverview from "./components/pages/accounts/AccountOverview.vue";
 
 export default {
   components: {
@@ -39,6 +41,7 @@ export default {
     NavRight,
     BaseModal,
     LoginPage,
+    AccountOverview,
   },
 
   data() {
