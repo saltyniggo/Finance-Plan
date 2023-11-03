@@ -1,4 +1,5 @@
 <template>
+  <back-drop></back-drop>
   <router-view name="header"></router-view>
   <router-view name="content"></router-view>
   <router-view name="rightNav"></router-view>
@@ -39,17 +40,19 @@
 // import NavRight from "./components/pages/dashboard/shortcuts/NavRight.vue";
 // import LoginPage from "./components/pages/login/LoginPage.vue";
 // import AccountOverview from "./components/pages/accounts/AccountOverview.vue";
+import BackDrop from "./components/base/BackDrop.vue";
 
 export default {
-  // components: {
-  //   TableTransactions,
-  //   TheHeader,
-  //   NavLeft,
-  //   NavRight,
-  //   BaseModal,
-  //   LoginPage,
-  //   AccountOverview,
-  // },
+  components: {
+    //   TableTransactions,
+    //   TheHeader,
+    //   NavLeft,
+    //   NavRight,
+    //   BaseModal,
+    //   LoginPage,
+    //   AccountOverview,
+    BackDrop,
+  },
 
   data() {
     return {
