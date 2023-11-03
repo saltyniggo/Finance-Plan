@@ -44,6 +44,7 @@ const router = createRouter({
         leftNav: NavLeft,
         content: AccountOverview,
       },
+
       // children: [
       //   {
       //     //   name: ":accounts.name",
@@ -55,17 +56,23 @@ const router = createRouter({
       // ],
     },
     {
+      path: "/account/:name",
+      name: "account",
+      component: () =>
+        import("./components/pages/dashboard/table/TableTransactions.vue"),
+    },
+    {
       //   name: ":accounts.name",
       //   path: ":accounts.name + accounts.id",
       path: "/transaction",
-      component: { header: TheHeader, content: TableTransactions },
+      components: { header: TheHeader, content: TableTransactions },
       props: true,
     },
 
     {
       name: "notFound",
       path: "/:pathMatch(.*)*",
-      component: NotFound,
+      components: { header: TheHeader, content: NotFound },
     },
   ],
   //   linkActiveClass: "active",

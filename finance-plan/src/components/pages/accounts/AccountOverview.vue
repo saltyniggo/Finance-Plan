@@ -2,10 +2,16 @@
   <base-card>
     <h2>Accounts</h2>
     <div v-for="account in accounts" :key="account.id" class="row">
-      <button class="navBtn">
+      <router-link
+        class="navBtn"
+        :to="{
+          name: 'account',
+          params: { name: account.name, id: account.id },
+        }"
+      >
         <span>{{ account.name }}</span
         ><span>{{ account.balance }}</span>
-      </button>
+      </router-link>
       <button class="editBtn"><i class="fa-solid fa-pen"></i></button>
       <button class="editBtn"><i class="fa-solid fa-trash"></i></button>
     </div>
