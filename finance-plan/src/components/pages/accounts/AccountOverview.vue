@@ -9,9 +9,7 @@
       <button class="editBtn"><i class="fa-solid fa-pen"></i></button>
       <button class="editBtn"><i class="fa-solid fa-trash"></i></button>
     </div>
-    <button class="addBtn" style="backgroundcolor: #17253e">
-      + Account hinzufügen
-    </button>
+    <button class="addBtn">+ Account hinzufügen</button>
   </base-card>
 </template>
 
@@ -56,11 +54,12 @@ h2 {
   justify-content: space-between;
   margin-top: 1rem;
   border-radius: 20px;
-  background: linear-gradient(135deg, #20639b, #05da93);
+  background: #20639b;
+  /* background: linear-gradient(135deg, #20639b, #05da93); */
   color: #ecf0f3;
   font-weight: 500;
   font-size: 2vh;
-  text-shadow: 2px 2px 3px #1512032;
+  text-shadow: 2px 2px 3px #151232;
 }
 
 .editBtn {
@@ -71,11 +70,25 @@ h2 {
   align-items: center;
   margin-top: 1rem;
   border-radius: 20px;
-  background: #05da93;
+  background: #20639b;
   color: #ecf0f3;
   font-weight: 500;
   font-size: 2vh;
-  text-shadow: 2px 2px 3px #1512032;
+  text-shadow: 2px 2px 3px #151232;
   margin-left: 1%;
+}
+
+.addBtn {
+  width: 90%;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  border-radius: 20px;
+  background: #17253e;
+  color: #ecf0f3;
+  font-weight: 500;
+  font-size: 2vh;
+  text-shadow: 2px 2px 3px #151232;
 }
 </style>
