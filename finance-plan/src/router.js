@@ -57,15 +57,21 @@ const router = createRouter({
     {
       //   name: ":accounts.name",
       //   path: ":accounts.name + accounts.id",
+      name: "transaction",
       path: "/transaction",
-      component: { header: TheHeader, content: TableTransactions },
-      props: true,
+      meta: { needsAuth: true },
+      components: {
+        header: TheHeader,
+        rightNav: NavRight,
+        leftNav: NavLeft,
+        content: TableTransactions,
+      },
     },
 
     {
       name: "notFound",
       path: "/:pathMatch(.*)*",
-      component: NotFound,
+      components: NotFound,
     },
   ],
   //   linkActiveClass: "active",
