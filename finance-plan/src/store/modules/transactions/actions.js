@@ -11,9 +11,6 @@ export default {
     context.commit("addTransaction", packet);
     context.commit("checkTransactionList");
   },
-  openEditModal(context, index) {
-    context.commit("openEditModal", index);
-  },
   submitEdit(context, packet) {
     if (packet.date) {
       const parts = packet.date.split("-");
@@ -22,7 +19,9 @@ export default {
         .toString()
         .padStart(2, "0")}.${year}`;
     }
-    context.commit("submitEdit", packet);
+    const toEditIndex = context.rootState.popupModule.toEditIndex;
+    console.log(toEditIndex);
+    context.commit("submitEdit", { packet, index: toEditIndex });
   },
   checkTransactionList(context) {
     context.commit("checkTransactionList");
