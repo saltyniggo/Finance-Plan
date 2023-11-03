@@ -10,6 +10,7 @@ import BaseModal from "./components/pages/dashboard/modal/BaseModal.vue";
 import NavRight from "./components/pages/dashboard/shortcuts/NavRight.vue";
 import LoginPage from "./components/pages/login/LoginPage.vue";
 import AccountOverview from "./components/pages/accounts/AccountOverview.vue";
+import EditModal from "./components/pages/dashboard/table/edit/EditModal.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -45,6 +46,7 @@ const router = createRouter({
         leftNav: NavLeft,
         content: TableTransactions,
         modal: BaseModal,
+        edit: EditModal,
       },
     },
     {

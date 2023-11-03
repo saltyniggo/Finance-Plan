@@ -5,6 +5,7 @@
   <router-view name="rightNav"></router-view>
   <router-view name="leftNav"></router-view>
   <router-view name="modal"></router-view>
+  <router-view name="edit"></router-view>
   <router-view></router-view>
 </template>
 
