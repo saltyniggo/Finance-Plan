@@ -11,20 +11,15 @@ export default {
     });
     console.log(state.transactions);
   },
-  openEditModal(state, index) {
-    state.isEditModalOpen = true;
-    state.toEditIndex = index;
-  },
-  submitEdit(state, packet) {
-    if (packet.date) state.transactions[state.toEditIndex].date = packet.date;
-    if (packet.amount)
-      state.transactions[state.toEditIndex].amount = packet.amount;
+  submitEdit(state, payload) {
+    const { packet, index } = payload;
+    console.log(index);
+    console.log(state.transactions[index]);
+    if (packet.date) state.transactions[index].date = packet.date;
+    if (packet.amount) state.transactions[index].amount = packet.amount;
     if (packet.description)
-      state.transactions[state.toEditIndex].description = packet.description;
-    if (packet.category)
-      state.transactions[state.toEditIndex].category = packet.category;
-    state.isEditModalOpen = false;
-    state.toEditIndex = null;
+      state.transactions[index].description = packet.description;
+    if (packet.category) state.transactions[index].category = packet.category;
   },
   checkTransactionList(state) {
     if (state.transactions.length <= 0) {
