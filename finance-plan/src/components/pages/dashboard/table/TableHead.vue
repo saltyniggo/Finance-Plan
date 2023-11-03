@@ -32,8 +32,9 @@ export default {
 .tableSum {
   border-top-left-radius: 4vh;
   border-top-right-radius: 4vh;
+  border-image: linear-gradient(to right, #20639b, #05da93) 1;
+  border-bottom: 2px solid;
 }
-
 .placeholder {
   width: 10%;
 }
