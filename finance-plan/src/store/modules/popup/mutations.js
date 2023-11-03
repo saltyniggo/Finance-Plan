@@ -6,6 +6,7 @@ export default {
     state.backdropIsVisible = false;
   },
   openEditModal(state, index) {
+    state.isAddModalOpen = false;
     state.isEditModalOpen = true;
     state.toEditIndex = index;
   },
@@ -20,11 +21,24 @@ export default {
     state.navRightOpen = false;
   },
   openAddModal(state, modal) {
+    state.isEditModalOpen = false;
     state.isAddModalOpen = true;
     state.chosenAddModal = modal;
   },
   closeAddModal(state) {
     state.isAddModalOpen = false;
     state.chosenAddModal = undefined;
+  },
+  clickBackdrop(state) {
+    if (state.isEditModalOpen === true) {
+      state.isEditModalOpen = false;
+      state.toEditIndex = undefined;
+      state.backdropIsVisible = false;
+    }
+    if (state.isAddModalOpen === true) {
+      state.isAddModalOpen = false;
+      state.chosenAddModal = false;
+      state.backdropIsVisible = false;
+    }
   },
 };

@@ -23,4 +23,7 @@ export default {
   closeAddModal(context) {
     context.commit("closeAddModal");
   },
+  clickBackdrop(context) {
+    context.commit("clickBackdrop");
+  },
 };

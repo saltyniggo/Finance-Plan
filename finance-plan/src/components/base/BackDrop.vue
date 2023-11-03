@@ -1,16 +1,19 @@
 <template>
   <transition name="smoothBackdrop">
-    <div v-if="backdropStatus" class="backdrop" @click="closeBackDrop"></div>
+    <div
+      v-if="backdropStatus"
+      class="backdrop"
+      @click="this.clickBackdrop()"
+    ></div>
   </transition>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  props: ["openBackdrop"],
   methods: {
-    closeBackDrop() {
-      this.$emit("backdropClicked");
-    },
+    ...mapActions("popupModule", ["clickBackdrop"]),
   },
   computed: {
     backdropStatus() {
