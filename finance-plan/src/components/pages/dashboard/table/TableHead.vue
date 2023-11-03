@@ -1,6 +1,6 @@
 <template>
   <div class="tableSum">
-    <h2>"Account Name"</h2>
+    <h2>{{ name }}</h2>
     <h2>Bilanz: {{ tableSum }}</h2>
   </div>
   <div class="tableHead">
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  props: ["data", "tableSum"],
+  props: ["data", "tableSum", "name"],
 };
 </script>
 
