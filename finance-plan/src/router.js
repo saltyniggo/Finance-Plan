@@ -52,19 +52,11 @@ const router = createRouter({
   ],
 });
 
-router.afterEach(function (to, from) {
-  console.log(to, from);
+router.afterEach(function (to) {
   //runs after a navigatino has been confirmed
   if (to.meta.needsAuth) {
-    console.log("need authentification");
-
     let isAuth = store.getters["registerModule/getIsAuth"];
-    console.log(isAuth);
-
-    if (isAuth === true) {
-      console.log(isAuth);
-    } else {
-      console.log("no Auth");
+    if (isAuth === false) {
       router.push("/login");
     }
   }
