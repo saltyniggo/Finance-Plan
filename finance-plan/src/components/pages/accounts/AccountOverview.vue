@@ -17,18 +17,25 @@
         ><span>{{ account.balance }}</span>
       </router-link>
       <button class="editBtn"><i class="fa-solid fa-pen"></i></button>
-      <button class="editBtn"><i class="fa-solid fa-trash"></i></button>
+      <button class="editBtn" @click="deleteAccount(account.id)">
+        <i class="fa-solid fa-trash"></i>
+      </button>
     </div>
     <button class="addBtn">+ Account hinzufügen</button>
   </base-card>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   computed: {
     accounts() {
       return this.$store.getters["accountsModule/getAccounts"];
     },
+  },
+  methods: {
+    ...mapActions("accountsModule", ["deleteAccount"]),
   },
 };
 </script>
