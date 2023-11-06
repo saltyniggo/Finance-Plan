@@ -70,7 +70,9 @@
       </p>
     </template>
 
-    <template v-slot:buttonSubmit> </template>
+    <template v-slot:buttonSubmit>
+      <button type="submit">Registrieren</button>
+    </template>
     <template v-slot:buttonText> Registrieren</template>
   </base-form>
   <a href="#" @click="toggleRegisterStatus"
@@ -107,5 +109,15 @@ ul {
   position: relative;
   left: 2rem;
   font-size: small;
+}
+button {
+  width: 22%;
+  padding: 2%;
+  margin: 2% 39%;
+  background: linear-gradient(135deg, #20639b, #05da93);
+  color: #ffffff;
+  font-size: 1vw;
+  font-weight: 600;
+  border-radius: 2vh;
 }
 </style>

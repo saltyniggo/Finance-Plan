@@ -3,6 +3,8 @@ export default {
     context.commit("deleteAccount", accId);
   },
   addAccount({ commit }, inputName) {
-    commit("addAccount", inputName);
+    if (inputName != "" || undefined) {
+      commit("addAccount", inputName);
+    }
   },
 };

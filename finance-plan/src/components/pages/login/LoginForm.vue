@@ -19,7 +19,9 @@
       </p>
     </template>
 
-    <template v-slot:buttonSubmit> </template>
+    <template v-slot:buttonSubmit>
+      <button type="submit">Login</button>
+    </template>
     <template v-slot:buttonText> Login</template>
   </base-form>
   <a href="#" @click="toggleRegisterStatus"
@@ -49,3 +51,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+a {
+  color: #ecf0f3;
+}
+button {
+  width: 22%;
+  padding: 2%;
+  margin: 2% 39%;
+  background: linear-gradient(135deg, #20639b, #05da93);
+  color: #ffffff;
+  font-size: 1vw;
+  font-weight: 600;
+  border-radius: 2vh;
+}
+</style>
