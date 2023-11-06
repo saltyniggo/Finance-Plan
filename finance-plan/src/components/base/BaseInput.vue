@@ -32,6 +32,14 @@ export default {
       default: true,
     },
     field: { type: String },
+    rightTwice: {
+      type: Boolean,
+      default: false,
+    },
+    requirementsOk: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
