@@ -7,4 +7,8 @@ export default {
       commit("addAccount", inputName);
     }
   },
+
+  editAccount({ commit }, { accId, edit }) {
+    commit("editAccount", { accId, edit });
+  },
 };
