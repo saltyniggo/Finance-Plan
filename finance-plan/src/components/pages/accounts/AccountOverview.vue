@@ -132,7 +132,7 @@ h2 {
 
 .navBtn {
   width: 90%;
-  height: 3rem;
+  height: 7vh;
   padding: 2%;
   display: flex;
   justify-content: space-between;
@@ -151,7 +151,7 @@ h2 {
 
 .editInput {
   width: 90%;
-  height: 3rem;
+  height: 7vh;
   padding: 2%;
   display: flex;
   justify-content: space-between;
