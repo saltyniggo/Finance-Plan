@@ -13,4 +13,8 @@ export default {
       id: uniqueId,
     });
   },
+  editAccount(state, { accId, edit }) {
+    const index = state.accounts.findIndex((acc) => acc.id === accId);
+    state.accounts[index].name = edit;
+  },
 };

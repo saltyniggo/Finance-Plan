@@ -5,4 +5,8 @@ export default {
   addAccount({ commit }, inputName) {
     commit("addAccount", inputName);
   },
+
+  editAccount({ commit }, { accId, edit }) {
+    commit("editAccount", { accId, edit });
+  },
 };
