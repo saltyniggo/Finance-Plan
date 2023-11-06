@@ -29,4 +29,8 @@ export default {
   logout({ commit }) {
     commit("logout");
   },
+
+  falseIsAuth({ commit }) {
+    commit("falseIsAuth");
+  },
 };

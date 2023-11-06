@@ -89,4 +89,8 @@ export default {
     state.isAuth = false;
     router.push("/login");
   },
+
+  falseIsAuth(state) {
+    state.isAuth = false;
+  },
 };

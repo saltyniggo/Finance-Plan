@@ -11,6 +11,7 @@ export default {
     navRightOpen: false,
     isAddModalOpen: false,
     chosenAddModal: undefined,
+    isEditProfileOpen: false,
   },
   mutations: rootMutations,
   actions: rootActions,

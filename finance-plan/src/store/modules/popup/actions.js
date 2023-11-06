@@ -23,7 +23,18 @@ export default {
   closeAddModal(context) {
     context.commit("closeAddModal");
   },
+  openProfileEdit(context) {
+    context.commit("openProfileEdit");
+  },
+  closeProfileEdit(context) {
+    context.commit("closeProfileEdit");
+  },
   clickBackdrop(context) {
     context.commit("clickBackdrop");
+  },
+
+  initBackdrop(context) {
+    context.commit("initBackdrop");
+    console.log("action");
   },
 };

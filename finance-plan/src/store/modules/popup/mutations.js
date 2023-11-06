@@ -29,6 +29,12 @@ export default {
     state.isAddModalOpen = false;
     state.chosenAddModal = undefined;
   },
+  openProfileEdit(state) {
+    state.isEditProfileOpen = true;
+  },
+  closeProfileEdit(state) {
+    state.isEditProfileOpen = false;
+  },
   clickBackdrop(state) {
     if (state.isEditModalOpen === true) {
       state.isEditModalOpen = false;
@@ -40,5 +46,19 @@ export default {
       state.chosenAddModal = false;
       state.backdropIsVisible = false;
     }
+    if (state.isEditProfileOpen === true) {
+      state.isEditProfileOpen = false;
+      state.backdropIsVisible = false;
+    }
+  },
+
+  initBackdrop(state) {
+    state.backdropIsVisible = false;
+    state.isEditModalOpen = false;
+    state.toEditIndex = undefined;
+    state.navRightOpen = false;
+    state.isAddModalOpen = false;
+    state.chosenAddModal = undefined;
+    state.isEditProfileOpen = false;
   },
 };

@@ -1,68 +1,74 @@
 <template>
   <transition name="modalPopup">
-    <div v-if="isEditModalOpen" id="baseModal">
-      <form class="inputArea" @submit.prevent="processEdit">
-        <h1>Profil bearbeiten</h1>
-        <label>Vorname</label>
-        <input v-model="firstName" />
-        <label>Nachname</label>
-        <input v-model="lastName" />
-        <label>Email</label>
-        <input v-model="userEmail" />
-        <label>altes Passwort</label>
-        <input v-model="oldPassword" />
-        <p v-if="oldPasswordWrong" :style="{ color: 'red' }">
-          Ist das alte Passwort richtig? Soll es nicht verändert werden, lösche
-          den Inhalt der Passwortfelder
-        </p>
-        <label>neues Passwort</label>
-        <input v-model="newPassword" />
-        <h4>Passwortanforderungen:</h4>
-        <ul>
-          <li
-            :style="{
-              color: passwordRequirements.lengthCheck ? 'green' : 'red',
-            }"
-          >
-            8 Buchstaben
-          </li>
-          <li
-            :style="{
-              color:
-                passwordRequirements.capitalCheck &&
-                passwordRequirements.lowerCheck &&
-                !passwordRequirements.justNumbers
-                  ? 'green'
-                  : 'red',
-            }"
-          >
-            Groß- und Kleinschreibung
-          </li>
-          <li
-            :style="{
-              color:
-                passwordRequirements.numberCheck &&
-                passwordRequirements.signCheck
-                  ? 'green'
-                  : 'red',
-            }"
-          >
-            mindestens eine Zahl und ein Sonderzeichen
-            (!@#$%^&*()_+\-=\[]{?};':"|,.&lt;&gt;)
-          </li>
-        </ul>
-        <button type="submit">SUBMIT</button>
-      </form>
+    <div v-if="isEditProfileOpen" id="baseModal">
+      <div class="container">
+        <form class="inputArea" @submit.prevent="processEdit">
+          <h1>Profil bearbeiten</h1>
+          <label>Vorname</label>
+          <input v-model="firstName" />
+          <label>Nachname</label>
+          <input v-model="lastName" />
+          <label>Email</label>
+          <input v-model="userEmail" />
+          <label>altes Passwort</label>
+          <input v-model="oldPassword" />
+          <p v-if="oldPasswordWrong" :style="{ color: 'red' }">
+            Ist das alte Passwort richtig? Soll es nicht verändert werden,
+            lösche den Inhalt der Passwortfelder
+          </p>
+          <label>neues Passwort</label>
+          <input v-model="newPassword" />
+          <h4>Passwortanforderungen:</h4>
+          <ul>
+            <li
+              :style="{
+                color: passwordRequirements.lengthCheck ? 'green' : 'red',
+              }"
+            >
+              8 Buchstaben
+            </li>
+            <li
+              :style="{
+                color:
+                  passwordRequirements.capitalCheck &&
+                  passwordRequirements.lowerCheck &&
+                  !passwordRequirements.justNumbers
+                    ? 'green'
+                    : 'red',
+              }"
+            >
+              Groß- und Kleinschreibung
+            </li>
+            <li
+              :style="{
+                color:
+                  passwordRequirements.numberCheck &&
+                  passwordRequirements.signCheck
+                    ? 'green'
+                    : 'red',
+              }"
+            >
+              mindestens eine Zahl und ein Sonderzeichen
+              (!@#$%^&*()_+\-=\[]{?};':"|,.&lt;&gt;)
+            </li>
+          </ul>
+          <button type="submit">SUBMIT</button>
+        </form>
+      </div>
     </div>
   </transition>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
+      // firstName: this.$store.getters["userModule/getFirstName"],
+      // lastName: this.$store.getters["userModule/getLastName"],
+      // userEmail: this.$store.getters["userModule/getEmail"],
+
       oldPassword: "",
       newPassword: "",
       oldPasswordWrong: false,
@@ -70,21 +76,9 @@ export default {
   },
 
   computed: {
-    firstName() {
-      return this.$store.getters["userModule/getFirstName"];
-    },
-    lastName() {
-      return this.$store.getters["userModule/getLastName"];
-    },
-    userEmail() {
-      return this.$store.getters["userModule/getEmail"];
-    },
-    isEditModalOpen() {
-      return this.$store.getters["userModule/getEditProfile"];
-    },
-
-    openBackdrop() {
-      return this.$store.getters["userModule/getEditProfile"];
+    ...mapGetters("userModule", ["getFirstName", "getLastName", "getEmail"]),
+    isEditProfileOpen() {
+      return this.$store.getters["popupModule/isEditProfileOpen"];
     },
 
     userPassword() {
@@ -96,12 +90,23 @@ export default {
   },
 
   watch: {
+    isEditProfileOpen(newValue) {
+      if (newValue) {
+        this.firstName = this.getFirstName;
+        this.lastName = this.getLastName;
+        this.userEmail = this.getEmail;
+      }
+    },
     newPassword(newValue) {
       this.$store.dispatch("userModule/checkPassword", newValue);
     },
   },
   methods: {
-    ...mapActions("popupModule", ["closeBackdrop"]),
+    ...mapActions("popupModule", [
+      "openProfileEdit",
+      "closeProfileEdit",
+      "closeBackdrop",
+    ]),
     processEdit() {
       this.$store.dispatch("userModule/updateFirstName", this.firstName);
       this.$store.dispatch("userModule/updateLastName", this.lastName);
@@ -120,16 +125,15 @@ export default {
       } else if (this.oldPassword == "" && this.newPassword == "") {
         this.$store.dispatch("userModule/toggleEditProfile");
         this.closeBackdrop();
+        this.closeProfileEdit();
         this.oldPasswordWrong = false;
       } else {
         this.oldPasswordWrong = true;
       }
-    },
 
-    /*     closeBackdrop() {
-      this.openBackdrop = false;
-      this.$store.dispatch("userModule/toggleEditProfile");
-    }, */
+      this.oldPassword = "";
+      this.newPassword = "";
+    },
   },
 };
 </script>
@@ -138,20 +142,24 @@ export default {
 #baseModal {
   z-index: 2;
   position: absolute;
-  top: 14%;
-  min-width: 30%;
-  min-height: 30%;
+  margin: 9% 32.5%;
+  width: 35%;
+  height: 73%;
   background-color: #152032;
   color: #ecf0f3;
   border-radius: 5vh;
   box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
-  margin-left: 35%;
 }
 
 .inputArea {
   padding: 2.5%;
   display: flex;
   flex-direction: column;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {

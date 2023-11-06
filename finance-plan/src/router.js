@@ -60,6 +60,9 @@ router.afterEach(function (to) {
       router.push("/login");
     }
   }
+  store.dispatch("popupModule/initBackdrop");
 });
+
+router.beforeEach(function () {});
 
 export default router;
