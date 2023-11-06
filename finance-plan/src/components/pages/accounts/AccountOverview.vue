@@ -27,10 +27,14 @@
       </router-link>
       <button
         class="editBtn"
-        @click="showEdit(account.id)"
+        @click="showEdit(account.id, $event)"
         :disabled="isEditBtnDisabled(account.id)"
       >
-        <i class="fa-solid fa-pen"></i>
+        <i
+          v-if="showFloppyDisk && !isEditBtnDisabled(account.id)"
+          class="fa-solid fa-floppy-disk"
+        ></i>
+        <i v-else class="fa-solid fa-pen"></i>
       </button>
       <button class="editBtn" @click="deleteAccount(account.id)">
         <i class="fa-solid fa-trash"></i>
@@ -60,6 +64,7 @@ export default {
       isInputVisible: false,
       isEditVisible: false,
       editedAccountId: null,
+      showFloppyDisk: false,
       editedNameInput: "",
       addNameInput: "",
     };
@@ -84,14 +89,23 @@ export default {
       return this.isEditVisible && this.editedAccountId !== accId;
     },
 
-    showEdit(accId) {
+    showEdit(accId, event) {
+      const button = event.target;
+      console.log(button);
+      this.showFloppyDisk = true;
       this.editedAccountId = accId;
 
       this.isEditVisible = !this.isEditVisible;
 
       if (!this.isEditVisible) {
-        this.editAccount({ accId: accId, edit: this.editedNameInput });
+        if (this.editedNameInput.trim() == "") {
+          this.showFloppyDisk = false;
+        } else {
+          this.editAccount({ accId: accId, edit: this.editedNameInput });
+        }
+
         this.editedNameInput = "";
+        this.showFloppyDisk = false;
       }
     },
     submitName() {
