@@ -17,7 +17,9 @@
         ><span>{{ account.balance }}</span>
       </router-link>
       <button class="editBtn"><i class="fa-solid fa-pen"></i></button>
-      <button class="editBtn"><i class="fa-solid fa-trash"></i></button>
+      <button class="editBtn" @click="deleteAccount(account.id)">
+        <i class="fa-solid fa-trash"></i>
+      </button>
     </div>
     <div v-if="isInputVisible" class="inputField">
       <input
@@ -36,6 +38,7 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -48,8 +51,9 @@ export default {
       return this.$store.getters["accountsModule/getAccounts"];
     },
   },
+
   methods: {
-    ...mapActions("accountsModule", ["addAccount"]),
+    ...mapActions("accountsModule", ["addAccount", "deleteAccount"]),
     showInput() {
       console.log(this.isInputVisible);
       this.isInputVisible = !this.isInputVisible;

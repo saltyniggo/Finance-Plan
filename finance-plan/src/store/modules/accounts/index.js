@@ -1,3 +1,7 @@
+import rootMutations from "./mutations.js";
+import rootActions from "./actions.js";
+import rootGetters from "./getters.js";
+
 export default {
   namespaced: true,
   state: {
@@ -19,22 +23,7 @@ export default {
       },
     ],
   },
-  mutations: {
-    addAccount(state, inputName) {
-      let uniqueId = new Date().toISOString();
-      state.accounts.push({
-        name: inputName,
-        balance: 0,
-        id: uniqueId,
-      });
-    },
-  },
-  actions: {
-    addAccount({ commit }, inputName) {
-      commit("addAccount", inputName);
-    },
-  },
-  getters: {
-    getAccounts: (state) => state.accounts,
-  },
+  mutations: rootMutations,
+  actions: rootActions,
+  getters: rootGetters,
 };
