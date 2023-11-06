@@ -16,6 +16,7 @@
         <span>{{ account.name }}</span
         ><span>{{ account.balance }}</span>
       </router-link>
+
       <button class="editBtn"><i class="fa-solid fa-pen"></i></button>
       <button class="editBtn" @click="deleteAccount(account.id)">
         <i class="fa-solid fa-trash"></i>
