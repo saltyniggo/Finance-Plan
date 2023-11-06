@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -95,47 +97,39 @@ export default {
 
   watch: {
     newPassword(newValue) {
-      console.log(newValue);
       this.$store.dispatch("userModule/checkPassword", newValue);
     },
   },
   methods: {
+    ...mapActions("popupModule", ["closeBackdrop"]),
     processEdit() {
-      console.log("click");
       this.$store.dispatch("userModule/updateFirstName", this.firstName);
       this.$store.dispatch("userModule/updateLastName", this.lastName);
       this.$store.dispatch("userModule/updateEmail", this.userEmail);
 
       if (this.userPassword === this.oldPassword) {
         this.oldPasswordWrong = false;
-        console.log("old password correct");
-        if (this.newPassword.trim == "") {
-          console.log("empty input");
-        } else {
-          if (this.passwordRequirements.requirementsOk) {
-            this.$store.dispatch("userModule/updatePassword", this.newPassword);
-            this.$store.dispatch("userModule/toggleEditProfile");
-            this.openBackdrop = false;
-          } else {
-            console.log("check password requirements");
-          }
+        if (
+          this.newPassword.trim != "" &&
+          this.passwordRequirements.requirementsOk
+        ) {
+          this.$store.dispatch("userModule/updatePassword", this.newPassword);
+          this.$store.dispatch("userModule/toggleEditProfile");
+          this.closeBackdrop();
         }
       } else if (this.oldPassword == "" && this.newPassword == "") {
         this.$store.dispatch("userModule/toggleEditProfile");
-        this.openBackdrop = false;
-        console.log("no Password changes");
+        this.closeBackdrop();
         this.oldPasswordWrong = false;
       } else {
-        console.log("type in correct old password");
         this.oldPasswordWrong = true;
       }
     },
 
-    closeBackdrop() {
-      console.log("puff");
+    /*     closeBackdrop() {
       this.openBackdrop = false;
       this.$store.dispatch("userModule/toggleEditProfile");
-    },
+    }, */
   },
 };
 </script>

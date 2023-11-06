@@ -12,8 +12,6 @@ export default {
   },
   submitEdit(state, payload) {
     const { packet, index } = payload;
-    console.log(index);
-    console.log(state.transactions[index]);
     if (packet.date) state.transactions[index].date = packet.date;
     if (packet.amount) state.transactions[index].amount = packet.amount;
     if (packet.description)

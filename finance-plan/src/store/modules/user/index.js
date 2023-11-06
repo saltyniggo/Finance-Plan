@@ -34,7 +34,6 @@ export default {
     },
     updatePassword(state, newPassword) {
       state.password = newPassword;
-      console.log(newPassword);
     },
     checkPassword(state, newValue) {
       const password = newValue;
@@ -60,10 +59,8 @@ export default {
         signCheck &&
         !justNumbers
       ) {
-        console.log("Saved");
         state.passwordRequirements.requirementsOk = true;
       } else {
-        console.log("Check Requirements");
         state.passwordRequirements.requirementsOk = false;
       }
     },

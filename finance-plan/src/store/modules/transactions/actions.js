@@ -20,7 +20,6 @@ export default {
         .padStart(2, "0")}.${year}`;
     }
     const toEditIndex = context.rootState.popupModule.toEditIndex;
-    console.log(toEditIndex);
     context.commit("submitEdit", { packet, index: toEditIndex });
   },
   checkTransactionList(context) {

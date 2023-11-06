@@ -55,7 +55,6 @@ export default {
   methods: {
     ...mapActions("accountsModule", ["addAccount", "deleteAccount"]),
     showInput() {
-      console.log(this.isInputVisible);
       this.isInputVisible = !this.isInputVisible;
     },
     submitName() {

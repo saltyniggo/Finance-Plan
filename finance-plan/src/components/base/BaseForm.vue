@@ -6,14 +6,26 @@
     <slot>Default</slot>
 
     <slot name="buttonSubmit">
-      <button-rectangle @submit.prevent @click-event="$emit('submitEvent')"
+      <button-rectangle @click="$emit('submitEvent')"
         ><slot name="buttonText">Submit</slot></button-rectangle
       ></slot
     >
   </form>
 </template>
 
+<script>
+export default {
+  emits: ["submitEvent"],
+  methods: {
+    onSubmit() {
+      this.$emit("submitEvent");
+    },
+  },
+};
+</script>
+
 <style scoped>
+/* Add your component's specific styles here */
 * {
   color: #ecf0f3;
 }

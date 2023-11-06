@@ -36,11 +36,6 @@ export default {
       return this.$store.getters["userModule/getFullName"];
     },
   },
-  methods: {
-    openEditModal(data) {
-      console.log("open", data);
-    },
-  },
 };
 </script>
 

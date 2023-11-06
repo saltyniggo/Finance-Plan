@@ -29,6 +29,8 @@
 
 <script>
 export default {
+  emits: ["toggle-register-status"],
+
   computed: {
     formData() {
       return this.$store.getters["registerModule/getFormData"];

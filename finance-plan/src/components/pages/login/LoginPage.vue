@@ -18,8 +18,9 @@ import LoginForm from "./LoginForm.vue";
 import RegisterForm from "./RegisterForm.vue";
 
 export default {
-  components: { LoginForm, RegisterForm },
+  emits: ["toggle-register-status"],
 
+  components: { LoginForm, RegisterForm },
   data() {
     return {
       isRegistered: true,

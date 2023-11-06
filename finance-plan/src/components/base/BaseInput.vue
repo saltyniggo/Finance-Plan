@@ -3,7 +3,7 @@
   <input
     v-if="currentComponent == 'input'"
     :type="inputType"
-    :value="inputValue"
+    :value="modelValue"
     @input="updateInputValue"
     :required="required"
     :field="field"
@@ -15,6 +15,10 @@ import { mapActions } from "vuex";
 export default {
   emits: ["input-change"],
   props: {
+    modelValue: {
+      type: String,
+      default: "",
+    },
     inputType: {
       type: String,
       default: "text",
@@ -33,9 +37,10 @@ export default {
   computed: {
     inputValue: {
       get() {
-        return this.$store.getters["registerModule/inputValue"](this.field);
+        return this.modelValue;
       },
       set(value) {
+        this.$emit("input-change", value);
         this.$store.dispatch("registerModule/updateFormData", {
           field: this.field,
           value,

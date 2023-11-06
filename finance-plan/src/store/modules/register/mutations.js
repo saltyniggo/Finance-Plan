@@ -2,7 +2,6 @@ import router from "@/router";
 export default {
   updateFormData(state, { field, value }) {
     state.formData[field] = value;
-    console.log("update");
   },
 
   updatePassword(state, value) {
@@ -36,27 +35,22 @@ export default {
       signCheck &&
       !justNumbers
     ) {
-      console.log("Saved");
       state.formData.requirementsOk = true;
     } else {
-      console.log("Check Requirements");
       state.formData.requirementsOk = false;
     }
   },
 
   doubleCheckPassword(state) {
     if (state.formData.password === state.formData.passwordRepeat) {
-      console.log("2x right");
       state.formData.rightTwice = true;
     } else {
-      console.log("nope");
       state.formData.rightTwice = false;
     }
   },
 
   register(state) {
     if (state.formData.requirementsOk && state.formData.rightTwice) {
-      console.log("register");
       state.isAuth = true;
       router.push("/accounts");
     }
@@ -64,7 +58,6 @@ export default {
 
   checkLoginEmail(state) {
     if (state.formData.loginEmail != state.loginData.userEmail) {
-      console.log("worng email");
       state.loginData.emailRight = false;
     }
     if (state.formData.loginEmail == state.loginData.userEmail) {
@@ -74,7 +67,6 @@ export default {
 
   checkLoginPassword(state) {
     if (state.formData.loginPassword != state.loginData.userPassword) {
-      console.log("worng password");
       state.loginData.passwordRight = false;
     }
     if (state.formData.loginPassword == state.loginData.userPassword) {
@@ -84,13 +76,11 @@ export default {
 
   login(state) {
     if (state.loginData.emailRight && state.loginData.passwordRight) {
-      console.log("nice both right");
       state.loginData.showError = false;
       state.isAuth = true;
 
       router.push("/accounts");
     } else {
-      console.log("nope");
       state.loginData.showError = true;
     }
   },
