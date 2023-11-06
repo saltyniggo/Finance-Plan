@@ -1,6 +1,6 @@
 import rootMutations from "./mutations.js";
 import rootActions from "./actions.js";
-import rootGetters from "./getter.js";
+import rootGetters from "./getters.js";
 
 export default {
   namespaced: true,
