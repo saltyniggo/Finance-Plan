@@ -11,7 +11,7 @@
         :inputType="'password'"
         :field="'loginPassword'"
       >
-        <template v-slot:label>Password:</template>
+        <template v-slot:label>Passwort:</template>
       </base-input>
 
       <p v-if="loginData.showError" :style="{ color: 'red' }">

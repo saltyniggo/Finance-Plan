@@ -19,8 +19,21 @@ export default {
       },
     ],
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    addAccount(state, inputName) {
+      let uniqueId = new Date().toISOString();
+      state.accounts.push({
+        name: inputName,
+        balance: 0,
+        id: uniqueId,
+      });
+    },
+  },
+  actions: {
+    addAccount({ commit }, inputName) {
+      commit("addAccount", inputName);
+    },
+  },
   getters: {
     getAccounts: (state) => state.accounts,
   },

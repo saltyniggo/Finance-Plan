@@ -19,15 +19,45 @@
       <button class="editBtn"><i class="fa-solid fa-pen"></i></button>
       <button class="editBtn"><i class="fa-solid fa-trash"></i></button>
     </div>
-    <button class="addBtn">+ Account hinzufügen</button>
+    <div v-if="isInputVisible" class="inputField">
+      <input
+        type="text"
+        id="nameInput"
+        v-model="input"
+        placeholder="Wie soll der Account heißen..."
+      />
+      <button @click="submitName()" class="submitBtn">+</button>
+    </div>
+    <button v-else class="addBtn" @click="showInput()">
+      + Account hinzufügen
+    </button>
   </base-card>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      isInputVisible: false,
+      input: "",
+    };
+  },
   computed: {
     accounts() {
       return this.$store.getters["accountsModule/getAccounts"];
+    },
+  },
+  methods: {
+    ...mapActions("accountsModule", ["addAccount"]),
+    showInput() {
+      console.log(this.isInputVisible);
+      this.isInputVisible = !this.isInputVisible;
+    },
+    submitName() {
+      this.showInput();
+      this.addAccount(this.input);
+      this.input = "";
     },
   },
 };
@@ -39,6 +69,11 @@ h2 {
 .row {
   width: 90%;
   display: inline-flex;
+}
+
+.inputField {
+  display: inline-flex;
+  width: 90%;
 }
 
 .navBtn {
@@ -54,6 +89,9 @@ h2 {
   font-weight: 500;
   font-size: 2vh;
   text-shadow: 2px 2px 3px #151232;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(92, 92, 92) black black rgb(92, 92, 92);
 }
 
 .editBtn {
@@ -71,8 +109,24 @@ h2 {
   text-shadow: 2px 2px 3px #151232;
   margin-left: 1%;
 }
+.submitBtn {
+  width: 11%;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  border-radius: 20px;
+  background: #17253e;
+  color: #ecf0f3;
+  font-weight: 500;
+  font-size: 2vh;
+  text-shadow: 2px 2px 3px #151232;
+  margin-left: 1%;
+}
 
-.addBtn {
+.addBtn,
+#nameInput {
   width: 90%;
   padding: 2%;
   display: flex;
@@ -84,5 +138,15 @@ h2 {
   font-weight: 500;
   font-size: 2vh;
   text-shadow: 2px 2px 3px #151232;
+}
+
+#nameInput {
+  border: 2px solid;
+  border-color: rgb(92, 92, 92) black black rgb(92, 92, 92);
+}
+
+::placeholder {
+  color: #ecf0f3;
+  opacity: 0.8;
 }
 </style>
