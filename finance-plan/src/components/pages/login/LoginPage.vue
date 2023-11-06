@@ -26,6 +26,10 @@ export default {
       isRegistered: true,
     };
   },
+  beforeMount() {
+    this.$store.dispatch("registerModule/falseIsAuth");
+  },
+
   methods: {
     changeRegisterStatus() {
       this.isRegistered = !this.isRegistered;

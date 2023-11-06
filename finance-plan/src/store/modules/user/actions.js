@@ -2,7 +2,6 @@ export default {
   toggleEditProfile({ commit }) {
     commit("toggleEditProfile");
   },
-
   updateFirstName({ commit }, newFirst) {
     commit("updateFirstName", newFirst);
   },

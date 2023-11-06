@@ -1,5 +1,5 @@
 <template>
-  <button-round :btnColor="'#fff'" @click="toggleEditModal(), openBackdrop()"
+  <button-round :btnColor="'#fff'" @click="openBackdrop(), openProfileEdit()"
     ><i class="fa-solid fa-pencil"></i
   ></button-round>
 </template>
@@ -9,10 +9,10 @@ import { mapActions } from "vuex";
 
 export default {
   methods: {
-    ...mapActions("popupModule", ["openBackdrop"]),
-    toggleEditModal() {
-      this.$store.dispatch("userModule/toggleEditProfile");
-    },
+    ...mapActions("popupModule", ["openBackdrop", "openProfileEdit"]),
+    // toggleEditModal() {
+    //   this.$store.dispatch("popupModule/openProfileEdit");
+    // },
   },
 };
 </script>

@@ -16,11 +16,6 @@ export default {
   components: {
     BackDrop,
   },
-  computed: {
-    isAuth() {
-      return this.$store.state.registerModule.isAuth;
-    },
-  },
 };
 </script>
 

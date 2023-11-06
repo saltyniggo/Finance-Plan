@@ -14,4 +14,7 @@ export default {
   chosenAddModal(state) {
     return state.chosenAddModal;
   },
+  isEditProfileOpen(state) {
+    return state.isEditProfileOpen;
+  },
 };
