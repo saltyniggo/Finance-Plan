@@ -136,6 +136,7 @@ h2 {
   padding: 2%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 1rem;
   border-radius: 20px;
   background: #20639b;
@@ -155,6 +156,7 @@ h2 {
   padding: 2%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 1rem;
   border-radius: 20px;
   background: #05da93;
