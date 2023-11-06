@@ -52,6 +52,14 @@ export default {
   register(state) {
     if (state.formData.requirementsOk && state.formData.rightTwice) {
       state.isAuth = true;
+      state.registrationTemp.push({
+        firstName: state.formData.firstName,
+        lastName: state.formData.lastName,
+        email: state.formData.email,
+        password: state.formData.password,
+        id: Math.random() * 10000000000000000,
+      });
+      console.log(state.registrationTemp);
       router.push("/accounts");
     }
   },

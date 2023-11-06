@@ -7,16 +7,24 @@
           type="number"
           min="0.00"
           step="0.01"
-          placeholder="00.00"
+          :placeholder="this.currentState.amount + '€'"
           v-model="newAmount"
         />
         <label>Woher?</label>
-        <input type="text" v-model="newDescription" />
+        <input
+          type="text"
+          v-model="newDescription"
+          :placeholder="this.currentState.description"
+        />
         <label>An welchem Tag?</label>
-        <input type="date" v-model="newDate" max="9999-12-31" />
+        <input
+          type="date"
+          v-model="newDate"
+          min="1000-01-01"
+          max="9999-12-31"
+        />
         <label>Kategorie</label>
         <select v-model="newCategory">
-          <option value="">---</option>
           <option value="Haushalt">Haushalt</option>
           <option value="Essen">Essen</option>
           <option value="Freizeit">Freizeit</option>
@@ -35,6 +43,7 @@
 import { mapActions } from "vuex";
 
 export default {
+  props: ["index"],
   data() {
     return {
       newAmount: undefined,
@@ -46,6 +55,9 @@ export default {
   computed: {
     isEditModalOpen() {
       return this.$store.getters["popupModule/isEditModalOpen"];
+    },
+    currentState() {
+      return this.$store.getters["transactionList/currentState"](this.index);
     },
   },
   methods: {
@@ -65,6 +77,17 @@ export default {
     },
     ...mapActions("transactionList", ["submitEdit"]),
     ...mapActions("popupModule", ["closeEditModal", "closeBackdrop"]),
+  },
+  watch: {
+    isEditModalOpen: {
+      immediate: true,
+      handler() {
+        this.newAmount = undefined;
+        this.newDescription = undefined;
+        this.newDate = undefined;
+        this.newCategory = undefined;
+      },
+    },
   },
 };
 </script>

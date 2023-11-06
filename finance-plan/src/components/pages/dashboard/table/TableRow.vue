@@ -6,7 +6,9 @@
       <p>{{ data.description }}</p>
       <p>{{ data.category }}</p>
       <div class="buttonList">
-        <button-round @click="openEditModal(index), openBackdrop()"
+        <button-round
+          @click="openEditModal(index), openBackdrop()"
+          :index="index"
           ><i class="fa-solid fa-pen"></i
         ></button-round>
         <button-round

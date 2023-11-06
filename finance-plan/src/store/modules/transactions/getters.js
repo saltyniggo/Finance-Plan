@@ -5,6 +5,11 @@ export default {
       sum: state.sum + "€",
     };
   },
+  currentState: (state) => (index) => {
+    return state.transactions.find(
+      (transaction) => transaction.index === index
+    );
+  },
   transactionsEmpty(state) {
     return state.transactionsEmpty;
   },
