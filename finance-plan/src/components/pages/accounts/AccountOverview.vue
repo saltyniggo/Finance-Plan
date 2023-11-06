@@ -36,7 +36,11 @@
         ></i>
         <i v-else class="fa-solid fa-pen"></i>
       </button>
-      <button class="editBtn" @click="deleteAccount(account.id)">
+      <button
+        class="editBtn"
+        @click="deleteAccount(account.id)"
+        :disabled="isDeleteDisabled"
+      >
         <i class="fa-solid fa-trash"></i>
       </button>
     </div>
@@ -49,7 +53,12 @@
       />
       <button @click="submitName()" class="submitBtn">+</button>
     </div>
-    <button v-else class="addBtn" @click="showInput()">
+    <button
+      v-else
+      class="addBtn"
+      @click="showInput()"
+      :disabled="isDeleteDisabled"
+    >
       + Account hinzufügen
     </button>
   </base-card>
@@ -67,6 +76,7 @@ export default {
       showFloppyDisk: false,
       editedNameInput: "",
       addNameInput: "",
+      isDeleteDisabled: false,
     };
   },
   computed: {
@@ -90,6 +100,7 @@ export default {
     },
 
     showEdit(accId, event) {
+      this.isDeleteDisabled = true;
       const button = event.target;
       console.log(button);
       this.showFloppyDisk = true;
@@ -106,6 +117,7 @@ export default {
 
         this.editedNameInput = "";
         this.showFloppyDisk = false;
+        this.isDeleteDisabled = false;
       }
     },
     submitName() {
