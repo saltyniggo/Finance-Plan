@@ -36,7 +36,7 @@
           <option value="Katze">Katze</option>
           <option value="Maus">Maus</option>
         </select>
-        <button>SUBMIT</button>
+        <button @click="console.log(this.currentIndex)">SUBMIT</button>
       </form>
     </div>
   </transition>

@@ -26,6 +26,11 @@ export default {
   box-sizing: border-box;
 }
 
+::placeholder {
+  color: #ecf0f3;
+  opacity: 1;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #152032;
