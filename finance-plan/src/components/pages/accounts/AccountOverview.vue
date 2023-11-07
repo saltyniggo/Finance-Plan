@@ -50,6 +50,7 @@
         id="nameInput"
         v-model="addNameInput"
         placeholder="Wie soll der Account heißen..."
+        @keyup.enter="submitName()"
       />
       <button @click="submitName()" class="submitBtn">+</button>
     </div>

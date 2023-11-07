@@ -18,10 +18,13 @@
         />
         <label>An welchem Tag?</label>
         <input
-          type="date"
+          type="text"
           v-model="newDate"
-          min="1000-01-01"
-          max="9999-12-31"
+          :placeholder="this.currentState.date"
+          onfocus="(this.type='date')"
+          onblur="(this.type='text')"
+          min="10-01-1000"
+          max="31.12.9999"
         />
         <label>Kategorie</label>
         <select v-model="newCategory">
@@ -50,16 +53,20 @@ export default {
       newDescription: undefined,
       newDate: undefined,
       newCategory: undefined,
+      currentState: this.$store.getters["transactionList/currentState"](
+        this.index
+      ),
     };
   },
   computed: {
     isEditModalOpen() {
       return this.$store.getters["popupModule/isEditModalOpen"];
     },
-    currentState() {
-      return this.$store.getters["transactionList/currentState"](this.index);
-    },
+    // currentState() {
+    //   return this.$store.getters["transactionList/currentState"](this.index);
+    // },
   },
+
   methods: {
     processEdit() {
       this.submitEdit({
@@ -71,7 +78,7 @@ export default {
       this.newDate = undefined;
       this.newAmount = undefined;
       this.newDescription = undefined;
-      this.ategory = undefined;
+      this.newCategory = undefined;
       this.closeBackdrop();
       this.closeEditModal();
     },
@@ -87,6 +94,11 @@ export default {
         this.newDate = undefined;
         this.newCategory = undefined;
       },
+    },
+    index() {
+      this.currentState = this.$store.getters["transactionList/currentState"](
+        this.index
+      );
     },
   },
 };
