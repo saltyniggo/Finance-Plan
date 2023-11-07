@@ -15,10 +15,27 @@ export default {
         console.log("conenction problem", error);
       });
   },
-  addAccount({ commit }, inputName) {
+  temp({ commit }, inputName) {
     if (inputName != "" || undefined) {
       commit("addAccount", inputName);
     }
+  },
+  async addAccount({ commit }, payload) {
+    await userService
+      .addAccount(payload)
+      .then((response) => {
+        if (response == "successfull") {
+          console.log("addAccount");
+          commit("accountModule/addAccount", payload);
+        } else if (response == "unsucessfull") {
+          console.error("ERROR");
+          commit("showError");
+        }
+      })
+      .catch((error) => {
+        console.error("connection problem", error);
+        commit("showErrorConnection");
+      });
   },
 
   editAccount({ commit }, { accId, edit }) {
