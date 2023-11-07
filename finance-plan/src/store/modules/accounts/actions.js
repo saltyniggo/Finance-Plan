@@ -21,7 +21,7 @@ export default {
     }
   },
   async addAccount({ commit }, payload) {
-    await userService
+    await accountService
       .addAccount(payload)
       .then((response) => {
         if (response == "successfull") {
