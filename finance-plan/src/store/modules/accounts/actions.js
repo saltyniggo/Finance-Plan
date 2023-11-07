@@ -1,6 +1,19 @@
+import accountService from "@/store/service/accountService.js";
 export default {
-  deleteAccount(context, accId) {
-    context.commit("deleteAccount", accId);
+  async deleteAccount(context, accId) {
+    await accountService
+      .deleteAccount(accId)
+      .then((response) => {
+        if (response == "successfull") {
+          console.log("delte");
+          context.commit("deleteAccount", accId);
+        } else if (response == "unsuccessfull") {
+          console.log("delete not possible");
+        }
+      })
+      .catch((error) => {
+        console.log("conenction problem", error);
+      });
   },
   addAccount({ commit }, inputName) {
     if (inputName != "" || undefined) {

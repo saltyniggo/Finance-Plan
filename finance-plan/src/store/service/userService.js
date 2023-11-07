@@ -56,6 +56,7 @@ async function postLogin(emailInput, passwordInput) {
   } catch (error) {
     console.log("Error when posting login");
     console.error("Error:", error);
+    throw error;
   }
 }
 

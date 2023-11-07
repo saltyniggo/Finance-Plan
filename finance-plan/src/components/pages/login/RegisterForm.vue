@@ -68,6 +68,10 @@
       >
         Das Passwort ist nicht identisch mit dem zuvor erstellten
       </p>
+
+      <p v-if="loginData.showErrorConnection" :style="{ color: 'red' }">
+        Leider ist bei uns etwas schief gegengen. Bitte versuch es nochmal.
+      </p>
     </template>
 
     <template v-slot:buttonSubmit>

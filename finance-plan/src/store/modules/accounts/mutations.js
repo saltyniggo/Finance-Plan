@@ -5,6 +5,7 @@ export default {
       state.accounts.splice(index, 1);
     }
   },
+
   addAccount(state, inputName) {
     let uniqueId = new Date().toISOString();
     state.accounts.push({
@@ -13,6 +14,7 @@ export default {
       id: uniqueId,
     });
   },
+
   editAccount(state, { accId, edit }) {
     const index = state.accounts.findIndex((acc) => acc.id === accId);
     state.accounts[index].name = edit;

@@ -56,11 +56,11 @@ export default {
     await userService
       .postLogin(login.loginEmail, login.loginPassword)
       .then((response) => {
-        if (response == "sucessfull") {
+        if (response == "successfull") {
           console.log("login");
           commit("login");
           commit("userModule/setUser", response);
-        } else if (response == "unsucessfull") {
+        } else if (response == "unsuccessfull") {
           console.log("wrong password");
           commit("showError");
         }
