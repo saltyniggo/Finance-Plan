@@ -53,9 +53,6 @@ export default {
       newDescription: undefined,
       newDate: undefined,
       newCategory: undefined,
-      currentState: this.$store.getters["transactionList/currentState"](
-        this.index
-      ),
     };
   },
   computed: {
@@ -98,11 +95,11 @@ export default {
         this.newCategory = undefined;
       },
     },
-    index() {
-      this.currentState = this.$store.getters["transactionList/currentState"](
-        this.index
-      );
-    },
+    // index() {
+    //   this.currentState = this.$store.getters["transactionList/currentState"](
+    //     this.index
+    //   );
+    // },
   },
 };
 </script>
