@@ -15,7 +15,10 @@
       </base-input>
 
       <p v-if="loginData.showError" :style="{ color: 'red' }">
-        Passwort oder Email sind falsch. Bitte versuch es nochmal
+        Passwort oder Email sind falsch. Bitte versuch es nochmal.
+      </p>
+      <p v-if="loginData.showErrorConnection" :style="{ color: 'red' }">
+        Leider ist bei uns etwas schief gegengen. Bitte versuch es nochmal.
       </p>
     </template>
 

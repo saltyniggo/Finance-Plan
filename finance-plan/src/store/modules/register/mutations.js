@@ -82,15 +82,24 @@ export default {
     }
   },
 
-  login(state) {
-    if (state.loginData.emailRight && state.loginData.passwordRight) {
-      state.loginData.showError = false;
-      state.isAuth = true;
+  // login(state) {
+  //   if (state.loginData.emailRight && state.loginData.passwordRight) {
+  //     state.loginData.showError = false;
+  //     state.isAuth = true;
 
-      router.push("/accounts");
-    } else {
-      state.loginData.showError = true;
-    }
+  //     router.push("/accounts");
+  //   } else {
+  //     state.loginData.showError = true;
+  //   }
+  // },
+
+  login(state) {
+    state.isAuth = true;
+    router.push("/accounts");
+  },
+
+  showError(state) {
+    state.loginData.showError = true;
   },
 
   logout(state) {
@@ -100,5 +109,14 @@ export default {
 
   falseIsAuth(state) {
     state.isAuth = false;
+  },
+
+  showErrorConnection(state) {
+    state.loginData.showErrorConnection = true;
+  },
+
+  removeErrors(state) {
+    state.loginData.showErrorConnection = false;
+    state.loginData.showError = false;
   },
 };

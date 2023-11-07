@@ -28,6 +28,7 @@ export default {
   },
   beforeMount() {
     this.$store.dispatch("registerModule/falseIsAuth");
+    this.$store.dispatch("registerModule/removeErrors");
   },
 
   methods: {

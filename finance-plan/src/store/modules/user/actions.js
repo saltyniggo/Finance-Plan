@@ -1,4 +1,7 @@
 export default {
+  setUser({ commit }, payload) {
+    commit("setuser", payload);
+  },
   toggleEditProfile({ commit }) {
     commit("toggleEditProfile");
   },

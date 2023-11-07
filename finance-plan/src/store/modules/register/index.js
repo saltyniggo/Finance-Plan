@@ -6,7 +6,8 @@ export default {
   namespaced: true,
   state: {
     registrationTemp: [],
-    isAuth: false,
+    // isAuth: false,
+    isAuth: true,
     isLoggedIn: false,
     formData: {
       firstName: "",
@@ -23,7 +24,7 @@ export default {
       requirementsOk: false,
       rightTwice: true,
       loginEmail: "",
-      LoginPassword: "",
+      loginPassword: "",
     },
     loginData: {
       userEmail: "heyjoo.3@gmail.com",
@@ -32,6 +33,7 @@ export default {
       passwordRight: false,
       emailRight: false,
       showError: false,
+      showErrorConnection: false,
 
       firstName: "Frieda",
       lastName: "Ewers",

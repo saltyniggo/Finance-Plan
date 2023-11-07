@@ -1,4 +1,11 @@
 export default {
+  setUser(state, payload) {
+    state.firstName = payload.firstName;
+    state.lastName = payload.lastName;
+    state.email = payload.email;
+    state.password = payload.password;
+    state.accounts = payload.accounts;
+  },
   toggleEditProfile(state) {
     state.editProfile = !state.editProfile;
   },
