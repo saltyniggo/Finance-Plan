@@ -10,9 +10,6 @@ import { mapActions } from "vuex";
 export default {
   methods: {
     ...mapActions("popupModule", ["openBackdrop", "openProfileEdit"]),
-    // toggleEditModal() {
-    //   this.$store.dispatch("popupModule/openProfileEdit");
-    // },
   },
 };
 </script>

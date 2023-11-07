@@ -9,13 +9,9 @@ export default {
   toggleEditProfile(state) {
     state.editProfile = !state.editProfile;
   },
-  updateFirstName(state, newFirst) {
+  updateUserData(state, { newFirst, newLast, newEmail }) {
     state.firstName = newFirst;
-  },
-  updateLastName(state, newLast) {
     state.lastName = newLast;
-  },
-  updateEmail(state, newEmail) {
     state.email = newEmail;
   },
   updatePassword(state, newPassword) {

@@ -8,7 +8,7 @@
           <input v-model="firstName" />
           <label>Nachname</label>
           <input v-model="lastName" />
-          <label>Email</label>
+          <label>E-Mail</label>
           <input v-model="userEmail" />
           <label>altes Passwort</label>
           <input v-model="oldPassword" />
@@ -107,30 +107,35 @@ export default {
       "closeProfileEdit",
       "closeBackdrop",
     ]),
-    processEdit() {
-      this.$store.dispatch("userModule/updateFirstName", this.firstName);
-      this.$store.dispatch("userModule/updateLastName", this.lastName);
-      this.$store.dispatch("userModule/updateEmail", this.userEmail);
 
+    processEdit() {
       if (this.userPassword === this.oldPassword) {
         this.oldPasswordWrong = false;
         if (
           this.newPassword.trim != "" &&
           this.passwordRequirements.requirementsOk
         ) {
-          this.$store.dispatch("userModule/updatePassword", this.newPassword);
-          this.$store.dispatch("userModule/toggleEditProfile");
+          this.$store.dispatch("userModule/putUser", {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.userEmail,
+            password: this.newPassword,
+          });
           this.closeBackdrop();
+          this.closeProfileEdit();
         }
       } else if (this.oldPassword == "" && this.newPassword == "") {
-        this.$store.dispatch("userModule/toggleEditProfile");
+        this.$store.dispatch("userModule/putUser", {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.userEmail,
+        });
         this.closeBackdrop();
         this.closeProfileEdit();
         this.oldPasswordWrong = false;
       } else {
         this.oldPasswordWrong = true;
       }
-
       this.oldPassword = "";
       this.newPassword = "";
     },
