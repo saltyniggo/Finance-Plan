@@ -33,7 +33,7 @@
           <option value="Katze">Katze</option>
           <option value="Maus">Maus</option>
         </select>
-        <button>SUBMIT</button>
+        <button @click="console.log(this.currentIndex)">SUBMIT</button>
       </form>
     </div>
   </transition>
@@ -56,6 +56,9 @@ export default {
     isEditModalOpen() {
       return this.$store.getters["popupModule/isEditModalOpen"];
     },
+    currentIndex() {
+      return this.$store.getters["popupModule/currentIndex"];
+    },
     currentState() {
       return this.$store.getters["transactionList/currentState"](this.index);
     },
@@ -71,7 +74,7 @@ export default {
       this.newDate = undefined;
       this.newAmount = undefined;
       this.newDescription = undefined;
-      this.ategory = undefined;
+      this.newCategory = undefined;
       this.closeBackdrop();
       this.closeEditModal();
     },
