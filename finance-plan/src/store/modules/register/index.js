@@ -27,16 +27,16 @@ export default {
       loginPassword: "",
     },
     loginData: {
-      userEmail: "heyjoo.3@gmail.com",
-      userPassword: "abCD12!?",
+      // userEmail: "heyjoo.3@gmail.com",
+      // userPassword: "abCD12!?",
 
       passwordRight: false,
       emailRight: false,
       showError: false,
       showErrorConnection: false,
 
-      firstName: "Frieda",
-      lastName: "Ewers",
+      // firstName: "Frieda",
+      // lastName: "Ewers",
     },
   },
   mutations: rootMutations,
