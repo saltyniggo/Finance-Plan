@@ -6,9 +6,7 @@ export default {
     };
   },
   currentState: (state) => (index) => {
-    return state.transactions.find(
-      (transaction) => transaction.index === index
-    );
+    return state.transactions[index];
   },
   transactionsEmpty(state) {
     return state.transactionsEmpty;

@@ -62,6 +62,11 @@
     >
       + Account hinzufügen
     </button>
+    <form @submit.prevent="postFeed">
+      <input type="text" v-model="axios" />
+      <button>axios</button>
+      <p>{{ response }}</p>
+    </form>
   </base-card>
 </template>
 
@@ -71,6 +76,8 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      axios: "",
+      response: null,
       isInputVisible: false,
       isEditVisible: false,
       editedAccountId: null,
@@ -87,6 +94,10 @@ export default {
   },
 
   methods: {
+    async postFeed() {
+      await this.$store.dispatch("axios/postFeed", this.feedValue);
+      this.response = this.$store.getters["axios/getResponse"];
+    },
     ...mapActions("accountsModule", [
       "addAccount",
       "deleteAccount",
