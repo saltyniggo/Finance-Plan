@@ -1,4 +1,5 @@
 import userService from "@/store/service/userService.js";
+import store from "@/store";
 
 export default {
   updateFormData({ commit }, { field, value }) {
@@ -12,8 +13,33 @@ export default {
     commit("doubleCheckPassword");
   },
 
-  register({ commit }) {
-    commit("register");
+  async register({ commit }) {
+    let requirementsOk = store.getters["registerModule/requirementsOK"];
+    let rightTwice = store.getters["registerModule/rightTwice"];
+    console.log(requirementsOk, rightTwice);
+
+    let registerData = store.getters["registerModule/getFormData"];
+
+    if (rightTwice && requirementsOk) {
+      await userService
+        .postRegister(
+          registerData.firstName,
+          registerData.lastName,
+          registerData.email,
+          registerData.password
+        )
+        .then((response) => {
+          console.log("login");
+          commit("login");
+          commit("userModule/setUser", response);
+        })
+        .catch((error) => {
+          console.log("conenction problem", error);
+          commit("showErrorConnection");
+        });
+    } else {
+      console.log("other register error");
+    }
   },
 
   checkLoginEmail({ commit }) {
@@ -24,13 +50,11 @@ export default {
     commit("checkLoginPassword");
   },
 
-  // login({ commit }) {
-  //   commit("login");
-  // },
-
-  async login({ commit }, payload) {
+  async login({ commit }) {
+    let login = store.getters["registerModule/getFormData"];
+    console.log(login.loginEmail, login.loginPassword);
     await userService
-      .postLogin(payload)
+      .postLogin(login.loginEmail, login.loginPassword)
       .then((response) => {
         if (response == "sucessfull") {
           console.log("login");
