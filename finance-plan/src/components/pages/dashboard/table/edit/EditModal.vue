@@ -3,28 +3,15 @@
     <div v-if="isEditModalOpen" id="baseModal">
       <form class="inputArea" @submit.prevent="processEdit">
         <label>Wie viel?</label>
-        <input
-          type="number"
-          min="0.00"
-          step="0.01"
-          :placeholder="this.currentState.amount + '€'"
-          v-model="newAmount"
-        />
+        <input type="number" min="0.00" step="0.01" v-model="newAmount" />
         <label>Woher?</label>
-        <input
-          type="text"
-          v-model="newDescription"
-          :placeholder="this.currentState.description"
-        />
+        <input type="text" v-model="newDescription" />
         <label>An welchem Tag?</label>
         <input
-          type="text"
+          type="date"
           v-model="newDate"
-          :placeholder="this.currentState.date"
-          onfocus="(this.type='date')"
-          onblur="(this.type='text')"
           min="10-01-1000"
-          max="31.12.9999"
+          max="31-12-9999"
         />
         <label>Kategorie</label>
         <select v-model="newCategory">
@@ -36,7 +23,7 @@
           <option value="Katze">Katze</option>
           <option value="Maus">Maus</option>
         </select>
-        <button @click="console.log(this.currentIndex)">SUBMIT</button>
+        <button>SUBMIT</button>
       </form>
     </div>
   </transition>
@@ -86,20 +73,18 @@ export default {
     ...mapActions("popupModule", ["closeEditModal", "closeBackdrop"]),
   },
   watch: {
-    isEditModalOpen: {
+    currentIndex: {
       immediate: true,
-      handler() {
-        this.newAmount = undefined;
-        this.newDescription = undefined;
-        this.newDate = undefined;
-        this.newCategory = undefined;
+      handler(newIndex) {
+        const currentState =
+          this.$store.getters["transactionList/currentState"](newIndex);
+        if (currentState) {
+          this.newAmount = currentState.amount;
+          this.newDescription = currentState.description;
+          this.newCategory = currentState.category;
+        }
       },
     },
-    // index() {
-    //   this.currentState = this.$store.getters["transactionList/currentState"](
-    //     this.index
-    //   );
-    // },
   },
 };
 </script>

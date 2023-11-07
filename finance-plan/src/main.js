@@ -1,6 +1,6 @@
 import { createApp } from "vue";
-// import axios from "axios";
-// import VueAxios from "vue-axios";
+import axios from "axios";
+import VueAxios from "vue-axios";
 
 import App from "./App.vue";
 import store from "./store/index.js";
@@ -15,7 +15,7 @@ import BaseInput from "./components/base/BaseInput.vue";
 
 const app = createApp(App);
 
-// app.use(VueAxios, axios);
+app.use(VueAxios, axios);
 
 app.component("ButtonRound", ButtonRound);
 app.component("ButtonRectangle", ButtonRectangle);
