@@ -62,9 +62,12 @@ export default {
     isEditModalOpen() {
       return this.$store.getters["popupModule/isEditModalOpen"];
     },
-    // currentState() {
-    //   return this.$store.getters["transactionList/currentState"](this.index);
-    // },
+    currentIndex() {
+      return this.$store.getters["popupModule/currentIndex"];
+    },
+    currentState() {
+      return this.$store.getters["transactionList/currentState"](this.index);
+    },
   },
 
   methods: {
