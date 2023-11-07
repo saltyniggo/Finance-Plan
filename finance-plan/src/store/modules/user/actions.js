@@ -14,7 +14,7 @@ export default {
     await userService
       .putUser(payload)
       .then((response) => {
-        if (response == "sucessfull") {
+        if (response == "successfull") {
           console.log("putUser");
           commit("userModule/updateUserData", {
             newFirst: payload.firstName,
@@ -23,10 +23,10 @@ export default {
           });
           if (payload.password) {
             commit("userModule/updatePassword", payload.password);
-          } else if (response == "unsucessfull") {
-            console.log("ERROR");
-            commit("showError");
           }
+        } else if (response == "unsucessfull") {
+          console.log("ERROR");
+          commit("showError");
         }
       })
       .catch((error) => {
