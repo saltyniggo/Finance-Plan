@@ -12,3 +12,10 @@ export default {
     commit("editAccount", { accId, edit });
   },
 };
+
+// const actions = {
+//   async postFeed({commit}, payload) {
+//       await service.postFeed(payload)
+//           .then(response => commit('postFeed', { feed: payload, response: response}));
+//   }
+// }

@@ -22,3 +22,10 @@ const store = createStore({
 });
 
 export default store;
+
+// const actions = {
+//   async postFeed({commit}, payload) {
+//       await service.postFeed(payload)
+//           .then(response => commit('postFeed', { feed: payload, response: response}));
+//   }
+// }
