@@ -28,7 +28,7 @@ async function postLogin(emailInput, passwordInput) {
     });
     return response;
   } catch (error) {
-    console.log("Error when checking login");
+    console.log("Error when posting login");
     console.error("Error:", error);
     throw error;
   }
@@ -54,7 +54,7 @@ async function postRegister(
     });
     return response;
   } catch (error) {
-    console.log("Error when checking login");
+    console.log("Error when posting register");
     console.error("Error:", error);
     throw error;
   }

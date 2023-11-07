@@ -49,21 +49,6 @@ export default {
     }
   },
 
-  register(state) {
-    if (state.formData.requirementsOk && state.formData.rightTwice) {
-      state.isAuth = true;
-      state.registrationTemp.push({
-        firstName: state.formData.firstName,
-        lastName: state.formData.lastName,
-        email: state.formData.email,
-        password: state.formData.password,
-        id: Math.random() * 10000000000000000,
-      });
-      console.log(state.registrationTemp);
-      router.push("/accounts");
-    }
-  },
-
   checkLoginEmail(state) {
     if (state.formData.loginEmail != state.loginData.userEmail) {
       state.loginData.emailRight = false;
@@ -81,17 +66,6 @@ export default {
       state.loginData.passwordRight = true;
     }
   },
-
-  // login(state) {
-  //   if (state.loginData.emailRight && state.loginData.passwordRight) {
-  //     state.loginData.showError = false;
-  //     state.isAuth = true;
-
-  //     router.push("/accounts");
-  //   } else {
-  //     state.loginData.showError = true;
-  //   }
-  // },
 
   login(state) {
     state.isAuth = true;
