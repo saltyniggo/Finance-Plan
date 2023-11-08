@@ -66,7 +66,7 @@ async function getTransactions(accountId) {
     });
     return response;
   } catch (error) {
-    console.log("Error when getting Transactions by Account in DB");
+    console.error("Error when getting transactions by account in DB");
     console.error("Error:", error);
     throw error;
   }
