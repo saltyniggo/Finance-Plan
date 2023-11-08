@@ -4,7 +4,7 @@ async function addTransaction(payload) {
   try {
     const response = await axios({
       method: "post",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/Transaction`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         data: {
@@ -25,8 +25,7 @@ async function deleteTransaction(transactionId) {
   try {
     const response = await axios({
       method: "delete",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
-      // url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${TransactionId}`,
+      url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${transactionId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         transactionId: transactionId,
@@ -40,11 +39,11 @@ async function deleteTransaction(transactionId) {
   }
 }
 
-async function putTransactionEdit(payload) {
+async function putTransactionEdit(payload, transactionId) {
   try {
     const response = await axios({
       method: "delete",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/Transaction/${transactionId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         date: payload.date,
@@ -62,11 +61,11 @@ async function putTransactionEdit(payload) {
   }
 }
 
-async function getTransactions() {
+async function getTransactions(accountId) {
   try {
     const response = await axios({
       method: "get",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/Transaction/TransactionsByAccount/${accountId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
     });
     return response;

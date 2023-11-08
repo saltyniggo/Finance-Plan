@@ -46,4 +46,11 @@ export default {
       state.passwordRequirements.requirementsOk = false;
     }
   },
+  deleteUser(state) {
+    state.firstName = undefined;
+    state.lastName = undefined;
+    state.email = undefined;
+    state.password = undefined;
+    state.accounts = undefined;
+  },
 };

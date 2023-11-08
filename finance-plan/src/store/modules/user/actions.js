@@ -32,4 +32,19 @@ export default {
         console.error("connection problem", error);
       });
   },
+  async deleteUser(context, userId) {
+    await userService
+      .deleteUser(userId)
+      .then((response) => {
+        if (response == "successful") {
+          console.log("delete");
+          context.commit("deleteUser");
+        } else if (response == "unsuccessful") {
+          console.log("delete not possible");
+        }
+      })
+      .catch((error) => {
+        console.log("connection problem", error);
+      });
+  },
 };
