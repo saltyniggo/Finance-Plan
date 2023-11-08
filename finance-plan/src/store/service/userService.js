@@ -15,23 +15,17 @@
 
 import axios from "axios";
 
-async function putUser(
-  firstNameInput = undefined,
-  lastNameInput = undefined,
-  emailInput = undefined,
-  passwordInput = undefined
-) {
+async function putUser(payload) {
   try {
-    console.log(firstNameInput, lastNameInput, emailInput, passwordInput);
     const response = await axios({
       method: "put",
-      url: `https://vmentvs05/api/User/${userId}`,
+      url: `https://vmentvs05/api/User/${payload.userId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
-        firstName: firstNameInput,
-        lastName: lastNameInput,
-        email: emailInput,
-        password: passwordInput,
+        firstName: payload.firstName,
+        lastName: payload.lastNamet,
+        email: payload.email,
+        password: payload.password,
       },
     });
     return response;
