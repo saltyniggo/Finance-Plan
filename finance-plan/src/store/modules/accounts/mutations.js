@@ -15,9 +15,9 @@ export default {
     });
   },
 
-  editAccount(state, { accId, edit }) {
-    const index = state.accounts.findIndex((acc) => acc.id === accId);
-    state.accounts[index].name = edit;
+  editAccount(state, payload) {
+    const index = state.accounts.findIndex((acc) => acc.id === payload.accId);
+    state.accounts[index].name = payload.edit;
   },
 
   setAccounts(state, response) {
