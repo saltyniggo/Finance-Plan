@@ -54,7 +54,7 @@ export default {
     let login = store.getters["registerModule/getFormData"];
     console.log(login.loginEmail, login.loginPassword);
     await userService
-      .postLogin(login.loginEmail, login.loginPassword)
+      .getLogin(login.loginEmail, login.loginPassword)
       .then((response) => {
         if (response == "successful") {
           console.log("login");
