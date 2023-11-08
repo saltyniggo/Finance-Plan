@@ -60,8 +60,8 @@ export default {
       });
   },
 
-  async getTransactions({ commit }) {
-    await TransactionService.getTransactions()
+  async getTransactions({ commit }, accountId) {
+    await TransactionService.getTransactions(accountId)
       .then((response) => {
         if (response == "successful") {
           console.log("editTransaction");

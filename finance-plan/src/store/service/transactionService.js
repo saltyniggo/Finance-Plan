@@ -67,7 +67,7 @@ async function getTransactions(accountId) {
     });
     return response;
   } catch (error) {
-    console.log("Error when editing Transaction in DB");
+    console.log("Error when getting Transactions by Account in DB");
     console.error("Error:", error);
     throw error;
   }
