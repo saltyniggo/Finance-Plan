@@ -25,7 +25,7 @@ async function putUser(
     console.log(firstNameInput, lastNameInput, emailInput, passwordInput);
     const response = await axios({
       method: "put",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/User/${userId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         firstName: firstNameInput,
@@ -45,7 +45,7 @@ async function postLogin(emailInput, passwordInput) {
   try {
     const response = await axios({
       method: "post",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/User/${emailInput}/${passwordInput}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         email: emailInput,
@@ -69,7 +69,7 @@ async function postRegister(
   try {
     const response = await axios({
       method: "post",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/User`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         firstName: firstNameInput,
@@ -90,12 +90,8 @@ async function deleteUser(userId) {
   try {
     const response = await axios({
       method: "delete",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
-      // url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${userId}`,
+      url: `https://vmentvs05/api/User/${userId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
-      data: {
-        userId: userId,
-      },
     });
     return response;
   } catch (error) {

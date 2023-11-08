@@ -4,7 +4,7 @@ async function addAccount(accountNameInput) {
   try {
     const response = await axios({
       method: "post",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/Account`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         data: {
@@ -22,8 +22,7 @@ async function deleteAccount(accountId) {
   try {
     const response = await axios({
       method: "delete",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
-      // url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${accountId}`,
+      url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${accountId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         accountId: accountId,
@@ -41,7 +40,7 @@ async function putAccountEdit(accountId, accountNameInput) {
   try {
     const response = await axios({
       method: "delete",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/Account/${accountId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         accountId: accountId,
@@ -60,7 +59,7 @@ async function getAccounts() {
   try {
     const response = await axios({
       method: "get",
-      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      url: `https://vmentvs05/api/Account/ByUserId/${accountId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
     });
     return response;

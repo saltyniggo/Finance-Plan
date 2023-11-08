@@ -10,7 +10,11 @@
 
 <script>
 export default {
-  methods: {},
+  methods: {
+    deleteUser() {
+      this.$store.dispatch("userModule/deleteUser");
+    },
+  },
 };
 </script>
 
