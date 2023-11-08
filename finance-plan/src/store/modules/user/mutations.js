@@ -5,6 +5,7 @@ export default {
     state.email = payload.email;
     state.password = payload.password;
     state.accounts = payload.accounts;
+    state.userId = payload.userId;
   },
   toggleEditProfile(state) {
     state.editProfile = !state.editProfile;
@@ -52,5 +53,6 @@ export default {
     state.email = undefined;
     state.password = undefined;
     state.accounts = undefined;
+    state.userId = undefined;
   },
 };

@@ -55,16 +55,16 @@ async function putAccountEdit(accountId, accountNameInput) {
   }
 }
 
-async function getAccounts() {
+async function getAccounts(userId) {
   try {
     const response = await axios({
       method: "get",
-      url: `https://vmentvs05/api/Account/ByUserId/${accountId}`,
+      url: `https://vmentvs05/api/Account/ByUserId/${userId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
     });
     return response;
   } catch (error) {
-    console.log("Error when editing Account in DB");
+    console.error("Error while getting accounts from the DB");
     console.error("Error:", error);
     throw error;
   }
