@@ -48,19 +48,22 @@ export default {
       });
   },
 
-  async getAccounts({ commit }) {
+  async getAccounts({ commit }, userId) {
     await accountService
-      .getAccounts()
+      .getAccounts(userId)
       .then((response) => {
         if (response == "successful") {
           console.log("editAccount");
-          commit("setAccounts");
+          commit("setAccounts", response);
+          return response;
         } else if (response == "unsucessful") {
           console.error("ERROR");
+          return false;
         }
       })
       .catch((error) => {
         console.error("connection problem", error);
+        return false;
       });
   },
 };

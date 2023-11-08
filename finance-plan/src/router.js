@@ -28,6 +28,15 @@ const router = createRouter({
         header: TheHeader,
         content: AccountOverview,
       },
+      beforeEnter: (_, _, next) => {
+        const userId = store.getters["userModule/getUserId"];
+        const response = store.dispatch("accountsModule/getAccounts", userId);
+        if (response == "successful") {
+          next(); // Fortsetzen, wenn die Daten verfügbar sind
+        } else {
+          next(false); // Abbrechen der Navigation, wenn die Daten nicht verfügbar sind
+        }
+      },
     },
     {
       path: "/accounts/:name",
