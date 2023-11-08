@@ -28,7 +28,8 @@ const router = createRouter({
         header: TheHeader,
         content: AccountOverview,
       },
-      beforeEnter: (_, _, next) => {
+      beforeEnter: (_, /* _, */ next) => {
+        // reicht ein platzhalter?
         const userId = store.getters["userModule/getUserId"];
         const response = store.dispatch("accountsModule/getAccounts", userId);
         if (response == "successful") {
