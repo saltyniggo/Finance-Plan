@@ -1,4 +1,5 @@
 export default {
+  getUserId: (state) => state.userId,
   getFirstName: (state) => state.firstName,
   getLastName: (state) => state.lastName,
   getEmail: (state) => state.email,

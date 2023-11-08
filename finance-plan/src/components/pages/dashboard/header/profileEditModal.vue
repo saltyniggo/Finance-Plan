@@ -130,9 +130,11 @@ export default {
         }
       } else if (this.oldPassword == "" && this.newPassword == "") {
         this.$store.dispatch("userModule/putUser", {
+          userId: this.$store.getters["userModule/getUserId"],
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.userEmail,
+          password: this.newPassword,
         });
         this.closeBackdrop();
         this.closeProfileEdit();
