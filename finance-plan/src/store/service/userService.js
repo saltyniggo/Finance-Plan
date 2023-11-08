@@ -86,8 +86,28 @@ async function postRegister(
   }
 }
 
+async function deleteUser(userId) {
+  try {
+    const response = await axios({
+      method: "delete",
+      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      // url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${userId}`,
+      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      data: {
+        userId: userId,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log("Error when deleting User in DB");
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
 export default {
   postLogin,
   postRegister,
   putUser,
+  deleteUser,
 };

@@ -54,6 +54,8 @@
           </ul>
           <button type="submit">SUBMIT</button>
         </form>
+        <button v-if="showDeleteBtn">Account Löschen</button>
+        <delete-acc-confirm v-else></delete-acc-confirm>
       </div>
     </div>
   </transition>
@@ -61,6 +63,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import DeleteAccConfirm from "./DeleteAccConfirm.vue";
 
 export default {
   data() {
@@ -68,19 +71,16 @@ export default {
       // firstName: this.$store.getters["userModule/getFirstName"],
       // lastName: this.$store.getters["userModule/getLastName"],
       // userEmail: this.$store.getters["userModule/getEmail"],
-
       oldPassword: "",
       newPassword: "",
       oldPasswordWrong: false,
     };
   },
-
   computed: {
     ...mapGetters("userModule", ["getFirstName", "getLastName", "getEmail"]),
     isEditProfileOpen() {
       return this.$store.getters["popupModule/isEditProfileOpen"];
     },
-
     userPassword() {
       return this.$store.getters["userModule/getPassword"];
     },
@@ -88,7 +88,6 @@ export default {
       return this.$store.getters["userModule/getPasswordRequirements"];
     },
   },
-
   watch: {
     isEditProfileOpen(newValue) {
       if (newValue) {
@@ -107,7 +106,6 @@ export default {
       "closeProfileEdit",
       "closeBackdrop",
     ]),
-
     processEdit() {
       if (this.userPassword === this.oldPassword) {
         this.oldPasswordWrong = false;
@@ -140,6 +138,7 @@ export default {
       this.newPassword = "";
     },
   },
+  components: { DeleteAccConfirm },
 };
 </script>
 
@@ -147,9 +146,9 @@ export default {
 #baseModal {
   z-index: 2;
   position: absolute;
-  margin: 9% 32.5%;
+  margin: 4% 32.5%;
   width: 35%;
-  height: 73%;
+  height: auto;
   background-color: #152032;
   color: #ecf0f3;
   border-radius: 5vh;
@@ -163,6 +162,7 @@ export default {
 }
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -174,10 +174,14 @@ h1 {
 h4 {
   margin: 0 10%;
 }
-li,
-p {
+li {
   font-size: small;
   margin: 0 15%;
+}
+
+p {
+  font-size: small;
+  margin: 0 10%;
 }
 
 label {
