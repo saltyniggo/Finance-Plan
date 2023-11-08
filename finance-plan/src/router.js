@@ -52,7 +52,7 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         const accountId = to.params.id;
         const response = store.dispatch(
-          "transactionModule/getTransaction",
+          "transactionModule/getTransactions",
           accountId
         );
         if (response == "successful") {

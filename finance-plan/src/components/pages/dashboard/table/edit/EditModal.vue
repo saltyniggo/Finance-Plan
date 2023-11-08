@@ -50,7 +50,7 @@ export default {
       return this.$store.getters["popupModule/currentId"];
     },
     currentState() {
-      return this.$store.getters["transactionList/currentState"](this.id);
+      return this.$store.getters["transactionModule/currentState"](this.id);
     },
   },
 
@@ -69,7 +69,7 @@ export default {
       this.closeBackdrop();
       this.closeEditModal();
     },
-    ...mapActions("transactionList", ["submitEdit"]),
+    ...mapActions("transactionModule", ["submitEdit"]),
     ...mapActions("popupModule", ["closeEditModal", "closeBackdrop"]),
   },
   watch: {
@@ -77,7 +77,7 @@ export default {
       immediate: true,
       handler(newId) {
         const currentState =
-          this.$store.getters["transactionList/currentState"](newId);
+          this.$store.getters["transactionModule/currentState"](newId);
         if (currentState) {
           this.newAmount = currentState.amount;
           this.newDescription = currentState.description;

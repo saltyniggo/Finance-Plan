@@ -12,7 +12,7 @@
         <button-round
           @click="
             deleteTransaction(id);
-            checkTransactionList();
+            checktransactionModule();
           "
           ><i class="fa-solid fa-trash"></i
         ></button-round>
@@ -27,9 +27,9 @@ import { mapActions } from "vuex";
 export default {
   props: ["data", "id"],
   methods: {
-    ...mapActions("transactionList", [
+    ...mapActions("transactionModule", [
       "deleteTransaction",
-      "checkTransactionList",
+      "checktransactionModule",
     ]),
     ...mapActions("popupModule", ["openEditModal", "openBackdrop"]),
   },

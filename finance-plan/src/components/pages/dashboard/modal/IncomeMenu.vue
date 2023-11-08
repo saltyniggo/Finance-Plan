@@ -60,7 +60,7 @@ export default {
       this.closeAddModal();
       this.closeBackdrop();
     },
-    ...mapActions("transactionList", ["addTransaction"]),
+    ...mapActions("transactionModule", ["addTransaction"]),
   },
 };
 </script>

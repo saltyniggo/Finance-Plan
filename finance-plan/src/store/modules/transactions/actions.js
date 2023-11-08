@@ -26,7 +26,7 @@ export default {
         if (response == "successful") {
           console.log("addTransaction");
           commit("addTransaction", payload);
-          commit("checkTransactionList");
+          commit("checktransactionModule");
         } else if (response == "unsucessful") {
           console.error("ERROR");
         }
@@ -78,7 +78,7 @@ export default {
       });
   },
 
-  checkTransactionList(context) {
-    context.commit("checkTransactionList");
+  checktransactionModule(context) {
+    context.commit("checktransactionModule");
   },
 };

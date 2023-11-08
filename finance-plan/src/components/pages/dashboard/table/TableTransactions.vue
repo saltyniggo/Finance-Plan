@@ -32,17 +32,17 @@ export default {
   components: { TableRow, TableHead, EditModal },
   computed: {
     transactionsEmpty() {
-      return this.$store.getters["transactionList/transactionsEmpty"];
+      return this.$store.getters["transactionModule/transactionsEmpty"];
     },
     getTransactions() {
-      return this.$store.getters["transactionList/getTransactions"];
+      return this.$store.getters["transactionModule/getTransactions"];
     },
   },
   methods: {
-    ...mapActions("transactionList", ["checkTransactionList"]),
+    ...mapActions("transactionModule", ["checktransactionModule"]),
   },
   mounted() {
-    this.checkTransactionList();
+    this.checktransactionModule();
   },
 };
 </script>

@@ -8,7 +8,7 @@ import popupModule from "./modules/popup/index.js";
 
 const store = createStore({
   modules: {
-    transactionList: transactionModule,
+    transactionModule: transactionModule,
     registerModule: registerModule,
     userModule: userModule,
     accountsModule: accountsModule,
