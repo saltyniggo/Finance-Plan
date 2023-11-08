@@ -1,18 +1,3 @@
-// function GetUser() {
-//   axios({
-//     method: "get",
-//     url: "https://io.adafruit.com/api/v2/angelos12345/feeds/neuem-feed",
-//     header: { "X-AIO-Key": "aio_ATvt86DqcWbpaSzzrWlKyIqvy8P5" },
-//   }).then(function (response) {
-//     console.log(response);
-//     return response;
-//   });
-// }
-
-// export default {
-//   GetUser,
-// };
-
 import axios from "axios";
 
 async function putUser(payload) {
@@ -30,7 +15,8 @@ async function putUser(payload) {
     });
     return response;
   } catch (error) {
-    console.error("Error when changing profile data: ", error);
+    console.warn("Error when changing profile data: ", error);
+    console.error("Error:", error);
     throw error;
   }
 }
@@ -44,7 +30,7 @@ async function getLogin(emailInput, passwordInput) {
     });
     return response;
   } catch (error) {
-    console.log("Error when getting/checking login");
+    console.warn("Error when checking login");
     console.error("Error:", error);
     throw error;
   }
@@ -70,7 +56,7 @@ async function postRegister(
     });
     return response;
   } catch (error) {
-    console.log("Error when posting register");
+    console.warn("Error when posting register");
     console.error("Error:", error);
     throw error;
   }
@@ -85,7 +71,7 @@ async function deleteUser(userId) {
     });
     return response;
   } catch (error) {
-    console.log("Error when deleting User in DB");
+    console.warn("Error when deleting User in DB");
     console.error("Error:", error);
     throw error;
   }

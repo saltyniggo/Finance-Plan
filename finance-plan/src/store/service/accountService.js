@@ -14,7 +14,8 @@ async function addAccount(accountNameInput) {
     });
     return response;
   } catch (error) {
-    console.error("Error when adding account to user in DB:", error);
+    console.warn("Error when adding account to user in DB:");
+    console.error("Error:", error);
     throw error;
   }
 }
@@ -27,7 +28,7 @@ async function deleteAccount(accountId) {
     });
     return response;
   } catch (error) {
-    console.error("Error when deleting Account in DB");
+    console.warn("Error when deleting Account in DB");
     console.error("Error:", error);
     throw error;
   }
@@ -46,7 +47,7 @@ async function putAccountEdit(accountId, accountNameInput) {
     });
     return response;
   } catch (error) {
-    console.error("Error when editing Account in DB");
+    console.warn("Error when editing Account in DB");
     console.error("Error:", error);
     throw error;
   }
@@ -61,7 +62,7 @@ async function getAccounts(userId) {
     });
     return response;
   } catch (error) {
-    console.error("Error while getting accounts from the DB");
+    console.warn("Error while getting accounts from the DB");
     console.error("Error:", error);
     throw error;
   }

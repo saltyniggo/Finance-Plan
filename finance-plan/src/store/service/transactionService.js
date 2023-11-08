@@ -17,7 +17,8 @@ async function addTransaction(payload) {
     });
     return response;
   } catch (error) {
-    console.error("Error when adding Transaction to user in DB:", error);
+    console.warn("Error when adding Transaction to user in DB:");
+    console.error("Error:", error);
     throw error;
   }
 }
@@ -30,7 +31,7 @@ async function deleteTransaction(transactionId) {
     });
     return response;
   } catch (error) {
-    console.error("error when deleting transaction in DB");
+    console.warn("error when deleting transaction in DB");
     console.error("Error:", error);
     throw error;
   }
@@ -51,7 +52,7 @@ async function putTransactionEdit(payload, transactionId) {
     });
     return response;
   } catch (error) {
-    console.log("Error when editing Transaction in DB");
+    console.warn("Error when editing Transaction in DB");
     console.error("Error:", error);
     throw error;
   }
@@ -66,7 +67,7 @@ async function getTransactions(accountId) {
     });
     return response;
   } catch (error) {
-    console.error("Error when getting transactions by account in DB");
+    console.warn("Error when getting transactions by account in DB");
     console.error("Error:", error);
     throw error;
   }

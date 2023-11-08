@@ -34,8 +34,6 @@ const router = createRouter({
         const response = store.dispatch("accountsModule/getAccounts", userId);
         if (response == "successful") {
           next(); // Fortsetzen, wenn die Daten verfügbar sind
-        } else {
-          next(false); // Abbrechen der Navigation, wenn die Daten nicht verfügbar sind
         }
       },
     },
@@ -59,8 +57,6 @@ const router = createRouter({
         );
         if (response == "successful") {
           next(); // Fortsetzen, wenn die Daten verfügbar sind
-        } else {
-          next(false); // Abbrechen der Navigation, wenn die Daten nicht verfügbar sind
         }
       },
     },
