@@ -25,4 +25,8 @@ export default {
       state.transactionsEmpty = false;
     }
   },
+
+  setTransactions(state, response) {
+    state.transactions = response;
+  },
 };
