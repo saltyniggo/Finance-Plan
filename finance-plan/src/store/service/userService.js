@@ -41,20 +41,16 @@ async function putUser(
   }
 }
 
-async function postLogin(emailInput, passwordInput) {
+async function getLogin(emailInput, passwordInput) {
   try {
     const response = await axios({
-      method: "post",
+      method: "get",
       url: `https://vmentvs05/api/User/${emailInput}/${passwordInput}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
-      data: {
-        email: emailInput,
-        password: passwordInput,
-      },
     });
     return response;
   } catch (error) {
-    console.log("Error when posting login");
+    console.log("Error when getting/checking login");
     console.error("Error:", error);
     throw error;
   }
@@ -102,7 +98,7 @@ async function deleteUser(userId) {
 }
 
 export default {
-  postLogin,
+  getLogin,
   postRegister,
   putUser,
   deleteUser,
