@@ -13,12 +13,12 @@ export default {
     });
   },
   submitEdit(state, payload) {
-    const { packet, index } = payload;
-    if (packet.date) state.transactions[index].date = packet.date;
-    if (packet.amount) state.transactions[index].amount = packet.amount;
+    const { packet, id } = payload;
+    if (packet.date) state.transactions[id].date = packet.date;
+    if (packet.amount) state.transactions[id].amount = packet.amount;
     if (packet.description)
-      state.transactions[index].description = packet.description;
-    if (packet.category) state.transactions[index].category = packet.category;
+      state.transactions[id].description = packet.description;
+    if (packet.category) state.transactions[id].category = packet.category;
   },
   checkTransactionList(state) {
     if (state.transactions.length <= 0) {

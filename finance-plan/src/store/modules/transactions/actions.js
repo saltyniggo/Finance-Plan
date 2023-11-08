@@ -45,12 +45,12 @@ export default {
         .padStart(2, "0")}.${year}`;
     }
     const toEditId = context.rootState.popupModule.toEditId;
-    payload.index = toEditId;
+    payload.id = toEditId;
     await TransactionService.putTransactionEdit(payload)
       .then((response) => {
         if (response == "successful") {
           console.log("editTransaction");
-          context.commit("submitEdit", { payload, index: toEditId });
+          context.commit("submitEdit", { payload, id: toEditId });
         } else if (response == "unsucessful") {
           console.error("ERROR");
         }

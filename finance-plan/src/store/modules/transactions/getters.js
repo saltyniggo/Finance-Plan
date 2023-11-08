@@ -5,8 +5,8 @@ export default {
       sum: state.sum + "€",
     };
   },
-  currentState: (state) => (index) => {
-    return state.transactions[index];
+  currentState: (state) => (id) => {
+    return state.transactions[id];
   },
   transactionsEmpty(state) {
     return state.transactionsEmpty;

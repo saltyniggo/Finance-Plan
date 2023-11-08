@@ -33,7 +33,7 @@
 import { mapActions } from "vuex";
 
 export default {
-  props: ["index"],
+  props: ["id"],
   data() {
     return {
       newAmount: undefined,
@@ -50,7 +50,7 @@ export default {
       return this.$store.getters["popupModule/currentId"];
     },
     currentState() {
-      return this.$store.getters["transactionList/currentState"](this.index);
+      return this.$store.getters["transactionList/currentState"](this.id);
     },
   },
 
@@ -75,9 +75,9 @@ export default {
   watch: {
     currentId: {
       immediate: true,
-      handler(newIndex) {
+      handler(newId) {
         const currentState =
-          this.$store.getters["transactionList/currentState"](newIndex);
+          this.$store.getters["transactionList/currentState"](newId);
         if (currentState) {
           this.newAmount = currentState.amount;
           this.newDescription = currentState.description;
@@ -91,7 +91,7 @@ export default {
 
 <style scoped>
 #baseModal {
-  z-index: 2;
+  z-id: 2;
   position: fixed;
   top: 0;
   width: 30%;

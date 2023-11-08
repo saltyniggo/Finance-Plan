@@ -11,7 +11,7 @@
         ></button-round>
         <button-round
           @click="
-            deleteTransaction(index);
+            deleteTransaction(id);
             checkTransactionList();
           "
           ><i class="fa-solid fa-trash"></i

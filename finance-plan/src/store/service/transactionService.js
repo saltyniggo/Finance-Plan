@@ -47,7 +47,6 @@ async function putTransactionEdit(payload, transactionId) {
         amount: payload.amount,
         description: payload.description,
         category: payload.category,
-        index: payload.index,
       },
     });
     return response;
