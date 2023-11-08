@@ -32,13 +32,13 @@ export default {
       });
   },
 
-  async editAccount({ commit }, { accId, edit }) {
+  async editAccount({ commit }, payload) {
     await accountService
-      .putAccountEdit(accId, edit)
+      .putAccountEdit(payload.accId, payload.edit)
       .then((response) => {
         if (response == "successful") {
           console.log("editAccount");
-          commit("editAccount", { accId, edit });
+          commit("editAccount", payload);
         } else if (response == "unsucessful") {
           console.error("ERROR");
         }
