@@ -34,7 +34,7 @@ const router = createRouter({
         const userId = store.getters["userModule/getUserId"];
         const response = store.dispatch("accountsModule/getAccounts", userId);
         if (response == "successful") {
-          next(); // Fortsetzen, wenn die Daten verfügbar sind
+          next();
         } else {
           console.log("ups");
         }
@@ -59,7 +59,7 @@ const router = createRouter({
           accountId
         );
         if (response == "successful") {
-          next(); // Fortsetzen, wenn die Daten verfügbar sind
+          next();
         } else {
           console.log("upsi");
           router.push("/problemWithConnection");

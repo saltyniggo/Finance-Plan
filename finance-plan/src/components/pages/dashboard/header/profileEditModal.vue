@@ -73,9 +73,6 @@ import DeleteAccConfirm from "./DeleteAccConfirm.vue";
 export default {
   data() {
     return {
-      // firstName: this.$store.getters["userModule/getFirstName"],
-      // lastName: this.$store.getters["userModule/getLastName"],
-      // userEmail: this.$store.getters["userModule/getEmail"],
       oldPassword: "",
       newPassword: "",
       oldPasswordWrong: false,
