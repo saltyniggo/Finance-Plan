@@ -1,6 +1,8 @@
 export default {
-  deleteTransaction(state, index) {
-    state.transactions.splice(index, 1);
+  deleteTransaction(state, transactionId) {
+    state.transactions.filter(
+      (transaction) => transaction.transactionId !== transactionId
+    );
   },
   addTransaction(state, packet) {
     state.transactions.push({

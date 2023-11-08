@@ -46,8 +46,8 @@ export default {
     isEditModalOpen() {
       return this.$store.getters["popupModule/isEditModalOpen"];
     },
-    currentIndex() {
-      return this.$store.getters["popupModule/currentIndex"];
+    currentId() {
+      return this.$store.getters["popupModule/currentId"];
     },
     currentState() {
       return this.$store.getters["transactionList/currentState"](this.index);
@@ -73,7 +73,7 @@ export default {
     ...mapActions("popupModule", ["closeEditModal", "closeBackdrop"]),
   },
   watch: {
-    currentIndex: {
+    currentId: {
       immediate: true,
       handler(newIndex) {
         const currentState =

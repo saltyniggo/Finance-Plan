@@ -1,17 +1,17 @@
 import TransactionService from "@/store/service/transactionService.js";
 export default {
-  async deleteTransaction(context, value) {
-    await TransactionService.deleteTransaction(value)
+  async deleteTransaction(context, transactionId) {
+    await TransactionService.deleteTransaction(transactionId)
       .then((response) => {
         if (response == "successful") {
           console.log("delte");
-          context.commit("deleteTransaction", value);
+          context.commit("deleteTransaction", transactionId);
         } else if (response == "unsuccessful") {
-          console.log("delete not possible");
+          console.error("delete not possible");
         }
       })
       .catch((error) => {
-        console.log("conenction problem", error);
+        console.error("connection problem", error);
       });
   },
 
@@ -44,13 +44,13 @@ export default {
         .toString()
         .padStart(2, "0")}.${year}`;
     }
-    const toEditIndex = context.rootState.popupModule.toEditIndex;
-    payload.index = toEditIndex;
+    const toEditId = context.rootState.popupModule.toEditId;
+    payload.index = toEditId;
     await TransactionService.putTransactionEdit(payload)
       .then((response) => {
         if (response == "successful") {
           console.log("editTransaction");
-          context.commit("submitEdit", { payload, index: toEditIndex });
+          context.commit("submitEdit", { payload, index: toEditId });
         } else if (response == "unsucessful") {
           console.error("ERROR");
         }

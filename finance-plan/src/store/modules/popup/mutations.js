@@ -5,14 +5,14 @@ export default {
   closeBackdrop(state) {
     state.backdropIsVisible = false;
   },
-  openEditModal(state, index) {
+  openEditModal(state, id) {
     state.isAddModalOpen = false;
     state.isEditModalOpen = true;
-    state.toEditIndex = index;
+    state.toEditId = id;
   },
   closeEditModal(state) {
     state.isEditModalOpen = false;
-    state.toEditIndex = undefined;
+    state.toEditId = undefined;
   },
   openNavRight(state) {
     state.navRightOpen = true;
@@ -38,7 +38,7 @@ export default {
   clickBackdrop(state) {
     if (state.isEditModalOpen === true) {
       state.isEditModalOpen = false;
-      state.toEditIndex = undefined;
+      state.toEditId = undefined;
       state.backdropIsVisible = false;
     }
     if (state.isAddModalOpen === true) {
@@ -55,7 +55,7 @@ export default {
   initBackdrop(state) {
     state.backdropIsVisible = false;
     state.isEditModalOpen = false;
-    state.toEditIndex = undefined;
+    state.toEditId = undefined;
     state.navRightOpen = false;
     state.isAddModalOpen = false;
     state.chosenAddModal = undefined;

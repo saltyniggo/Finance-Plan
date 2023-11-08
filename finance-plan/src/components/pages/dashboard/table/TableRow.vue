@@ -6,9 +6,7 @@
       <p>{{ data.description }}</p>
       <p>{{ data.category }}</p>
       <div class="buttonList">
-        <button-round
-          @click="openEditModal(index), openBackdrop()"
-          :index="index"
+        <button-round @click="openEditModal(id), openBackdrop()" :id="id"
           ><i class="fa-solid fa-pen"></i
         ></button-round>
         <button-round
@@ -27,7 +25,7 @@
 import { mapActions } from "vuex";
 
 export default {
-  props: ["data", "index"],
+  props: ["data", "id"],
   methods: {
     ...mapActions("transactionList", [
       "deleteTransaction",
