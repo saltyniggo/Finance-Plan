@@ -1,10 +1,16 @@
 <template>
   <div id="confirmationDialog">
     <p>Sicher?</p>
-    <button id="confirmDelete">Ja</button>
-    <button id="cancelDelete">Nein</button>
+    <button id="confirmDelete" @click="deleteUser()">Ja</button>
+    <button id="cancelDelete" @click="$emit('cancelDelete')">Nein</button>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {},
+};
+</script>
 
 <style scoped>
 div {
