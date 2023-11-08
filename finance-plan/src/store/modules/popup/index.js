@@ -7,7 +7,7 @@ export default {
   state: {
     backdropIsVisible: false,
     isEditModalOpen: false,
-    toEditIndex: undefined,
+    toEditId: undefined,
     navRightOpen: false,
     isAddModalOpen: false,
     chosenAddModal: undefined,

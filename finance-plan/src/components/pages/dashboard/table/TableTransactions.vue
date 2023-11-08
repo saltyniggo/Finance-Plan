@@ -7,10 +7,10 @@
     ></table-head>
     <transition-group name="row" tag="ul">
       <table-row
-        v-for="(data, index) in getTransactions.transactions"
-        :key="data"
+        v-for="data in getTransactions.transactions"
+        :key="data.transactionId"
         :data="data"
-        :index="index"
+        :id="data.transactionId"
         class="rows"
       ></table-row>
     </transition-group>

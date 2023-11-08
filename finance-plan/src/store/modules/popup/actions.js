@@ -5,8 +5,8 @@ export default {
   closeBackdrop(context) {
     context.commit("closeBackdrop");
   },
-  openEditModal(context, index) {
-    context.commit("openEditModal", index);
+  openEditModal(context, id) {
+    context.commit("openEditModal", id);
   },
   closeEditModal(context) {
     context.commit("closeEditModal");

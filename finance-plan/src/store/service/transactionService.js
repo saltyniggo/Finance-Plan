@@ -27,13 +27,10 @@ async function deleteTransaction(transactionId) {
       method: "delete",
       url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${transactionId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
-      data: {
-        transactionId: transactionId,
-      },
     });
     return response;
   } catch (error) {
-    console.log("Error when deleting Transaction in DB");
+    console.error("error when deleting transaction in DB");
     console.error("Error:", error);
     throw error;
   }

@@ -17,7 +17,7 @@ export default {
   isEditProfileOpen(state) {
     return state.isEditProfileOpen;
   },
-  currentIndex(state) {
-    return state.toEditIndex;
+  currentId(state) {
+    return state.toEditId;
   },
 };
