@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import store from "./store/index.js";
 import NotFound from "./components/pages/NotFound.vue";
+import NotFoundAccount from "./components/pages/NotFoundAccounts.vue";
 
 import TableTransactions from "./components/pages/dashboard/table/TableTransactions.vue";
 import TheHeader from "./components/pages/dashboard/header/TheHeader.vue";
@@ -34,6 +35,8 @@ const router = createRouter({
         const response = store.dispatch("accountsModule/getAccounts", userId);
         if (response == "successful") {
           next(); // Fortsetzen, wenn die Daten verfügbar sind
+        } else {
+          console.log("ups");
         }
       },
     },
@@ -57,6 +60,9 @@ const router = createRouter({
         );
         if (response == "successful") {
           next(); // Fortsetzen, wenn die Daten verfügbar sind
+        } else {
+          console.log("upsi");
+          router.push("/problemWithConnection");
         }
       },
     },
@@ -64,6 +70,12 @@ const router = createRouter({
       name: "notFound",
       path: "/:pathMatch(.*)*",
       components: { header: TheHeader, content: NotFound },
+    },
+
+    {
+      name: "notFoundAccount",
+      path: "/problemWithConnection",
+      components: { header: TheHeader, content: NotFoundAccount },
     },
   ],
 });
