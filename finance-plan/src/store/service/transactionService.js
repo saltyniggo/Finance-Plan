@@ -37,15 +37,15 @@ async function deleteTransaction(transactionId) {
   }
 }
 
-async function putTransactionEdit(transactionId, transactionNameInput) {
+async function putTransactionEdit(payload) {
   try {
     const response = await axios({
       method: "delete",
       url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
-        transactionId: transactionId,
-        transactionNameInput,
+        transactionId: payload.transactionId,
+        transactionNameInput: payload.transactionId,
       },
     });
     return response;

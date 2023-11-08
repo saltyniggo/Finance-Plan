@@ -1,11 +1,11 @@
 import TransactionService from "@/store/service/transactionService.js";
 export default {
-  async deleteTransaction(context, accId) {
-    await TransactionService.deleteTransaction(accId)
+  async deleteTransaction(context, value) {
+    await TransactionService.deleteTransaction(value)
       .then((response) => {
         if (response == "successful") {
           console.log("delte");
-          context.commit("deleteTransaction", accId);
+          context.commit("deleteTransaction", value);
         } else if (response == "unsuccessful") {
           console.log("delete not possible");
         }
@@ -20,7 +20,13 @@ export default {
       .then((response) => {
         if (response == "successful") {
           console.log("addTransaction");
-          commit("TransactionModule/addTransaction", payload);
+          const parts = payload.date.split("-");
+          const [year, month, day] = parts.map(Number);
+          payload.date = `${day.toString().padStart(2, "0")}.${month
+            .toString()
+            .padStart(2, "0")}.${year}`;
+          commit("addTransaction", payload);
+          commit("checkTransactionList");
         } else if (response == "unsucessful") {
           console.error("ERROR");
         }
@@ -30,12 +36,20 @@ export default {
       });
   },
 
-  async editTransaction({ commit }, { accId, edit }) {
-    await TransactionService.putTransactionEdit(accId, edit)
+  async editTransaction(context, { payload }) {
+    await TransactionService.putTransactionEdit(payload)
       .then((response) => {
         if (response == "successful") {
           console.log("editTransaction");
-          commit("editTransaction", { accId, edit });
+          if (payload.date) {
+            const parts = payload.date.split("-");
+            const [year, month, day] = parts.map(Number);
+            payload.date = `${day.toString().padStart(2, "0")}.${month
+              .toString()
+              .padStart(2, "0")}.${year}`;
+          }
+          const toEditIndex = context.rootState.popupModule.toEditIndex;
+          context.commit("submitEdit", { payload, index: toEditIndex });
         } else if (response == "unsucessful") {
           console.error("ERROR");
         }
@@ -60,29 +74,6 @@ export default {
       });
   },
 
-  deleteTransaction(context, value) {
-    context.commit("deleteTransaction", value);
-  },
-  addTransaction(context, packet) {
-    const parts = packet.date.split("-");
-    const [year, month, day] = parts.map(Number);
-    packet.date = `${day.toString().padStart(2, "0")}.${month
-      .toString()
-      .padStart(2, "0")}.${year}`;
-    context.commit("addTransaction", packet);
-    context.commit("checkTransactionList");
-  },
-  submitEdit(context, packet) {
-    if (packet.date) {
-      const parts = packet.date.split("-");
-      const [year, month, day] = parts.map(Number);
-      packet.date = `${day.toString().padStart(2, "0")}.${month
-        .toString()
-        .padStart(2, "0")}.${year}`;
-    }
-    const toEditIndex = context.rootState.popupModule.toEditIndex;
-    context.commit("submitEdit", { packet, index: toEditIndex });
-  },
   checkTransactionList(context) {
     context.commit("checkTransactionList");
   },
