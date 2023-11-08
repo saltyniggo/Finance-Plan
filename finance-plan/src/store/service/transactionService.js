@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function addTransaction(transactionNameInput) {
+async function addTransaction(payload) {
   try {
     const response = await axios({
       method: "post",
@@ -8,7 +8,10 @@ async function addTransaction(transactionNameInput) {
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         data: {
-          transactionName: transactionNameInput,
+          date: payload.date,
+          amount: payload.amount,
+          description: payload.description,
+          category: payload.category,
         },
       },
     });
@@ -44,8 +47,11 @@ async function putTransactionEdit(payload) {
       url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
-        transactionId: payload.transactionId,
-        transactionNameInput: payload.transactionId,
+        date: payload.date,
+        amount: payload.amount,
+        description: payload.description,
+        category: payload.category,
+        index: payload.index,
       },
     });
     return response;

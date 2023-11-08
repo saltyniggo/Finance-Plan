@@ -16,15 +16,15 @@ export default {
   },
 
   async addTransaction({ commit }, payload) {
+    const parts = payload.date.split("-");
+    const [year, month, day] = parts.map(Number);
+    payload.date = `${day.toString().padStart(2, "0")}.${month
+      .toString()
+      .padStart(2, "0")}.${year}`;
     await TransactionService.addTransaction(payload)
       .then((response) => {
         if (response == "successful") {
           console.log("addTransaction");
-          const parts = payload.date.split("-");
-          const [year, month, day] = parts.map(Number);
-          payload.date = `${day.toString().padStart(2, "0")}.${month
-            .toString()
-            .padStart(2, "0")}.${year}`;
           commit("addTransaction", payload);
           commit("checkTransactionList");
         } else if (response == "unsucessful") {
@@ -37,18 +37,19 @@ export default {
   },
 
   async editTransaction(context, { payload }) {
+    if (payload.date) {
+      const parts = payload.date.split("-");
+      const [year, month, day] = parts.map(Number);
+      payload.date = `${day.toString().padStart(2, "0")}.${month
+        .toString()
+        .padStart(2, "0")}.${year}`;
+    }
+    const toEditIndex = context.rootState.popupModule.toEditIndex;
+    payload.index = toEditIndex;
     await TransactionService.putTransactionEdit(payload)
       .then((response) => {
         if (response == "successful") {
           console.log("editTransaction");
-          if (payload.date) {
-            const parts = payload.date.split("-");
-            const [year, month, day] = parts.map(Number);
-            payload.date = `${day.toString().padStart(2, "0")}.${month
-              .toString()
-              .padStart(2, "0")}.${year}`;
-          }
-          const toEditIndex = context.rootState.popupModule.toEditIndex;
           context.commit("submitEdit", { payload, index: toEditIndex });
         } else if (response == "unsucessful") {
           console.error("ERROR");
