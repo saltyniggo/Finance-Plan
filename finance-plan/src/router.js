@@ -33,7 +33,7 @@ const router = createRouter({
         const userId = store.getters["userModule/getUserId"];
         const response = store.dispatch("accountsModule/getAccounts", userId);
         if (response == "successful") {
-          next(); // Fortsetzen, wenn die Daten verfügbar sind
+          next();
         }
       },
     },
@@ -56,7 +56,7 @@ const router = createRouter({
           accountId
         );
         if (response == "successful") {
-          next(); // Fortsetzen, wenn die Daten verfügbar sind
+          next();
         }
       },
     },
