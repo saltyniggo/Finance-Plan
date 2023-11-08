@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import store from "./store/index.js";
 import NotFound from "./components/pages/NotFound.vue";
 
-//import vueComponetent here
-
 import TableTransactions from "./components/pages/dashboard/table/TableTransactions.vue";
 import TheHeader from "./components/pages/dashboard/header/TheHeader.vue";
 import NavLeft from "./components/pages/dashboard/nav/NavLeft.vue";
@@ -42,6 +40,18 @@ const router = createRouter({
         content: TableTransactions,
         modal: BaseModal,
         edit: EditModal,
+      },
+      beforeEnter: (to, from, next) => {
+        const accountId = to.params.id;
+        const response = store.dispatch(
+          "transactionModule/getTransaction",
+          accountId
+        );
+        if (response == "successful") {
+          next(); // Fortsetzen, wenn die Daten verfügbar sind
+        } else {
+          next(false); // Abbrechen der Navigation, wenn die Daten nicht verfügbar sind
+        }
       },
     },
     {

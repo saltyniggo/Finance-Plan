@@ -69,9 +69,12 @@ export default {
         } else if (response == "unsucessful") {
           console.error("ERROR");
         }
+
+        return response;
       })
       .catch((error) => {
         console.error("connection problem", error);
+        return error;
       });
   },
 
