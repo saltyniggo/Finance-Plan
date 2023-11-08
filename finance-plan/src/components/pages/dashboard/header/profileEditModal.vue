@@ -155,6 +155,9 @@ export default {
   box-shadow: 0vh 0vh 5vh #20639b, 0vh 0vh 2vh #05da93;
 }
 
+.container {
+  padding: 0%;
+}
 .inputArea {
   padding: 2.5%;
   display: flex;
