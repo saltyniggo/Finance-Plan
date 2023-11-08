@@ -19,4 +19,8 @@ export default {
     const index = state.accounts.findIndex((acc) => acc.id === accId);
     state.accounts[index].name = edit;
   },
+
+  setAccounts(state, response) {
+    state.accounts = response;
+  },
 };

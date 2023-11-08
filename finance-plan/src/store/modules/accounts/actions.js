@@ -4,10 +4,10 @@ export default {
     await accountService
       .deleteAccount(accId)
       .then((response) => {
-        if (response == "successfull") {
+        if (response == "successful") {
           console.log("delte");
           context.commit("deleteAccount", accId);
-        } else if (response == "unsuccessfull") {
+        } else if (response == "unsuccessful") {
           console.log("delete not possible");
         }
       })
@@ -15,37 +15,52 @@ export default {
         console.log("conenction problem", error);
       });
   },
-  temp({ commit }, inputName) {
-    if (inputName != "" || undefined) {
-      commit("addAccount", inputName);
-    }
-  },
+
   async addAccount({ commit }, payload) {
     await accountService
       .addAccount(payload)
       .then((response) => {
-        if (response == "successfull") {
+        if (response == "successful") {
           console.log("addAccount");
           commit("accountModule/addAccount", payload);
-        } else if (response == "unsucessfull") {
+        } else if (response == "unsucessful") {
           console.error("ERROR");
-          commit("showError");
         }
       })
       .catch((error) => {
         console.error("connection problem", error);
-        commit("showErrorConnection");
       });
   },
 
-  editAccount({ commit }, { accId, edit }) {
-    commit("editAccount", { accId, edit });
+  async editAccount({ commit }, { accId, edit }) {
+    await accountService
+      .putAccountEdit(accId, edit)
+      .then((response) => {
+        if (response == "successful") {
+          console.log("editAccount");
+          commit("editAccount", { accId, edit });
+        } else if (response == "unsucessful") {
+          console.error("ERROR");
+        }
+      })
+      .catch((error) => {
+        console.error("connection problem", error);
+      });
+  },
+
+  async getAccounts({ commit }) {
+    await accountService
+      .getAccounts()
+      .then((response) => {
+        if (response == "successful") {
+          console.log("editAccount");
+          commit("setAccounts");
+        } else if (response == "unsucessful") {
+          console.error("ERROR");
+        }
+      })
+      .catch((error) => {
+        console.error("connection problem", error);
+      });
   },
 };
-
-// const actions = {
-//   async postFeed({commit}, payload) {
-//       await service.postFeed(payload)
-//           .then(response => commit('postFeed', { feed: payload, response: response}));
-//   }
-// }

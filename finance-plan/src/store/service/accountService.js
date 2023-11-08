@@ -14,7 +14,7 @@ async function addAccount(accountNameInput) {
     });
     return response;
   } catch (error) {
-    console.error("Error when adding account to user:", error);
+    console.error("Error when adding account to user in DB:", error);
     throw error;
   }
 }
@@ -23,6 +23,7 @@ async function deleteAccount(accountId) {
     const response = await axios({
       method: "delete",
       url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      // url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${accountId}`,
       headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
       data: {
         accountId: accountId,
@@ -36,7 +37,43 @@ async function deleteAccount(accountId) {
   }
 }
 
+async function putAccountEdit(accountId, accountNameInput) {
+  try {
+    const response = await axios({
+      method: "delete",
+      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      data: {
+        accountId: accountId,
+        accountNameInput,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log("Error when editing Account in DB");
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+async function getAccounts() {
+  try {
+    const response = await axios({
+      method: "get",
+      url: "https://io.adafruit.com/api/v2/angelos12345/feeds/",
+      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+    });
+    return response;
+  } catch (error) {
+    console.log("Error when editing Account in DB");
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
 export default {
   addAccount,
   deleteAccount,
+  putAccountEdit,
+  getAccounts,
 };

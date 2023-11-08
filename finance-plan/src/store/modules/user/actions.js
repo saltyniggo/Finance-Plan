@@ -14,7 +14,7 @@ export default {
     await userService
       .putUser(payload)
       .then((response) => {
-        if (response == "successfull") {
+        if (response == "successful") {
           console.log("putUser");
           commit("userModule/updateUserData", {
             newFirst: payload.firstName,
@@ -26,12 +26,10 @@ export default {
           }
         } else if (response == "unsucessfull") {
           console.log("ERROR");
-          commit("showError");
         }
       })
       .catch((error) => {
         console.error("connection problem", error);
-        commit("showErrorConnection");
       });
   },
 };
