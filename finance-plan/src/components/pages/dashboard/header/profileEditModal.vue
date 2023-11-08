@@ -54,8 +54,13 @@
           </ul>
           <button type="submit">SUBMIT</button>
         </form>
-        <button v-if="showDeleteBtn">Account Löschen</button>
-        <delete-acc-confirm v-else></delete-acc-confirm>
+        <button v-if="showDeleteBtn" @click="toggleDeleteBtn">
+          Account löschen
+        </button>
+        <delete-acc-confirm
+          v-else
+          @cancelDelete="toggleDeleteBtn"
+        ></delete-acc-confirm>
       </div>
     </div>
   </transition>
@@ -74,6 +79,7 @@ export default {
       oldPassword: "",
       newPassword: "",
       oldPasswordWrong: false,
+      showDeleteBtn: true,
     };
   },
   computed: {
@@ -136,6 +142,10 @@ export default {
       }
       this.oldPassword = "";
       this.newPassword = "";
+    },
+
+    toggleDeleteBtn() {
+      this.showDeleteBtn = !this.showDeleteBtn;
     },
   },
   components: { DeleteAccConfirm },
