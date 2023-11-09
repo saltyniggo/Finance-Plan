@@ -55,4 +55,7 @@ export default {
     state.accounts = undefined;
     state.userId = undefined;
   },
+  setRequestStatus(state, payload) {
+    state.requestStatus = payload;
+  },
 };

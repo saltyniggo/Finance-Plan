@@ -7,4 +7,5 @@ export default {
   getPasswordRequirements: (state) => state.passwordRequirements,
   getEditProfile: (state) => state.editProfile,
   getFullName: (state) => state.firstName + state.lastName,
+  getRequestStatus: (state) => state.requestStatus,
 };

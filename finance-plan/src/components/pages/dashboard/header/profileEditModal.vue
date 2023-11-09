@@ -52,9 +52,29 @@
               (!@#$%^&*()_+\-=\[]{?};':"|,.&lt;&gt;)
             </li>
           </ul>
+          <p v-if="requestStatus === 'loading'" :style="{ color: '#ffffff' }">
+            Submit wird bearbeitet...
+          </p>
+          <p
+            v-else-if="requestStatus == 'connectionProblem'"
+            :style="{ color: 'red' }"
+          >
+            Leider gab es ein Problem mit der Verbindung zur Datenbank. Bitte
+            versuch es nochmal.
+          </p>
+          <p
+            v-else-if="requestStatus == 'editProblem'"
+            :style="{ color: 'red' }"
+          >
+            Leider ist etwas beim ändern der Daten schief gegangen. Bitte
+            versuch es nochmal.
+          </p>
           <button type="submit">SUBMIT</button>
         </form>
-        <button v-if="showDeleteBtn" @click="toggleDeleteBtn">
+        <button
+          v-if="showDeleteBtn"
+          @click="toggleDeleteBtn(), console.log(this.requestStatus)"
+        >
           Account löschen
         </button>
         <delete-acc-confirm
@@ -90,6 +110,9 @@ export default {
     passwordRequirements() {
       return this.$store.getters["userModule/getPasswordRequirements"];
     },
+    requestStatus() {
+      return this.$store.getters["userModule/getRequestStatus"];
+    },
   },
   watch: {
     isEditProfileOpen(newValue) {
@@ -109,7 +132,7 @@ export default {
       "closeProfileEdit",
       "closeBackdrop",
     ]),
-    processEdit() {
+    async processEdit() {
       if (this.userPassword === this.oldPassword) {
         this.oldPasswordWrong = false;
         if (
@@ -122,8 +145,6 @@ export default {
             email: this.userEmail,
             password: this.newPassword,
           });
-          this.closeBackdrop();
-          this.closeProfileEdit();
         }
       } else if (this.oldPassword == "" && this.newPassword == "") {
         this.$store.dispatch("userModule/putUser", {
@@ -133,8 +154,6 @@ export default {
           email: this.userEmail,
           password: this.newPassword,
         });
-        this.closeBackdrop();
-        this.closeProfileEdit();
         this.oldPasswordWrong = false;
       } else {
         this.oldPasswordWrong = true;

@@ -5,6 +5,7 @@ import rootGetters from "./getters.js";
 export default {
   namespaced: true,
   state: {
+    requestStatus: "",
     userId: 187,
     firstName: "Friederike",
     lastName: "Ewers",

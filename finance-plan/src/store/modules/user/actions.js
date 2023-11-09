@@ -11,6 +11,7 @@ export default {
     commit("checkPassword", newValue);
   },
   async putUser({ commit }, payload) {
+    commit("setRequestStatus", "loading");
     await userService
       .putUser(payload)
       .then((response) => {
@@ -21,15 +22,20 @@ export default {
             newLast: payload.lastName,
             newEmail: payload.email,
           });
+          commit("popupModule/closeBackdrop");
+          commit("popupModule/closeProfileEdit");
           if (payload.password) {
             commit("userModule/updatePassword", payload.password);
           }
+          commit("setRequestStatus", undefined);
         } else if (response == "unsucessfull") {
           console.log("ERROR");
+          commit("setRequestStatus", "editProblem");
         }
       })
       .catch((error) => {
         console.error("connection problem", error);
+        commit("setRequestStatus", "connectionProblem");
       });
   },
   async deleteUser(context, userId) {
