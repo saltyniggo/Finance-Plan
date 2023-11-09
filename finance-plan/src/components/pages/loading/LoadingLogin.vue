@@ -19,6 +19,24 @@
   </base-card>
 </template>
 
+<script>
+export default {
+  async mounted() {
+    // reicht ein platzhalter?
+    const userId = this.$store.getters["userModule/getUserId"];
+    const response = await this.$store.dispatch(
+      "accountsModule/getAccounts",
+      userId
+    );
+    if (response == "successful") {
+      this.$router.push("/accounts");
+    } else {
+      this.$router.push("/:pathMatch(.*)*");
+    }
+  },
+};
+</script>
+
 <style scoped>
 h3 {
   color: #fff;
