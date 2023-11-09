@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import store from "./store/index.js";
-import NotFound from "./components/pages/NotFound.vue";
-import NotFoundAccount from "./components/pages/NotFoundAccounts.vue";
+
+import NotFoundLogin from "./components/pages/notFound/NotFoundLogin.vue";
+import NotFoundAccounts from "./components/pages/notFound/NotFoundAccounts.vue";
+
+import LoadingLogin from "./components/pages/loading/LoadingLogin.vue";
 
 import TableTransactions from "./components/pages/dashboard/table/TableTransactions.vue";
 import TheHeader from "./components/pages/dashboard/header/TheHeader.vue";
@@ -20,6 +23,10 @@ const router = createRouter({
       path: "/login",
       components: { header: TheHeader, content: LoginPage },
     },
+    {
+      path: "/logging",
+      components: { header: TheHeader, content: LoadingLogin },
+    },
 
     {
       name: "accounts",
@@ -29,15 +36,21 @@ const router = createRouter({
         header: TheHeader,
         content: AccountOverview,
       },
-      beforeEnter: (_, /* _, */ next) => {
+      beforeEnter: async (_, /* _, */ next) => {
         // reicht ein platzhalter?
         const userId = store.getters["userModule/getUserId"];
-        const response = store.dispatch("accountsModule/getAccounts", userId);
+        const response = await store.dispatch(
+          "accountsModule/getAccounts",
+          userId
+        );
+        console.log(response);
         if (response == "successful") {
           next();
         } else {
           console.log("ups");
+          router.push("/:pathMatch(.*)*");
         }
+        console.log(response);
       },
     },
     {
@@ -52,9 +65,9 @@ const router = createRouter({
         modal: BaseModal,
         edit: EditModal,
       },
-      beforeEnter: (to, from, next) => {
+      beforeEnter: async (to, from, next) => {
         const accountId = to.params.id;
-        const response = store.dispatch(
+        const response = await store.dispatch(
           "transactionModule/getTransactions",
           accountId
         );
@@ -69,13 +82,13 @@ const router = createRouter({
     {
       name: "notFound",
       path: "/:pathMatch(.*)*",
-      components: { header: TheHeader, content: NotFound },
+      components: { header: TheHeader, content: NotFoundLogin },
     },
 
     {
       name: "notFoundAccount",
       path: "/problemWithConnection",
-      components: { header: TheHeader, content: NotFoundAccount },
+      components: { header: TheHeader, content: NotFoundAccounts },
     },
   ],
 });
