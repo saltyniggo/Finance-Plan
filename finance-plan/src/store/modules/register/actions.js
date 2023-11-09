@@ -14,6 +14,7 @@ export default {
   },
 
   async register({ commit }) {
+    commit("setRequestStatus", "loading");
     let requirementsOk = store.getters["registerModule/requirementsOK"];
     let rightTwice = store.getters["registerModule/rightTwice"];
     console.log(requirementsOk, rightTwice);
@@ -32,13 +33,16 @@ export default {
           console.log("login");
           commit("login");
           commit("userModule/setUser", response);
+          commit("setRequestStatus", undefined);
         })
         .catch((error) => {
           console.log("conenction problem", error);
           commit("showErrorConnection");
+          commit("setRequestStatus", undefined);
         });
     } else {
       console.log("other register error");
+      commit("setRequestStatus", undefined);
     }
   },
 
@@ -51,6 +55,7 @@ export default {
   },
 
   async login({ commit }) {
+    commit("setRequestStatus", "loading");
     let login = store.getters["registerModule/getFormData"];
     console.log(login.loginEmail, login.loginPassword);
     await userService
@@ -60,14 +65,17 @@ export default {
           console.log("login");
           commit("login");
           commit("userModule/setUser", response);
+          commit("setRequestStatus", undefined);
         } else if (response == "unsuccessful") {
           console.log("wrong password");
           commit("showError");
+          commit("setRequestStatus", undefined);
         }
       })
       .catch((error) => {
         console.log("conenction problem", error);
         commit("showErrorConnection");
+        commit("setRequestStatus", undefined);
       });
   },
 

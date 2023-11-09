@@ -6,6 +6,7 @@ export default {
   namespaced: true,
   state: {
     registrationTemp: [],
+    requestStatus: "",
     // isAuth: false,
     isAuth: true,
     isLoggedIn: false,
