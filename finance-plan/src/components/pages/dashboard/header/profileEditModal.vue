@@ -187,10 +187,6 @@ export default {
 </script>
 
 <style scoped>
-#spinner {
-  scale: 0.75;
-}
-
 .loadingMsg {
   display: flex;
   align-items: center;
@@ -285,5 +281,9 @@ button {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+#spinner {
+  scale: 0.75;
 }
 </style>

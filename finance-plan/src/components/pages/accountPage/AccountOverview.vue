@@ -44,40 +44,23 @@
         <i class="fa-solid fa-trash"></i>
       </button>
     </div>
-    <div v-if="isInputVisible" class="inputField">
-      <input
-        type="text"
-        id="nameInput"
-        v-model="addNameInput"
-        placeholder="Wie soll der Account heißen..."
-        @keyup.enter="submitName()"
-      />
-      <button @click="submitName()" class="submitBtn">+</button>
-    </div>
-    <button
-      v-else
-      class="addBtn"
-      @click="showInput()"
-      :disabled="isDeleteDisabled"
-    >
-      + Account hinzufügen
-    </button>
+    <add-account-input></add-account-input>
   </base-card>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import AddAccountInput from "./AddAccountInput.vue";
 
 export default {
+  components: { AddAccountInput },
   data() {
     return {
       response: null,
-      isInputVisible: false,
       isEditVisible: false,
       editedAccountId: null,
       showFloppyDisk: false,
       editedNameInput: "",
-      addNameInput: "",
       isDeleteDisabled: false,
     };
   },
@@ -88,19 +71,11 @@ export default {
   },
 
   methods: {
-    ...mapActions("accountsModule", [
-      "addAccount",
-      "deleteAccount",
-      "editAccount",
-    ]),
-    showInput() {
-      this.isInputVisible = !this.isInputVisible;
-    },
-
+    ...mapActions("accountsModule", ["deleteAccount", "editAccount"]),
     isEditBtnDisabled(accId) {
       return this.isEditVisible && this.editedAccountId !== accId;
     },
-
+    /* 
     showEdit(accId, event) {
       this.isDeleteDisabled = true;
       const button = event.target;
@@ -121,12 +96,7 @@ export default {
         this.showFloppyDisk = false;
         this.isDeleteDisabled = false;
       }
-    },
-    submitName() {
-      this.showInput();
-      this.addAccount(this.addNameInput);
-      this.addNameInput = "";
-    },
+    }, */
   },
 };
 </script>
@@ -139,11 +109,6 @@ h2 {
   display: inline-flex;
 }
 
-.inputField {
-  display: inline-flex;
-  width: 90%;
-}
-
 .navBtn {
   width: 90%;
   height: 7vh;
@@ -154,7 +119,6 @@ h2 {
   margin-top: 1rem;
   border-radius: 20px;
   background: #20639b;
-  /* background: linear-gradient(135deg, #20639b, #05da93); */
   color: #ecf0f3;
   font-weight: 500;
   font-size: 2vh;
@@ -174,64 +138,12 @@ h2 {
   margin-top: 1rem;
   border-radius: 20px;
   background: #05da93;
-  /* background: linear-gradient(135deg, #20639b, #05da93); */
   color: #ecf0f3;
   font-weight: 500;
   font-size: 2vh;
   text-shadow: 2px 2px 3px #151232;
   border-style: solid;
   border-width: 2px;
-  border-color: rgb(92, 92, 92) black black rgb(92, 92, 92);
-}
-
-.editBtn {
-  width: 5%;
-  padding: 2%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  border-radius: 20px;
-  background: #20639b;
-  color: #ecf0f3;
-  font-weight: 500;
-  font-size: 2vh;
-  text-shadow: 2px 2px 3px #151232;
-  margin-left: 1%;
-}
-.submitBtn {
-  width: 11%;
-  padding: 2%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  border-radius: 20px;
-  background: #17253e;
-  color: #ecf0f3;
-  font-weight: 500;
-  font-size: 2vh;
-  text-shadow: 2px 2px 3px #151232;
-  margin-left: 1%;
-}
-
-.addBtn,
-#nameInput {
-  width: 90%;
-  padding: 2%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  border-radius: 20px;
-  background: #17253e;
-  color: #ecf0f3;
-  font-weight: 500;
-  font-size: 2vh;
-  text-shadow: 2px 2px 3px #151232;
-}
-
-#nameInput {
-  border: 2px solid;
   border-color: rgb(92, 92, 92) black black rgb(92, 92, 92);
 }
 

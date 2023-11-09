@@ -12,7 +12,7 @@ import NavLeft from "./components/pages/dashboard/nav/NavLeft.vue";
 import BaseModal from "./components/pages/dashboard/modal/BaseModal.vue";
 import NavRight from "./components/pages/dashboard/shortcuts/NavRight.vue";
 import LoginPage from "./components/pages/login/LoginPage.vue";
-import AccountOverview from "./components/pages/accounts/AccountOverview.vue";
+import AccountOverview from "./components/pages/accountPage/AccountOverview.vue";
 import EditModal from "./components/pages/dashboard/table/edit/EditModal.vue";
 
 const router = createRouter({
@@ -30,7 +30,7 @@ const router = createRouter({
 
     {
       name: "accounts",
-      path: "/accounts",
+      path: "/account",
       meta: { needsAuth: true },
       components: {
         header: TheHeader,
@@ -54,7 +54,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/accounts/:name",
+      path: "/account/:name",
       name: "account",
       meta: { needsAuth: true },
       components: {

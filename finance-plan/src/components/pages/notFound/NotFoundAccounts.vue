@@ -4,7 +4,7 @@
       <h2>
         Oops, hier ist wohl etwas schief gegangen... :C <br />Hier kommst du
         zurück zu deiner
-        <router-link to="/accounts">Account-Übersicht</router-link>
+        <router-link to="/accountPage">Account-Übersicht</router-link>
       </h2>
     </base-card>
   </div>

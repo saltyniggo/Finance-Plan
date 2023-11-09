@@ -18,7 +18,7 @@ export default {
 
   methods: {
     backToOverview() {
-      router.push("/accounts");
+      router.push("/accounaccountPage");
     },
   },
 };
