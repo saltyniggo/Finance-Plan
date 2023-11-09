@@ -5,6 +5,7 @@ import NotFoundLogin from "./components/pages/notFound/NotFoundLogin.vue";
 import NotFoundAccounts from "./components/pages/notFound/NotFoundAccounts.vue";
 
 import LoadingLogin from "./components/pages/loading/LoadingLogin.vue";
+import LoadingAccounts from "./components/pages/loading/LoadingAccounts";
 
 import TableTransactions from "./components/pages/dashboard/table/TableTransactions.vue";
 import TheHeader from "./components/pages/dashboard/header/TheHeader.vue";
@@ -23,9 +24,16 @@ const router = createRouter({
       path: "/login",
       components: { header: TheHeader, content: LoginPage },
     },
+
     {
       path: "/logging",
       components: { header: TheHeader, content: LoadingLogin },
+    },
+
+    {
+      name: "loading",
+      path: "/loading",
+      components: { header: TheHeader, content: LoadingAccounts },
     },
 
     {
@@ -35,22 +43,6 @@ const router = createRouter({
       components: {
         header: TheHeader,
         content: AccountOverview,
-      },
-      beforeEnter: async (_, /* _, */ next) => {
-        // reicht ein platzhalter?
-        const userId = store.getters["userModule/getUserId"];
-        const response = await store.dispatch(
-          "accountsModule/getAccounts",
-          userId
-        );
-        console.log(response);
-        if (response == "successful") {
-          next();
-        } else {
-          console.log("ups");
-          router.push("/:pathMatch(.*)*");
-        }
-        console.log(response);
       },
     },
     {
@@ -65,19 +57,19 @@ const router = createRouter({
         modal: BaseModal,
         edit: EditModal,
       },
-      beforeEnter: async (to, from, next) => {
-        const accountId = to.params.id;
-        const response = await store.dispatch(
-          "transactionModule/getTransactions",
-          accountId
-        );
-        if (response == "successful") {
-          next();
-        } else {
-          console.log("upsi");
-          router.push("/problemWithConnection");
-        }
-      },
+      // beforeEnter: async (to, from, next) => {
+      //   const accountId = to.params.id;
+      //   const response = await store.dispatch(
+      //     "transactionModule/getTransactions",
+      //     accountId
+      //   );
+      //   if (response == "successful") {
+      //     next();
+      //   } else {
+      //     console.log("upsi");
+      //     router.push("/problemWithConnection");
+      //   }
+      // },
     },
     {
       name: "notFound",

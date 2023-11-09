@@ -61,6 +61,7 @@ export default {
   },
 
   async getTransactions({ commit }, accountId) {
+    let data = undefined;
     await TransactionService.getTransactions(accountId)
       .then((response) => {
         if (response == "successful") {
@@ -70,12 +71,14 @@ export default {
           console.error("ERROR");
         }
 
-        return response;
+        data = response;
       })
       .catch((error) => {
         console.error("connection problem", error);
-        return error;
+        data = error;
       });
+
+    return data;
   },
 
   checktransactionModule(context) {

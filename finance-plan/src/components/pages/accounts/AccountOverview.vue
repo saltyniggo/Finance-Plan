@@ -14,7 +14,7 @@
         v-else
         class="navBtn"
         :to="{
-          name: 'account',
+          name: 'loading',
           params: {
             name: account.name,
             id: account.id,
@@ -127,6 +127,14 @@ export default {
       this.addAccount(this.addNameInput);
       this.addNameInput = "";
     },
+  },
+  async beforeRouteEnter() {
+    const userId = this.$store.getters["userModule/getUserId"];
+    const response = await this.$store.dispatch(
+      "accountsModule/getAccounts",
+      userId
+    );
+    console.log(response);
   },
 };
 </script>
