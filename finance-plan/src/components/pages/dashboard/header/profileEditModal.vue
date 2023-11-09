@@ -52,9 +52,15 @@
               (!@#$%^&*()_+\-=\[]{?};':"|,.&lt;&gt;)
             </li>
           </ul>
-          <p v-if="requestStatus === 'loading'" :style="{ color: '#ffffff' }">
-            Submit wird bearbeitet...
-          </p>
+          <div
+            class="loadingMsg"
+            v-if="requestStatus === 'loading'"
+            :style="{ color: '#ffffff' }"
+          >
+            <spinning-loader id="spinner"></spinning-loader>
+            <p>Anfrage wird bearbeitet...</p>
+            <p>Bitte haben sie ein wenig Geduld</p>
+          </div>
           <p
             v-else-if="requestStatus == 'connectionProblem'"
             :style="{ color: 'red' }"
@@ -98,6 +104,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import DeleteAccConfirm from "./DeleteAccConfirm.vue";
+import SpinningLoader from "@/components/base/SpinningLoader.vue";
 
 export default {
   data() {
@@ -175,11 +182,16 @@ export default {
       this.showDeleteBtn = !this.showDeleteBtn;
     },
   },
-  components: { DeleteAccConfirm },
+  components: { DeleteAccConfirm, SpinningLoader },
 };
 </script>
 
 <style scoped>
+.loadingMsg {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 #baseModal {
   z-index: 2;
   position: absolute;
@@ -269,5 +281,9 @@ button {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+#spinner {
+  scale: 0.75;
 }
 </style>
