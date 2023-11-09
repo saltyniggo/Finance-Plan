@@ -46,7 +46,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/accounts/:name",
+      path: "/accounts/:name/:id/:balance",
       name: "account",
       meta: { needsAuth: true },
       components: {

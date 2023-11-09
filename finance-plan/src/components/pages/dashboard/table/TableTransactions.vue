@@ -1,24 +1,27 @@
 <template>
-  <edit-modal></edit-modal>
-  <div v-show="!transactionsEmpty" class="tableSec">
-    <table-head
-      :tableSum="$route.params.balance"
-      :name="$route.params.name"
-    ></table-head>
-    <transition-group name="row" tag="ul">
-      <table-row
-        v-for="data in getTransactions.transactions"
-        :key="data.transactionId"
-        :data="data"
-        :id="data.transactionId"
-        class="rows"
-      ></table-row>
-    </transition-group>
+  <div v-if="response">
+    <edit-modal></edit-modal>
+    <div v-show="!transactionsEmpty" class="tableSec">
+      <table-head
+        :tableSum="$route.params.balance"
+        :name="$route.params.name"
+      ></table-head>
+      <transition-group name="row" tag="ul">
+        <table-row
+          v-for="data in getTransactions.transactions"
+          :key="data.transactionId"
+          :data="data"
+          :id="data.transactionId"
+          class="rows"
+        ></table-row>
+      </transition-group>
+    </div>
+    <div v-show="transactionsEmpty" class="emptyListMessage">
+      <h1>Bisher sind keine Transaktionen gespeichert!</h1>
+      <h2>Füge jetzt deine erste Transaktion hinzu!</h2>
+    </div>
   </div>
-  <div v-show="transactionsEmpty" class="emptyListMessage">
-    <h1>Bisher sind keine Transaktionen gespeichert!</h1>
-    <h2>Füge jetzt deine erste Transaktion hinzu!</h2>
-  </div>
+  <base-card v-else><h2>Loading ...</h2></base-card>
 </template>
 
 <script>
@@ -30,6 +33,15 @@ import EditModal from "./edit/EditModal.vue";
 
 export default {
   components: { TableRow, TableHead, EditModal },
+  data() {
+    return {
+      response: null,
+      params: this.$route.params,
+      name: this.$route.params.name,
+      balance: this.$route.params.balance,
+      id: this.$route.params.id,
+    };
+  },
   computed: {
     transactionsEmpty() {
       return this.$store.getters["transactionModule/transactionsEmpty"];
@@ -41,6 +53,21 @@ export default {
   methods: {
     ...mapActions("transactionModule", ["checktransactionModule"]),
   },
+
+  async beforeMount() {
+    this.response = null;
+    console.log(this.name, this.balance, this.id);
+    // reicht ein platzhalter?
+    const accountId = this.id;
+    console.log(accountId);
+    const response = await this.$store.dispatch(
+      "transactionModule/getTransactions",
+      accountId
+    );
+    console.log("HI: ", response);
+    this.response = true;
+  },
+
   mounted() {
     this.checktransactionModule();
   },
@@ -48,6 +75,9 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  color: #ffffff;
+}
 .tableSec {
   width: 80%;
   margin: 10%;
