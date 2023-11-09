@@ -1,5 +1,5 @@
 <template>
-  <div v-if="response">
+  <div v-if="response && message == 'success'">
     <edit-modal></edit-modal>
     <div v-show="!transactionsEmpty" class="tableSec">
       <table-head
@@ -21,7 +21,19 @@
       <h2>Füge jetzt deine erste Transaktion hinzu!</h2>
     </div>
   </div>
-  <base-card v-else><h2>Loading ...</h2></base-card>
+  <div v-else-if="message == 'Network Error'">
+    <base-card>
+      <h2>
+        Oops, hier ist wohl etwas schief gegangen... 😭😨 <br />Hier kommst du
+        zurück zur
+        <router-link to="/accounts">Accountübersicht</router-link>
+      </h2>
+    </base-card>
+  </div>
+  <base-card v-else>
+    <SpinningLoader></SpinningLoader>
+    <h2>Kontodaten werden geladen</h2></base-card
+  >
 </template>
 
 <script>
@@ -30,12 +42,14 @@ import { mapActions } from "vuex";
 import TableRow from "./TableRow.vue";
 import TableHead from "./TableHead.vue";
 import EditModal from "./edit/EditModal.vue";
+import SpinningLoader from "@/components/base/SpinningLoader.vue";
 
 export default {
-  components: { TableRow, TableHead, EditModal },
+  components: { TableRow, TableHead, EditModal, SpinningLoader },
   data() {
     return {
       response: null,
+      message: null,
       params: this.$route.params,
       name: this.$route.params.name,
       balance: this.$route.params.balance,
@@ -56,6 +70,7 @@ export default {
 
   async beforeMount() {
     this.response = null;
+    this.message = null;
     console.log(this.name, this.balance, this.id);
     // reicht ein platzhalter?
     const accountId = this.id;
@@ -64,6 +79,7 @@ export default {
       "transactionModule/getTransactions",
       accountId
     );
+    this.message = response.message;
     console.log("HI: ", response);
     this.response = true;
   },

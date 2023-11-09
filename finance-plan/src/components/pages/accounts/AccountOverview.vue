@@ -1,5 +1,5 @@
 <template>
-  <base-card v-if="response">
+  <base-card v-if="message == 'success' && response">
     <h2>Accounts</h2>
     <div v-for="account in accounts" :key="account.id" class="row">
       <input
@@ -63,16 +63,30 @@
       + Account hinzufügen
     </button>
   </base-card>
-  <base-card v-else><h2>Loading ...</h2></base-card>
+  <div v-else-if="message == 'Network Error'">
+    <base-card>
+      <h2>
+        Oops, hier ist wohl etwas schief gegangen... 😭🫠 <br />Hier kommst du
+        zurück zum
+        <router-link to="/login">Login</router-link>
+      </h2>
+    </base-card>
+  </div>
+  <base-card v-else>
+    <SpinningLoader></SpinningLoader>
+    <h2>Accountübersicht wird geladen</h2></base-card
+  >
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import SpinningLoader from "@/components/base/SpinningLoader.vue";
 
 export default {
   data() {
     return {
       response: null,
+      message: null,
       isInputVisible: false,
       isEditVisible: false,
       editedAccountId: null,
@@ -87,7 +101,6 @@ export default {
       return this.$store.getters["accountsModule/getAccounts"];
     },
   },
-
   methods: {
     ...mapActions("accountsModule", [
       "addAccount",
@@ -97,27 +110,22 @@ export default {
     showInput() {
       this.isInputVisible = !this.isInputVisible;
     },
-
     isEditBtnDisabled(accId) {
       return this.isEditVisible && this.editedAccountId !== accId;
     },
-
     showEdit(accId, event) {
       this.isDeleteDisabled = true;
       const button = event.target;
       console.log(button);
       this.showFloppyDisk = true;
       this.editedAccountId = accId;
-
       this.isEditVisible = !this.isEditVisible;
-
       if (!this.isEditVisible) {
         if (this.editedNameInput.trim() == "") {
           this.showFloppyDisk = false;
         } else {
           this.editAccount({ accId: accId, edit: this.editedNameInput });
         }
-
         this.editedNameInput = "";
         this.showFloppyDisk = false;
         this.isDeleteDisabled = false;
@@ -131,14 +139,17 @@ export default {
   },
   async beforeMount() {
     this.response = null;
+    this.message = null;
     const userId = this.$store.getters["userModule/getUserId"];
     const response = await this.$store.dispatch(
       "accountsModule/getAccounts",
       userId
     );
-    console.log("HI: ", response);
+    this.message = response.message;
+    console.log("HI: ", this.message);
     this.response = true;
   },
+  components: { SpinningLoader },
 };
 </script>
 <style scoped>
