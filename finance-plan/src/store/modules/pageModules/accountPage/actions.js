@@ -1,6 +1,6 @@
 export default {
-  changeInputVisibilty({ commit }) {
-    commit("changeInputVisibilty");
+  changeInputVisibility({ commit }) {
+    commit("changeInputVisibility");
   },
   showEdit({ commit, state }, payload) {
     commit("openEdit", payload);

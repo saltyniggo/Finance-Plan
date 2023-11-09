@@ -1,22 +1,24 @@
 <template>
-  <button
-    class="editBtn"
-    @click="showEdit(account.id)"
-    :disabled="isEditBtnDisabled(account.id)"
-  >
-    <i
-      v-if="showFloppyDisk && !isEditBtnDisabled(account.id)"
-      class="fa-solid fa-floppy-disk"
-    ></i>
-    <i v-else class="fa-solid fa-pen"></i>
-  </button>
-  <button
-    class="editBtn"
-    @click="deleteAccount(account.id)"
-    :disabled="isDeleteDisabled"
-  >
-    <i class="fa-solid fa-trash"></i>
-  </button>
+  <div>
+    <button
+      class="editBtn"
+      @click="showEdit(account.id)"
+      :disabled="isEditBtnDisabled(account.id)"
+    >
+      <i
+        v-if="showFloppyDisk && !isEditBtnDisabled(account.id)"
+        class="fa-solid fa-floppy-disk"
+      ></i>
+      <i v-else class="fa-solid fa-pen"></i>
+    </button>
+    <button
+      class="editBtn"
+      @click="deleteAccount(account.id)"
+      :disabled="isDeleteDisabled"
+    >
+      <i class="fa-solid fa-trash"></i>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -26,7 +28,7 @@ import { mapGetters } from "vuex";
 export default {
   props: ["account"],
   computed: {
-    ...mapGetters("accountpage", ["isDeleteDisabled", "showFloppyDisk"]),
+    ...mapGetters("accountPage", ["isDeleteDisabled", "showFloppyDisk"]),
   },
   methods: {
     ...mapActions("accountPage", ["showEdit", "isEditBtnDisabled"]),
@@ -36,7 +38,7 @@ export default {
 
 <style scoped>
 .editBtn {
-  width: 5%;
+  width: 50%;
   padding: 2%;
   display: flex;
   justify-content: center;

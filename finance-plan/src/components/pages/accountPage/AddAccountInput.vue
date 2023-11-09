@@ -27,7 +27,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters("accountpage", [
+    ...mapGetters("accountPage", [
       "isInputVisible",
       "isDeleteDisabled",
       "addNameInput",
@@ -37,7 +37,7 @@ export default {
     ...mapActions("accountsModule", ["addAccount"]),
     ...mapActions("accountPage", ["changeInputVisibility"]),
     submitName() {
-      this.changeInputVisibilty();
+      this.changeInputVisibility();
       this.addAccount(this.addNameInput);
       this.addNameInput = "";
     },

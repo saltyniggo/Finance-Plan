@@ -1,5 +1,5 @@
 export default {
-  changeInputVisibilty(state) {
+  changeInputVisibility(state) {
     state.isInputVisible = !state.isInputVisible;
   },
   openEdit(state, payload) {
