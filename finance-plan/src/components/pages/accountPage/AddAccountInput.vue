@@ -3,14 +3,19 @@
     <input
       type="text"
       id="nameInput"
-      v-model="addNameInput"
+      :value="editedNameInput"
+      @input="updateNameInput"
       placeholder="Wie soll der Account heißen..."
       @keyup.enter="submitName()"
     />
     <button @click="submitName()" class="submitBtn">+</button>
   </div>
   <div v-else>
-    <button class="addBtn" @click="showInput()" :disabled="isDeleteDisabled">
+    <button
+      class="addBtn"
+      @click="changeInputVisibility()"
+      :disabled="isDeleteDisabled"
+    >
       + Account hinzufügen
     </button>
   </div>
@@ -18,29 +23,26 @@
 
 <script>
 import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      addNameInput: "",
-    };
-  },
   computed: {
-    isInputVisible() {
-      return this.$store.getters["accountPage/isInputVisible"];
-    },
-    isDeleteDisabled() {
-      return this.$store.getters["accountPage/isDeleteDisabled"];
-    },
+    ...mapGetters("accountpage", [
+      "isInputVisible",
+      "isDeleteDisabled",
+      "addNameInput",
+    ]),
   },
   methods: {
     ...mapActions("accountsModule", ["addAccount"]),
+    ...mapActions("accountPage", ["changeInputVisibility"]),
     submitName() {
-      this.showInput();
+      this.changeInputVisibilty();
       this.addAccount(this.addNameInput);
       this.addNameInput = "";
     },
-    showInput() {
-      this.isInputVisible = !this.isInputVisible;
+    updateNameInput(event) {
+      this.$store.commit("accountPage/updateAddName", event.target.value);
     },
   },
 };

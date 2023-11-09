@@ -6,7 +6,12 @@ export default {
   namespaced: true,
   state: {
     isInputVisible: false,
+    isEditVisible: false,
     isDeleteDisabled: false,
+    showFloppyDisk: false,
+    editedAccountId: undefined,
+    editedNameInput: "",
+    addNameInput: "",
   },
   mutations: rootMutations,
   actions: rootActions,

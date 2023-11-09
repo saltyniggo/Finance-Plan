@@ -1,7 +1,7 @@
 <template>
   <button
     class="editBtn"
-    @click="showEdit(account.id, $event)"
+    @click="showEdit(account.id)"
     :disabled="isEditBtnDisabled(account.id)"
   >
     <i
@@ -20,29 +20,16 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
+  props: ["account"],
+  computed: {
+    ...mapGetters("accountpage", ["isDeleteDisabled", "showFloppyDisk"]),
+  },
   methods: {
-    showEdit(accId, event) {
-      this.isDeleteDisabled = true;
-      const button = event.target;
-      console.log(button);
-      this.showFloppyDisk = true;
-      this.editedAccountId = accId;
-
-      this.isEditVisible = !this.isEditVisible;
-
-      if (!this.isEditVisible) {
-        if (this.editedNameInput.trim() == "") {
-          this.showFloppyDisk = false;
-        } else {
-          this.editAccount({ accId: accId, edit: this.editedNameInput });
-        }
-
-        this.editedNameInput = "";
-        this.showFloppyDisk = false;
-        this.isDeleteDisabled = false;
-      }
-    },
+    ...mapActions("accountPage", ["showEdit"]),
   },
 };
 </script>

@@ -1,49 +1,10 @@
 <template>
   <base-card>
     <h2>Accounts</h2>
-    <div v-for="account in accounts" :key="account.id" class="row">
-      <input
-        v-if="isEditVisible && editedAccountId === account.id"
-        type="text"
-        :placeholder="account.name"
-        v-model="editedNameInput"
-        class="editInput"
-      />
-
-      <router-link
-        v-else
-        class="navBtn"
-        :to="{
-          name: 'account',
-          params: {
-            name: account.name,
-            id: account.id,
-            balance: account.balance,
-          },
-        }"
-      >
-        <span>{{ account.name }}</span
-        ><span>{{ account.balance }}</span>
-      </router-link>
-      <button
-        class="editBtn"
-        @click="showEdit(account.id, $event)"
-        :disabled="isEditBtnDisabled(account.id)"
-      >
-        <i
-          v-if="showFloppyDisk && !isEditBtnDisabled(account.id)"
-          class="fa-solid fa-floppy-disk"
-        ></i>
-        <i v-else class="fa-solid fa-pen"></i>
-      </button>
-      <button
-        class="editBtn"
-        @click="deleteAccount(account.id)"
-        :disabled="isDeleteDisabled"
-      >
-        <i class="fa-solid fa-trash"></i>
-      </button>
-    </div>
+    <section v-for="account in accounts" :key="account.id" class="row">
+      <account-row :account="account"></account-row>
+      <modify-account-button :account="account"></modify-account-button>
+    </section>
     <add-account-input></add-account-input>
   </base-card>
 </template>
@@ -51,19 +12,11 @@
 <script>
 import { mapActions } from "vuex";
 import AddAccountInput from "./AddAccountInput.vue";
+import ModifyAccountButton from "./ModifyAccountButton.vue";
+import AccountRow from "./AccountRow.vue";
 
 export default {
-  components: { AddAccountInput },
-  data() {
-    return {
-      response: null,
-      isEditVisible: false,
-      editedAccountId: null,
-      showFloppyDisk: false,
-      editedNameInput: "",
-      isDeleteDisabled: false,
-    };
-  },
+  components: { AddAccountInput, ModifyAccountButton, AccountRow },
   computed: {
     accounts() {
       return this.$store.getters["accountsModule/getAccounts"];
@@ -75,31 +28,10 @@ export default {
     isEditBtnDisabled(accId) {
       return this.isEditVisible && this.editedAccountId !== accId;
     },
-    /* 
-    showEdit(accId, event) {
-      this.isDeleteDisabled = true;
-      const button = event.target;
-      console.log(button);
-      this.showFloppyDisk = true;
-      this.editedAccountId = accId;
-
-      this.isEditVisible = !this.isEditVisible;
-
-      if (!this.isEditVisible) {
-        if (this.editedNameInput.trim() == "") {
-          this.showFloppyDisk = false;
-        } else {
-          this.editAccount({ accId: accId, edit: this.editedNameInput });
-        }
-
-        this.editedNameInput = "";
-        this.showFloppyDisk = false;
-        this.isDeleteDisabled = false;
-      }
-    }, */
   },
 };
 </script>
+
 <style scoped>
 h2 {
   color: #ecf0f3;
