@@ -29,7 +29,7 @@ export default {
     ...mapGetters("accountpage", ["isDeleteDisabled", "showFloppyDisk"]),
   },
   methods: {
-    ...mapActions("accountPage", ["showEdit"]),
+    ...mapActions("accountPage", ["showEdit", "isEditBtnDisabled"]),
   },
 };
 </script>

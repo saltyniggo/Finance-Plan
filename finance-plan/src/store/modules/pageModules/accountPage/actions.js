@@ -16,4 +16,7 @@ export default {
       commit("closeEdit");
     }
   },
+  isEditBtnDisabled({ state }, payload) {
+    return state.isEditVisible && state.editedAccountId !== payload;
+  },
 };

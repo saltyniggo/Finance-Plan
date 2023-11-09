@@ -36,22 +36,6 @@ const router = createRouter({
         header: TheHeader,
         content: AccountOverview,
       },
-      beforeEnter: async (_, /* _, */ next) => {
-        // reicht ein platzhalter?
-        const userId = store.getters["userModule/getUserId"];
-        const response = await store.dispatch(
-          "accountsModule/getAccounts",
-          userId
-        );
-        console.log(response);
-        if (response == "successful") {
-          next();
-        } else {
-          console.log("ups");
-          router.push("/:pathMatch(.*)*");
-        }
-        console.log(response);
-      },
     },
     {
       path: "/account/:name",

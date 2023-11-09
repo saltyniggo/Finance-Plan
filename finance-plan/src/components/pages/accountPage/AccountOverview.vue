@@ -25,9 +25,6 @@ export default {
 
   methods: {
     ...mapActions("accountsModule", ["deleteAccount", "editAccount"]),
-    isEditBtnDisabled(accId) {
-      return this.isEditVisible && this.editedAccountId !== accId;
-    },
   },
 };
 </script>
