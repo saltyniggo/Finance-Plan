@@ -69,7 +69,8 @@ export default {
 
   login(state) {
     state.isAuth = true;
-    router.push("/accounts");
+    // router.push("/accounts");
+    router.push("/logging");
   },
 
   showError(state) {

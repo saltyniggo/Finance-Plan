@@ -11,6 +11,20 @@ import SpinningLoader from "@/components/base/SpinningLoader.vue";
 
 export default {
   components: { SpinningLoader },
+
+  async mounted() {
+    // reicht ein platzhalter?
+    const userId = this.$store.getters["userModule/getUserId"];
+    const response = await this.$store.dispatch(
+      "accountsModule/getAccounts",
+      userId
+    );
+    if (response == "successful") {
+      this.$router.push("/accounts");
+    } else {
+      this.$router.push("/:pathMatch(.*)*");
+    }
+  },
 };
 </script>
 
