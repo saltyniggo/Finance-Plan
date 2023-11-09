@@ -63,22 +63,31 @@
             versuch es nochmal.
           </p>
           <p
+            v-else-if="requestStatus == 'deleteProblem'"
+            :style="{ color: 'red' }"
+          >
+            Leider ist etwas beim Löschen des Profils etwas schief gegangen.
+            Bitte versuch es nochmal.
+          </p>
+          <p
             v-else-if="requestStatus == 'editProblem'"
             :style="{ color: 'red' }"
           >
             Leider ist etwas beim ändern der Daten schief gegangen. Bitte
             versuch es nochmal.
           </p>
-          <button type="submit">SUBMIT</button>
+          <button v-if="requestStatus !== 'loading'" type="submit">
+            SUBMIT
+          </button>
         </form>
         <button
-          v-if="showDeleteBtn"
+          v-if="showDeleteBtn && requestStatus !== 'loading'"
           @click="toggleDeleteBtn(), console.log(this.requestStatus)"
         >
           Account löschen
         </button>
         <delete-acc-confirm
-          v-else
+          v-else-if="!showDeleteBtn && requestStatus !== 'loading'"
           @cancelDelete="toggleDeleteBtn"
         ></delete-acc-confirm>
       </div>

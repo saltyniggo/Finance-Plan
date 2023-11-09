@@ -11,7 +11,7 @@
 <script>
 export default {
   methods: {
-    deleteUser() {
+    async deleteUser() {
       this.$store.dispatch("userModule/deleteUser");
     },
   },

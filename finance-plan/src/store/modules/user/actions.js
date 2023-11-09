@@ -38,19 +38,23 @@ export default {
         commit("setRequestStatus", "connectionProblem");
       });
   },
-  async deleteUser(context, userId) {
+  async deleteUser({ commit }, userId) {
+    commit("setRequestStatus", "loading");
     await userService
       .deleteUser(userId)
       .then((response) => {
         if (response == "successful") {
           console.log("delete");
-          context.commit("deleteUser");
+          commit("deleteUser");
+          commit("setRequestStatus", undefined);
         } else if (response == "unsuccessful") {
           console.log("delete not possible");
+          commit("setRequestStatus", "deleteProblem");
         }
       })
       .catch((error) => {
         console.log("connection problem", error);
+        commit("setRequestStatus", "connectionProblem");
       });
   },
 };
