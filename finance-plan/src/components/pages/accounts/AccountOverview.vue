@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <base-card v-if="response">
     <h2>Accounts</h2>
     <div v-for="account in accounts" :key="account.id" class="row">
       <input
@@ -14,7 +14,7 @@
         v-else
         class="navBtn"
         :to="{
-          name: 'loading',
+          name: 'account',
           params: {
             name: account.name,
             id: account.id,
@@ -63,6 +63,7 @@
       + Account hinzufügen
     </button>
   </base-card>
+  <base-card v-else><h2>Loading ...</h2></base-card>
 </template>
 
 <script>
@@ -128,13 +129,15 @@ export default {
       this.addNameInput = "";
     },
   },
-  async beforeRouteEnter() {
+  async beforeMount() {
+    this.response = null;
     const userId = this.$store.getters["userModule/getUserId"];
     const response = await this.$store.dispatch(
       "accountsModule/getAccounts",
       userId
     );
-    console.log(response);
+    console.log("HI: ", response);
+    this.response = true;
   },
 };
 </script>
