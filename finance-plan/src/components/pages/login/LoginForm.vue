@@ -23,9 +23,11 @@
     </template>
 
     <template v-slot:buttonSubmit>
-      <button type="submit">Login</button>
+      <div id="btn">
+        <SpinningLoader v-if="requestStatus == 'loading'"></SpinningLoader>
+        <button v-else type="submit">Login</button>
+      </div>
     </template>
-    <template v-slot:buttonText> Login</template>
   </base-form>
   <a href="#" @click="toggleRegisterStatus"
     >Noch nicht registriert? Dann gehts hier zur Anmeldung.</a
@@ -33,15 +35,19 @@
 </template>
 
 <script>
+import SpinningLoader from "@/components/base/SpinningLoader.vue";
+
 export default {
   emits: ["toggle-register-status"],
-
   computed: {
     formData() {
       return this.$store.getters["registerModule/getFormData"];
     },
     loginData() {
       return this.$store.getters["registerModule/getLoginData"];
+    },
+    requestStatus() {
+      return this.$store.getters["registerModule/getRequestStatus"];
     },
   },
   methods: {
@@ -52,6 +58,7 @@ export default {
       this.$store.dispatch("registerModule/login");
     },
   },
+  components: { SpinningLoader },
 };
 </script>
 
@@ -68,5 +75,15 @@ button {
   font-size: 1vw;
   font-weight: 600;
   border-radius: 2vh;
+}
+
+#btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+p {
+  text-align: center;
 }
 </style>

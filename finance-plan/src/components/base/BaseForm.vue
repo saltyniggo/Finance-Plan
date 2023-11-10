@@ -6,10 +6,12 @@
     <slot>Default</slot>
 
     <slot name="buttonSubmit">
-      <button-rectangle @click="$emit('submitEvent')"
-        ><slot name="buttonText">Submit</slot></button-rectangle
-      ></slot
-    >
+      <div id="btn">
+        <button-rectangle @click="$emit('submitEvent')"
+          ><slot name="buttonText">Submit</slot></button-rectangle
+        >
+      </div>
+    </slot>
   </form>
 </template>
 
@@ -25,7 +27,6 @@ export default {
 </script>
 
 <style scoped>
-/* Add your component's specific styles here */
 * {
   color: #ecf0f3;
 }

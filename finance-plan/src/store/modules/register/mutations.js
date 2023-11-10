@@ -93,4 +93,8 @@ export default {
     state.loginData.showErrorConnection = false;
     state.loginData.showError = false;
   },
+
+  setRequestStatus(state, payload) {
+    state.requestStatus = payload;
+  },
 };
