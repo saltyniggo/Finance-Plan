@@ -1,11 +1,10 @@
 export default {
   setUser(state, payload) {
-    state.firstName = payload.firstName;
-    state.lastName = payload.lastName;
-    state.email = payload.email;
-    state.password = payload.password;
-    state.accounts = payload.accounts;
-    state.userId = payload.userId;
+    state.firstName = payload.data.data.firstName;
+    state.lastName = payload.data.data.lastName;
+    state.email = payload.data.data.email;
+    state.password = payload.data.data.password;
+    state.userId = payload.data.data.id;
   },
   toggleEditProfile(state) {
     state.editProfile = !state.editProfile;

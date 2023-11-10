@@ -116,7 +116,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("userModule", ["getFirstName", "getLastName", "getEmail"]),
+    ...mapGetters("userModule", [
+      "getFirstName",
+      "getLastName",
+      "getEmail",
+      "getUserId",
+    ]),
     isEditProfileOpen() {
       return this.$store.getters["popupModule/isEditProfileOpen"];
     },
@@ -156,6 +161,7 @@ export default {
           this.passwordRequirements.requirementsOk
         ) {
           this.$store.dispatch("userModule/putUser", {
+            userId: this.$store.getters["userModule/getUserId"],
             firstName: this.firstName,
             lastName: this.lastName,
             email: this.userEmail,
@@ -168,7 +174,7 @@ export default {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.userEmail,
-          password: this.newPassword,
+          password: this.userPassword,
         });
         this.oldPasswordWrong = false;
       } else {

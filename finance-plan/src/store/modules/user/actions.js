@@ -11,24 +11,23 @@ export default {
     commit("checkPassword", newValue);
   },
   async putUser({ commit }, payload) {
+    console.log(payload);
     commit("setRequestStatus", "loading");
     await userService
       .putUser(payload)
       .then((response) => {
-        if (response == "successful") {
+        if (response.data.data !== null) {
           console.log("putUser");
-          commit("userModule/updateUserData", {
+          commit("updateUserData", {
             newFirst: payload.firstName,
             newLast: payload.lastName,
             newEmail: payload.email,
           });
-          commit("popupModule/closeBackdrop");
+          commit("updatePassword", payload.password);
+          commit("popupModule/closeBackdrop", { root: true });
           commit("popupModule/closeProfileEdit");
-          if (payload.password) {
-            commit("userModule/updatePassword", payload.password);
-          }
           commit("setRequestStatus", undefined);
-        } else if (response == "unsucessfull") {
+        } else if (response.data.data === null) {
           console.log("ERROR");
           commit("setRequestStatus", "editProblem");
         }
