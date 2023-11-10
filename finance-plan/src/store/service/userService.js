@@ -4,9 +4,9 @@ async function putUser(payload) {
   try {
     const response = await axios({
       method: "put",
-      url: `https://vmentvs05/api/User/${payload.userId}`,
-      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      url: `http://192.168.50.71/api/User`,
       data: {
+        id: payload.userId,
         firstName: payload.firstName,
         lastName: payload.lastNamet,
         email: payload.email,
@@ -25,8 +25,7 @@ async function getLogin(emailInput, passwordInput) {
   try {
     const response = await axios({
       method: "get",
-      url: `https://vmentvs05/api/User/${emailInput}/${passwordInput}`,
-      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      url: `http://192.168.50.71/api/User/${emailInput}/${passwordInput}`,
     });
     return response;
   } catch (error) {
@@ -45,13 +44,12 @@ async function postRegister(
   try {
     const response = await axios({
       method: "post",
-      url: `https://vmentvs05/api/User`,
-      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      url: `http://192.168.50.71/api/User`,
       data: {
-        firstName: firstNameInput,
-        lastName: lastNameInput,
         email: emailInput,
         password: passwordInput,
+        firstName: firstNameInput,
+        lastName: lastNameInput,
       },
     });
     return response;
@@ -66,8 +64,7 @@ async function deleteUser(userId) {
   try {
     const response = await axios({
       method: "delete",
-      url: `https://vmentvs05/api/User/${userId}`,
-      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      url: `http://192.168.50.71/api/User/${userId}`,
     });
     return response;
   } catch (error) {

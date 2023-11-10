@@ -4,14 +4,13 @@ async function addTransaction(payload) {
   try {
     const response = await axios({
       method: "post",
-      url: `https://vmentvs05/api/Transaction`,
-      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      url: `http://192.168.50.71/api/Transaction`,
       data: {
         data: {
-          date: payload.date,
           amount: payload.amount,
+          transactionType: payload.category,
+          date: payload.date,
           description: payload.description,
-          category: payload.category,
         },
       },
     });
@@ -27,7 +26,6 @@ async function deleteTransaction(transactionId) {
     const response = await axios({
       method: "delete",
       url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${transactionId}`,
-      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
     });
     return response;
   } catch (error) {
@@ -41,8 +39,7 @@ async function putTransactionEdit(payload, transactionId) {
   try {
     const response = await axios({
       method: "delete",
-      url: `https://vmentvs05/api/Transaction/${transactionId}`,
-      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      url: `http://192.168.50.71/api/Transaction/${transactionId}`,
       data: {
         date: payload.date,
         amount: payload.amount,
@@ -62,8 +59,7 @@ async function getTransactions(accountId) {
   try {
     const response = await axios({
       method: "get",
-      url: `https://vmentvs05/api/Transaction/TransactionsByAccount/${accountId}`,
-      headers: { "X-AIO-Key": "aio_kcGI202lAbtvIsWVhfyx21H8Kp6P" },
+      url: `http://192.168.50.71/api/Transaction/TransactionsByAccount/${accountId}`,
     });
     return response;
   } catch (error) {
