@@ -2,7 +2,7 @@ import userService from "@/store/service/userService";
 
 export default {
   setUser({ commit }, payload) {
-    commit("setuser", payload);
+    commit("setUser", payload);
   },
   toggleEditProfile({ commit }) {
     commit("toggleEditProfile");

@@ -31,7 +31,7 @@ export default {
         .then((response) => {
           console.log("login");
           commit("login");
-          commit("userModule/setUser", response);
+          commit("userModule/setUser", response, { root: true });
         })
         .catch((error) => {
           console.log("conenction problem", error);
@@ -56,11 +56,11 @@ export default {
     await userService
       .getLogin(login.loginEmail, login.loginPassword)
       .then((response) => {
-        if (response == "successful") {
+        if (response.data.data !== null) {
           console.log("login");
           commit("login");
-          commit("userModule/setUser", response);
-        } else if (response == "unsuccessful") {
+          commit("userModule/setUser", response, { root: true });
+        } else if (response.data.data === null) {
           console.log("wrong password");
           commit("showError");
         }
