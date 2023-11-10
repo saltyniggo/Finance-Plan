@@ -1,16 +1,17 @@
 import axios from "axios";
 
 async function putUser(payload) {
+  console.log(payload);
   try {
     const response = await axios({
       method: "put",
       url: `http://192.168.50.71/api/User`,
       data: {
         id: payload.userId,
-        firstName: payload.firstName,
-        lastName: payload.lastNamet,
         email: payload.email,
         password: payload.password,
+        firstName: payload.firstName,
+        lastName: payload.lastName,
       },
     });
     return response;

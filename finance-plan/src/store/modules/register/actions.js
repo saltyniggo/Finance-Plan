@@ -59,6 +59,7 @@ export default {
         if (response.data.data !== null) {
           console.log("login");
           commit("login");
+          console.log(response);
           commit("userModule/setUser", response, { root: true });
         } else if (response.data.data === null) {
           console.log("wrong password");
