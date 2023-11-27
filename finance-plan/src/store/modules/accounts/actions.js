@@ -58,12 +58,12 @@ export default {
           commit("setAccounts", response);
           data = response;
         } else if (response == "unsucessful") {
-          console.error("ERROR");
+          console.error("ERROR:(");
           data = response;
         }
       })
       .catch((error) => {
-        console.error("connection problem", error);
+        console.error("connection problem get account", error);
         data = error;
       });
     return data;

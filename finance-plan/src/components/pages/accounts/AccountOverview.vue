@@ -63,11 +63,11 @@
       + Account hinzufügen
     </button>
   </base-card>
-  <div v-else-if="message == 'Network Error'">
+  <div v-else-if="status > 299 || status < 200">
     <base-card>
       <h2>
-        Oops, hier ist wohl etwas schief gegangen... 😭🫠 <br />Hier kommst du
-        zurück zum
+        Oops, hier ist wohl {{ response }} etwas schief gegangen... 😭🫠
+        <br />Hier kommst du zurück zum
         <router-link to="/login">Login</router-link>
       </h2>
     </base-card>
@@ -87,6 +87,7 @@ export default {
     return {
       response: null,
       message: null,
+      status: null,
       isInputVisible: false,
       isEditVisible: false,
       editedAccountId: null,
@@ -140,6 +141,7 @@ export default {
   async beforeMount() {
     this.response = null;
     this.message = null;
+    this.response = null;
     const userId = this.$store.getters["userModule/getUserId"];
     const response = await this.$store.dispatch(
       "accountsModule/getAccounts",
@@ -147,6 +149,7 @@ export default {
     );
     this.message = response.message;
     console.log("HI: ", this.message);
+    this.status = response.response.status;
     this.response = true;
   },
   components: { SpinningLoader },
