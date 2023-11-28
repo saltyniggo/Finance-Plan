@@ -1,7 +1,6 @@
 import axios from "axios";
 
 async function putUser(payload) {
-  console.log(payload);
   try {
     const response = await axios({
       method: "put",

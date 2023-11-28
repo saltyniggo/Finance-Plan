@@ -35,6 +35,5 @@ export default {
 
   initBackdrop(context) {
     context.commit("initBackdrop");
-    console.log("action");
   },
 };

@@ -17,10 +17,7 @@ export default {
     commit("setRequestStatus", "loading");
     let requirementsOk = store.getters["registerModule/requirementsOK"];
     let rightTwice = store.getters["registerModule/rightTwice"];
-    console.log(requirementsOk, rightTwice);
-
     let registerData = store.getters["registerModule/getFormData"];
-
     if (rightTwice && requirementsOk) {
       await userService
         .postRegister(
@@ -30,18 +27,17 @@ export default {
           registerData.password
         )
         .then((response) => {
-          console.log("login");
           commit("login");
           commit("userModule/setUser", response, { root: true });
           commit("setRequestStatus", undefined);
         })
         .catch((error) => {
-          console.log("conenction problem", error);
+          console.error("connection problem", error);
           commit("showErrorConnection");
           commit("setRequestStatus", undefined);
         });
     } else {
-      console.log("other register error");
+      console.error("other register error");
       commit("setRequestStatus", undefined);
     }
   },
@@ -57,24 +53,21 @@ export default {
   async login({ commit }) {
     commit("setRequestStatus", "loading");
     let login = store.getters["registerModule/getFormData"];
-    console.log(login.loginEmail, login.loginPassword);
     await userService
       .getLogin(login.loginEmail, login.loginPassword)
       .then((response) => {
         if (response.data.data !== null) {
-          console.log("login");
           commit("login");
-          console.log(response);
           commit("userModule/setUser", response, { root: true });
           commit("setRequestStatus", undefined);
         } else if (response.data.data === null) {
-          console.log("wrong password");
+          console.warn("wrong password");
           commit("showError");
           commit("setRequestStatus", undefined);
         }
       })
       .catch((error) => {
-        console.log("conenction problem", error);
+        console.error("connection problem", error);
         commit("showErrorConnection");
         commit("setRequestStatus", undefined);
       });

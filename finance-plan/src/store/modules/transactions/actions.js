@@ -4,7 +4,6 @@ export default {
     await TransactionService.deleteTransaction(transactionId)
       .then((response) => {
         if (response == "successful") {
-          console.log("delte");
           context.commit("deleteTransaction", transactionId);
         } else if (response == "unsuccessful") {
           console.error("delete not possible");
@@ -24,7 +23,6 @@ export default {
     await TransactionService.addTransaction(payload)
       .then((response) => {
         if (response == "successful") {
-          console.log("addTransaction");
           commit("addTransaction", payload);
           commit("checktransactionModule");
         } else if (response == "unsucessful") {
@@ -49,7 +47,6 @@ export default {
     await TransactionService.putTransactionEdit(payload)
       .then((response) => {
         if (response == "successful") {
-          console.log("editTransaction");
           context.commit("submitEdit", { payload, id: toEditId });
         } else if (response == "unsucessful") {
           console.error("ERROR");
@@ -65,7 +62,6 @@ export default {
     await TransactionService.getTransactions(accountId)
       .then((response) => {
         if (response == "successful") {
-          console.log("editTransaction");
           commit("setTransactions");
         } else if (response == "unsucessful") {
           console.error("ERROR");
