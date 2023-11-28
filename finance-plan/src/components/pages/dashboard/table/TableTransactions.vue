@@ -71,16 +71,12 @@ export default {
   async beforeMount() {
     this.response = null;
     this.message = null;
-    console.log(this.name, this.balance, this.id);
-    // reicht ein platzhalter?
     const accountId = this.id;
-    console.log(accountId);
     const response = await this.$store.dispatch(
       "transactionModule/getTransactions",
       accountId
     );
     this.message = response.message;
-    console.log("HI: ", response);
     this.response = true;
   },
 

@@ -88,7 +88,7 @@
         </form>
         <button
           v-if="showDeleteBtn && requestStatus !== 'loading'"
-          @click="toggleDeleteBtn(), console.log(this.requestStatus)"
+          @click="toggleDeleteBtn()"
         >
           Account löschen
         </button>

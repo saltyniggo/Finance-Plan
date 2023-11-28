@@ -11,13 +11,11 @@ export default {
     commit("checkPassword", newValue);
   },
   async putUser({ commit }, payload) {
-    console.log(payload);
     commit("setRequestStatus", "loading");
     await userService
       .putUser(payload)
       .then((response) => {
         if (response.data.data !== null) {
-          console.log("putUser");
           commit("updateUserData", {
             newFirst: payload.firstName,
             newLast: payload.lastName,
@@ -28,7 +26,7 @@ export default {
           commit("popupModule/closeProfileEdit");
           commit("setRequestStatus", undefined);
         } else if (response.data.data === null) {
-          console.log("ERROR");
+          console.error("ERROR");
           commit("setRequestStatus", "editProblem");
         }
       })
@@ -43,16 +41,15 @@ export default {
       .deleteUser(userId)
       .then((response) => {
         if (response == "successful") {
-          console.log("delete");
           commit("deleteUser");
           commit("setRequestStatus", undefined);
         } else if (response == "unsuccessful") {
-          console.log("delete not possible");
+          console.warn("delete not possible");
           commit("setRequestStatus", "deleteProblem");
         }
       })
       .catch((error) => {
-        console.log("connection problem", error);
+        console.error("connection problem", error);
         commit("setRequestStatus", "connectionProblem");
       });
   },

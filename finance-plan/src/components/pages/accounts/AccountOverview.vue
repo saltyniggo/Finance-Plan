@@ -18,12 +18,12 @@
           params: {
             name: account.name,
             id: account.id,
-            balance: account.balance,
+            balance: account.accountBalance,
           },
         }"
       >
         <span>{{ account.name }}</span
-        ><span>{{ account.balance }}</span>
+        ><span>{{ account.accountBalance }}</span>
       </router-link>
       <button
         class="editBtn"
@@ -112,10 +112,8 @@ export default {
     isEditBtnDisabled(accId) {
       return this.isEditVisible && this.editedAccountId !== accId;
     },
-    showEdit(accId, event) {
+    showEdit(accId) {
       this.isDeleteDisabled = true;
-      const button = event.target;
-      console.log(button);
       this.showFloppyDisk = true;
       this.editedAccountId = accId;
       this.isEditVisible = !this.isEditVisible;
@@ -143,7 +141,7 @@ export default {
       "accountsModule/getAccounts",
       userId
     );
-    this.status = response.response.status;
+    this.status = response.status;
   },
   components: { SpinningLoader },
 };

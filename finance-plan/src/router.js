@@ -67,7 +67,6 @@ const router = createRouter({
       //   if (response == "successful") {
       //     next();
       //   } else {
-      //     console.log("upsi");
       //     router.push("/problemWithConnection");
       //   }
       // },

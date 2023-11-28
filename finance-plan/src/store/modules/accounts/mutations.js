@@ -21,6 +21,6 @@ export default {
   },
 
   setAccounts(state, response) {
-    state.accounts = response;
+    state.accounts = response.data.data;
   },
 };

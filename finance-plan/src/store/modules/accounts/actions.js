@@ -5,14 +5,13 @@ export default {
       .deleteAccount(accId)
       .then((response) => {
         if (response == "successful") {
-          console.log("delte");
           context.commit("deleteAccount", accId);
         } else if (response == "unsuccessful") {
-          console.log("delete not possible");
+          console.warn("delete not possible");
         }
       })
       .catch((error) => {
-        console.log("conenction problem", error);
+        console.error("connection problem", error);
       });
   },
 
@@ -21,10 +20,9 @@ export default {
       .addAccount(payload)
       .then((response) => {
         if (response == "successful") {
-          console.log("addAccount");
           commit("accountModule/addAccount", payload);
         } else if (response == "unsucessful") {
-          console.error("ERROR");
+          console.warn("ERROR");
         }
       })
       .catch((error) => {
@@ -37,10 +35,9 @@ export default {
       .putAccountEdit(payload.accId, payload.edit)
       .then((response) => {
         if (response == "successful") {
-          console.log("editAccount");
           commit("editAccount", payload);
         } else if (response == "unsucessful") {
-          console.error("ERROR");
+          console.warn("ERROR");
         }
       })
       .catch((error) => {
@@ -49,15 +46,14 @@ export default {
   },
 
   async getAccounts({ commit }, userId) {
-    let data = undefined;
+    let data = "123";
     await accountService
       .getAccounts(userId)
       .then((response) => {
-        if (response == "successful") {
-          console.log("editAccount");
+        if (response) {
           commit("setAccounts", response);
           data = response;
-        } else if (response == "unsucessful") {
+        } else {
           console.error("ERROR:(");
           data = response;
         }

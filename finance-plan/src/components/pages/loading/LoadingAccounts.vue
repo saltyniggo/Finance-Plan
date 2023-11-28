@@ -31,10 +31,7 @@ export default {
   },
 
   async mounted() {
-    console.log(this.name, this.balance, this.id);
-    // reicht ein platzhalter?
     const accountId = this.id;
-    console.log(accountId);
     const response = await this.$store.dispatch(
       "transactionModule/getTransactions",
       accountId
@@ -44,7 +41,6 @@ export default {
     } else {
       this.$router.push("/problemWithConnection");
     }
-    console.log(response);
   },
 };
 </script>
