@@ -6,12 +6,11 @@ export default {
     }
   },
 
-  addAccount(state, inputName) {
-    let uniqueId = new Date().toISOString();
+  addAccount(state, payload) {
     state.accounts.push({
-      name: inputName,
+      name: payload.name,
       accountBalance: 0,
-      id: uniqueId,
+      id: payload.userId,
     });
   },
 

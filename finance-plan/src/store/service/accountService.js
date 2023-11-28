@@ -28,17 +28,16 @@ import axios from "axios";
 //   }
 // );
 
-async function addAccount(accountNameInput) {
-  console.log(accountNameInput);
+async function addAccount(payload) {
   try {
     const response = await axios({
       method: "post",
       url: `http://192.168.50.71/api/Account`,
       data: {
-        name: accountNameInput,
+        name: payload.name,
         accountBalance: 0,
         accountType: 0,
-        userId: 2,
+        userId: payload.userId,
       },
     });
     return response;

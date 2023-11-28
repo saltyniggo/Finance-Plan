@@ -99,6 +99,9 @@ export default {
     accounts() {
       return this.$store.getters["accountsModule/getAccounts"];
     },
+    userId() {
+      return this.$store.getters["userModule/getUserId"];
+    },
   },
   methods: {
     ...mapActions("accountsModule", [
@@ -130,7 +133,7 @@ export default {
     },
     submitName() {
       this.showInput();
-      this.addAccount(this.addNameInput);
+      this.addAccount({ name: this.addNameInput, userId: this.userId });
       this.addNameInput = "";
     },
   },
@@ -146,6 +149,7 @@ export default {
   components: { SpinningLoader },
 };
 </script>
+
 <style scoped>
 h2 {
   color: #ecf0f3;
