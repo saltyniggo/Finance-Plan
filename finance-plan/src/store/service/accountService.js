@@ -1,5 +1,33 @@
 import axios from "axios";
 
+// // Request Interceptor
+// axios.interceptors.request.use(
+//   (config) => {
+//     // Log information or perform actions before the request is sent
+//     console.log("Request sent:", config);
+//     return config;
+//   },
+//   (error) => {
+//     // Handle errors during the request
+//     console.error("Request error:", error);
+//     return Promise.reject(error);
+//   }
+// );
+
+// // Response Interceptor
+// axios.interceptors.response.use(
+//   (response) => {
+//     // Log information or perform actions after a successful response
+//     console.log("Response received:", response);
+//     return response;
+//   },
+//   (error) => {
+//     // Handle errors during the response
+//     console.error("Response error:", error);
+//     return Promise.reject(error);
+//   }
+// );
+
 async function addAccount(accountNameInput) {
   try {
     const response = await axios({
