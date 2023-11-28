@@ -63,6 +63,7 @@ export default {
         } else {
           console.error("ERROR:(");
           data = response;
+          console.log(data);
         }
       })
       .catch((error) => {
