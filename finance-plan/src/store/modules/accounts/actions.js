@@ -19,8 +19,8 @@ export default {
     await accountService
       .addAccount(payload)
       .then((response) => {
-        if (response == "successful") {
-          commit("accountModule/addAccount", payload);
+        if (response) {
+          commit("addAccount", payload);
         } else if (response == "unsucessful") {
           console.warn("ERROR");
         }

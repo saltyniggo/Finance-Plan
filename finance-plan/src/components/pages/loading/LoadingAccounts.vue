@@ -25,7 +25,7 @@ export default {
     return {
       params: this.$route.params,
       name: this.$route.params.name,
-      balance: this.$route.params.balance,
+      accountBalance: this.$route.params.accountBalance,
       id: this.$route.params.id,
     };
   },

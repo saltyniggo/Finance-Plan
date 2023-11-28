@@ -10,7 +10,7 @@ export default {
     let uniqueId = new Date().toISOString();
     state.accounts.push({
       name: inputName,
-      balance: 0,
+      accountBalance: 0,
       id: uniqueId,
     });
   },

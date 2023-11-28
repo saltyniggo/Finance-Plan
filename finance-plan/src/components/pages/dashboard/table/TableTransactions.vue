@@ -3,7 +3,7 @@
     <edit-modal></edit-modal>
     <div v-show="!transactionsEmpty" class="tableSec">
       <table-head
-        :tableSum="$route.params.balance"
+        :tableSum="$route.params.accountBalance"
         :name="$route.params.name"
       ></table-head>
       <transition-group name="row" tag="ul">
@@ -52,7 +52,7 @@ export default {
       message: null,
       params: this.$route.params,
       name: this.$route.params.name,
-      balance: this.$route.params.balance,
+      accountBalance: this.$route.params.accountBalance,
       id: this.$route.params.id,
     };
   },

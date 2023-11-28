@@ -18,7 +18,7 @@
           params: {
             name: account.name,
             id: account.id,
-            balance: account.accountBalance,
+            accountBalance: account.accountBalance,
           },
         }"
       >
