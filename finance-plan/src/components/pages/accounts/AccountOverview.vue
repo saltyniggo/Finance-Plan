@@ -143,7 +143,8 @@ export default {
       "accountsModule/getAccounts",
       userId
     );
-    this.status = response.response.status;
+    console.log("response: " + response);
+    // this.status = response.response.status;
   },
   components: { SpinningLoader },
 };

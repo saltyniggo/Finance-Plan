@@ -53,13 +53,14 @@ export default {
     await accountService
       .getAccounts(userId)
       .then((response) => {
-        if (response == "successful") {
-          console.log("editAccount");
-          commit("setAccounts", response);
+        if (response.statusText == "OK") {
+          console.log("setAccounts");
+          commit("setAccounts", response.data);
           data = response;
-        } else if (response == "unsucessful") {
+        } else {
           console.error("ERROR:(");
           data = response;
+          console.log(data);
         }
       })
       .catch((error) => {
