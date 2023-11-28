@@ -50,14 +50,8 @@ export default {
     await accountService
       .getAccounts(userId)
       .then((response) => {
-<<<<<<< HEAD
         if (response) {
           commit("setAccounts", response);
-=======
-        if (response.statusText == "OK") {
-          console.log("setAccounts");
-          commit("setAccounts", response.data);
->>>>>>> b02f3455c152d6f00b903321e61f90fb70dd699c
           data = response;
         } else {
           console.error("ERROR:(");
