@@ -88,6 +88,7 @@ async function getAccounts(userId) {
       method: "get",
       url: `http://192.168.50.71/api/Account/ByUserId/${userId}`,
     });
+    console.log("request response: " + response);
     return response;
   } catch (error) {
     console.warn("Error while getting accounts from the DB");
