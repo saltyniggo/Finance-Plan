@@ -141,7 +141,12 @@ export default {
       "accountsModule/getAccounts",
       userId
     );
+<<<<<<< HEAD
     this.status = response.status;
+=======
+    console.log("response: " + response);
+    // this.status = response.response.status;
+>>>>>>> b02f3455c152d6f00b903321e61f90fb70dd699c
   },
   components: { SpinningLoader },
 };
