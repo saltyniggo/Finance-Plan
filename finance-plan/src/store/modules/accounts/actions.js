@@ -1,14 +1,16 @@
 import accountService from "@/store/service/accountService.js";
-import router from "@/router";
+/* import router from "@/router";
+ */
+
 export default {
-  async deleteAccount(context, accId) {
+  async deleteAccount({ commit, dispatch }, accId) {
     await accountService
       .deleteAccount(accId)
       .then((response) => {
-        if (response == "successful") {
-          router.push("/login");
-          context.commit("deleteAccount", accId);
-        } else if (response == "unsuccessful") {
+        if (response.status === 200) {
+          commit("deleteAccount", accId);
+          dispatch("getAccounts");
+        } else {
           console.warn("delete not possible");
         }
       })
@@ -21,7 +23,6 @@ export default {
     await accountService
       .addAccount(payload)
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           commit("addAccount", payload);
         } else {
@@ -40,7 +41,7 @@ export default {
     await accountService
       .putAccountEdit(payload.accId, payload.edit)
       .then((response) => {
-        if (response == "successful") {
+        if (response.status === 200) {
           commit("editAccount", payload);
         } else if (response == "unsucessful") {
           console.warn("ERROR");
@@ -52,23 +53,21 @@ export default {
   },
 
   async getAccounts({ commit }, userId) {
-    let data = "123";
     await accountService
       .getAccounts(userId)
       .then((response) => {
-        if (response) {
+        if (response.status === 200) {
           console.log(response);
           commit("setAccounts", response);
-          data = response;
+          return response;
         } else {
           console.error("ERROR:(");
-          data = response;
+          return response;
         }
       })
       .catch((error) => {
         console.error("connection problem get account", error);
-        data = error;
+        return error;
       });
-    return data;
   },
 };

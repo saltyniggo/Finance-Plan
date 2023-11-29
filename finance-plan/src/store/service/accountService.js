@@ -54,7 +54,6 @@ async function deleteAccount(accountId) {
       method: "delete",
       url: `http://192.168.50.71/api/Account/${accountId}`,
     });
-    console.log("is gelöscht");
     return response;
   } catch (error) {
     console.warn("Error when deleting Account in DB");
@@ -73,6 +72,13 @@ async function putAccountEdit(accountId, accountNameInput) {
         accountBalance: 0,
         name: accountNameInput,
         accountType: 1,
+        user: {
+          id: undefined,
+          email: undefined,
+          password: undefined,
+          firstName: undefined,
+          lastName: undefined,
+        },
       },
     });
     return response;

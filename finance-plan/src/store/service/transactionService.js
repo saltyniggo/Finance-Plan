@@ -41,10 +41,11 @@ async function putTransactionEdit(payload, transactionId) {
       method: "delete",
       url: `http://192.168.50.71/api/Transaction/${transactionId}`,
       data: {
-        date: payload.date,
+        id: payload.id,
         amount: payload.amount,
+        transactionType: payload.transactionType,
+        date: payload.date,
         description: payload.description,
-        category: payload.category,
       },
     });
     return response;

@@ -11,7 +11,6 @@ export default {
       id: payload.userId,
       accountBalance: 0,
       name: payload.name,
-      accountType: 0,
     });
   },
 
