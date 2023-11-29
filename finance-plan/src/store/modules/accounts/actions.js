@@ -3,13 +3,12 @@ import accountService from "@/store/service/accountService.js";
  */
 
 export default {
-  async deleteAccount({ commit, dispatch }, accId) {
+  async deleteAccount({ commit }, accId) {
     await accountService
       .deleteAccount(accId)
       .then((response) => {
         if (response.status === 200) {
           commit("deleteAccount", accId);
-          dispatch("getAccounts");
         } else {
           console.warn("delete not possible");
         }
@@ -19,12 +18,13 @@ export default {
       });
   },
 
-  async addAccount({ commit }, payload) {
+  async addAccount({ commit, dispatch }, payload) {
     await accountService
       .addAccount(payload)
       .then((response) => {
         if (response.status === 200) {
           commit("addAccount", payload);
+          dispatch("getAccounts", payload.userId);
         } else {
           console.warn("ERROR");
           console.warn(
