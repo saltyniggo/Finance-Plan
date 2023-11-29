@@ -72,13 +72,6 @@ async function putAccountEdit(accountId, accountNameInput) {
         accountBalance: 0,
         name: accountNameInput,
         accountType: 1,
-        user: {
-          id: undefined,
-          email: undefined,
-          password: undefined,
-          firstName: undefined,
-          lastName: undefined,
-        },
       },
     });
     return response;
