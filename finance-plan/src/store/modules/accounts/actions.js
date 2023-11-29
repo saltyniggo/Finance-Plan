@@ -53,21 +53,22 @@ export default {
   },
 
   async getAccounts({ commit }, userId) {
+    let data;
     await accountService
       .getAccounts(userId)
       .then((response) => {
         if (response.status === 200) {
-          console.log(response);
           commit("setAccounts", response);
-          return response;
+          data = response;
         } else {
           console.error("ERROR:(");
-          return response;
+          data = response;
         }
       })
       .catch((error) => {
         console.error("connection problem get account", error);
-        return error;
+        data = error;
       });
+    return data;
   },
 };
