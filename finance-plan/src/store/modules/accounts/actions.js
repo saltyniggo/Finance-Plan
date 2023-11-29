@@ -66,7 +66,5 @@ export default {
         data = error;
       });
     return data;
-
-    console.log("Hi");
   },
 };
