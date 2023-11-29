@@ -1,11 +1,12 @@
 import TransactionService from "@/store/service/transactionService.js";
+
 export default {
   async deleteTransaction(context, transactionId) {
     await TransactionService.deleteTransaction(transactionId)
       .then((response) => {
-        if (response == "successful") {
+        if (response.status === 200) {
           context.commit("deleteTransaction", transactionId);
-        } else if (response == "unsuccessful") {
+        } else {
           console.error("delete not possible");
         }
       })
@@ -20,13 +21,14 @@ export default {
     payload.date = `${day.toString().padStart(2, "0")}.${month
       .toString()
       .padStart(2, "0")}.${year}`;
+    payload.id = commit("getCategoryId", payload.id);
     await TransactionService.addTransaction(payload)
       .then((response) => {
-        if (response == "successful") {
+        if (response.status === 200) {
           commit("addTransaction", payload);
           commit("checktransactionModule");
-        } else if (response == "unsucessful") {
-          console.error("ERROR");
+        } else {
+          console.error("ERROR when adding transaction");
         }
       })
       .catch((error) => {
@@ -42,13 +44,15 @@ export default {
         .toString()
         .padStart(2, "0")}.${year}`;
     }
+
+    payload.id = commit("getCategoryId", payload.id);
     const toEditId = context.rootState.popupModule.toEditId;
     payload.id = toEditId;
     await TransactionService.putTransactionEdit(payload)
       .then((response) => {
-        if (response == "successful") {
+        if (response.status === 200) {
           context.commit("submitEdit", { payload, id: toEditId });
-        } else if (response == "unsucessful") {
+        } else {
           console.error("ERROR");
         }
       })
@@ -61,9 +65,9 @@ export default {
     let data = undefined;
     await TransactionService.getTransactions(accountId)
       .then((response) => {
-        if (response == "successful") {
+        if (response.status === 200) {
           commit("setTransactions");
-        } else if (response == "unsucessful") {
+        } else {
           console.error("ERROR");
         }
 
@@ -79,5 +83,9 @@ export default {
 
   checktransactionModule(context) {
     context.commit("checktransactionModule");
+  },
+
+  getCategoryId({ commit }, categoryName) {
+    commit("getCategoryId", categoryName);
   },
 };

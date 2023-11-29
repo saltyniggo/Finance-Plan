@@ -58,18 +58,6 @@ const router = createRouter({
         modal: BaseModal,
         edit: EditModal,
       },
-      // beforeEnter: async (to, from, next) => {
-      //   const accountId = to.params.id;
-      //   const response = await store.dispatch(
-      //     "transactionModule/getTransactions",
-      //     accountId
-      //   );
-      //   if (response == "successful") {
-      //     next();
-      //   } else {
-      //     router.push("/problemWithConnection");
-      //   }
-      // },
     },
     {
       name: "notFound",
