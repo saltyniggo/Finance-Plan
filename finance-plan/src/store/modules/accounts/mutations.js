@@ -8,9 +8,10 @@ export default {
 
   addAccount(state, payload) {
     state.accounts.push({
-      name: payload.name,
-      accountBalance: 0,
       id: payload.userId,
+      accountBalance: 0,
+      name: payload.name,
+      accountType: 0,
     });
   },
 
@@ -20,6 +21,7 @@ export default {
   },
 
   setAccounts(state, response) {
+    console.log(response.data.data);
     state.accounts = response.data.data;
   },
 };

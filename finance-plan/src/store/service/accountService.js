@@ -36,6 +36,7 @@ async function addAccount(payload) {
       data: {
         name: payload.name,
         accountBalance: 0,
+        // Wofür sind accountTypes und welche gibt es?
         accountType: 0,
         userId: payload.userId,
       },

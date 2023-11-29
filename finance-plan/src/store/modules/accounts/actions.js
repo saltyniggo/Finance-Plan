@@ -21,10 +21,14 @@ export default {
     await accountService
       .addAccount(payload)
       .then((response) => {
-        if (response) {
+        console.log(response);
+        if (response.status === 200) {
           commit("addAccount", payload);
-        } else if (response == "unsucessful") {
+        } else {
           console.warn("ERROR");
+          console.warn(
+            "Something went wrong when trying to add a new account!"
+          );
         }
       })
       .catch((error) => {
@@ -53,6 +57,7 @@ export default {
       .getAccounts(userId)
       .then((response) => {
         if (response) {
+          console.log(response);
           commit("setAccounts", response);
           data = response;
         } else {
