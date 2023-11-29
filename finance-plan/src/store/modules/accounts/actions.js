@@ -1,6 +1,4 @@
 import accountService from "@/store/service/accountService.js";
-/* import router from "@/router";
- */
 
 export default {
   async deleteAccount({ commit }, accId) {
@@ -10,7 +8,7 @@ export default {
         if (response.status === 200) {
           commit("deleteAccount", accId);
         } else {
-          console.warn("delete not possible");
+          console.warn("ERROR");
         }
       })
       .catch((error) => {
@@ -27,9 +25,6 @@ export default {
           dispatch("getAccounts", payload.userId);
         } else {
           console.warn("ERROR");
-          console.warn(
-            "Something went wrong when trying to add a new account!"
-          );
         }
       })
       .catch((error) => {
@@ -66,7 +61,7 @@ export default {
         }
       })
       .catch((error) => {
-        console.error("connection problem get account", error);
+        console.error("connection problem", error);
         data = error;
       });
     return data;
