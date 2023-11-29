@@ -51,8 +51,9 @@ async function deleteAccount(accountId) {
   try {
     const response = await axios({
       method: "delete",
-      url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${accountId}`,
+      url: `http://192.168.50.71/api/Account/${accountId}`,
     });
+    console.log("is gelöscht");
     return response;
   } catch (error) {
     console.warn("Error when deleting Account in DB");
@@ -64,11 +65,13 @@ async function deleteAccount(accountId) {
 async function putAccountEdit(accountId, accountNameInput) {
   try {
     const response = await axios({
-      method: "delete",
-      url: `http://192.168.50.71/api/Account/${accountId}`,
+      method: "put",
+      url: `http://192.168.50.71/api/Account`,
       data: {
-        accountId: accountId,
-        accountNameInput,
+        id: accountId,
+        accountBalance: 0,
+        name: accountNameInput,
+        accountType: 1,
       },
     });
     return response;

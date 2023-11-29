@@ -1,10 +1,12 @@
 import accountService from "@/store/service/accountService.js";
+import router from "@/router";
 export default {
   async deleteAccount(context, accId) {
     await accountService
       .deleteAccount(accId)
       .then((response) => {
         if (response == "successful") {
+          router.push("/login");
           context.commit("deleteAccount", accId);
         } else if (response == "unsuccessful") {
           console.warn("delete not possible");

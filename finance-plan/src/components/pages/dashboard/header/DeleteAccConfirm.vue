@@ -10,9 +10,14 @@
 
 <script>
 export default {
+  computed: {
+    userId() {
+      return this.$store.getters["userModule/getUserId"];
+    },
+  },
   methods: {
     async deleteUser() {
-      this.$store.dispatch("userModule/deleteUser");
+      this.$store.dispatch("userModule/deleteUser", this.userId);
     },
   },
 };
