@@ -43,7 +43,7 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           commit("editAccount", payload);
-        } else if (response == "unsucessful") {
+        } else {
           console.warn("ERROR");
         }
       })
