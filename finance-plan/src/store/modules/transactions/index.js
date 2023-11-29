@@ -6,6 +6,15 @@ export default {
   namespaced: true,
   state() {
     return {
+      categories: {
+        Haushalt: 0,
+        Essen: 1,
+        Freizeit: 2,
+        Auto: 3,
+        Hund: 4,
+        Katze: 5,
+        Maus: 6,
+      },
       transactionsEmpty: undefined,
       sum: 420,
       transactions: [

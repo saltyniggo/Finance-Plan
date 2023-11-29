@@ -31,4 +31,9 @@ export default {
   setTransactions(state, response) {
     state.transactions = response;
   },
+
+  getCategoryId(state, categoryName) {
+    const categoryId = state.categories[categoryName];
+    return categoryId !== undefined ? categoryId : null;
+  },
 };

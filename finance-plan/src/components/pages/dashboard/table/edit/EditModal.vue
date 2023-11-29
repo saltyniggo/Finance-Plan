@@ -56,11 +56,12 @@ export default {
 
   methods: {
     processEdit() {
-      this.submitEdit({
+      this.putTransactionEdit({
         date: this.newDate,
         amount: this.newAmount,
         description: this.newDescription,
         category: this.newCategory,
+        id: this.id,
       });
       this.newDate = undefined;
       this.newAmount = undefined;
@@ -69,7 +70,7 @@ export default {
       this.closeBackdrop();
       this.closeEditModal();
     },
-    ...mapActions("transactionModule", ["submitEdit"]),
+    ...mapActions("transactionModule", ["putTransactionEdit"]),
     ...mapActions("popupModule", ["closeEditModal", "closeBackdrop"]),
   },
   watch: {
