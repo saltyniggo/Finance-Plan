@@ -1,11 +1,11 @@
 import TransactionService from "@/store/service/transactionService.js";
 
 export default {
-  async deleteTransaction(context, transactionId) {
+  async deleteTransaction({ commit }, transactionId) {
     await TransactionService.deleteTransaction(transactionId)
       .then((response) => {
         if (response.status === 200) {
-          context.commit("deleteTransaction", transactionId);
+          commit("deleteTransaction", transactionId);
         } else {
           console.error("delete not possible");
         }
@@ -36,7 +36,7 @@ export default {
       });
   },
 
-  async editTransaction(context, { payload }) {
+  async editTransaction({ commit, rootState }, { payload }) {
     if (payload.date) {
       const parts = payload.date.split("-");
       const [year, month, day] = parts.map(Number);
@@ -46,12 +46,12 @@ export default {
     }
 
     payload.id = commit("getCategoryId", payload.id);
-    const toEditId = context.rootState.popupModule.toEditId;
+    const toEditId = rootState.popupModule.toEditId;
     payload.id = toEditId;
     await TransactionService.putTransactionEdit(payload)
       .then((response) => {
         if (response.status === 200) {
-          context.commit("submitEdit", { payload, id: toEditId });
+          commit("submitEdit", { payload, id: toEditId });
         } else {
           console.error("ERROR");
         }
@@ -81,8 +81,8 @@ export default {
     return data;
   },
 
-  checktransactionModule(context) {
-    context.commit("checktransactionModule");
+  checktransactionModule({ commit }) {
+    commit("checktransactionModule");
   },
 
   getCategoryId({ commit }, categoryName) {

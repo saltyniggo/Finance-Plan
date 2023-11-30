@@ -1,39 +1,39 @@
 export default {
-  openBackdrop(context) {
-    context.commit("openBackdrop");
+  openBackdrop({ commit }) {
+    commit("openBackdrop");
   },
-  closeBackdrop(context) {
-    context.commit("closeBackdrop");
+  closeBackdrop({ commit }) {
+    commit("closeBackdrop");
   },
-  openEditModal(context, id) {
-    context.commit("openEditModal", id);
+  openEditModal({ commit }, id) {
+    commit("openEditModal", id);
   },
-  closeEditModal(context) {
-    context.commit("closeEditModal");
+  closeEditModal({ commit }) {
+    commit("closeEditModal");
   },
-  openNavRight(context) {
-    context.commit("openNavRight");
+  openNavRight({ commit }) {
+    commit("openNavRight");
   },
-  closeNavRight(context) {
-    context.commit("closeNavRight");
+  closeNavRight({ commit }) {
+    commit("closeNavRight");
   },
-  openAddModal(context, modal) {
-    context.commit("openAddModal", modal);
+  openAddModal({ commit }, modal) {
+    commit("openAddModal", modal);
   },
-  closeAddModal(context) {
-    context.commit("closeAddModal");
+  closeAddModal({ commit }) {
+    commit("closeAddModal");
   },
-  openProfileEdit(context) {
-    context.commit("openProfileEdit");
+  openProfileEdit({ commit }) {
+    commit("openProfileEdit");
   },
-  closeProfileEdit(context) {
-    context.commit("closeProfileEdit");
+  closeProfileEdit({ commit }) {
+    commit("closeProfileEdit");
   },
-  clickBackdrop(context) {
-    context.commit("clickBackdrop");
+  clickBackdrop({ commit }) {
+    commit("clickBackdrop");
   },
 
-  initBackdrop(context) {
-    context.commit("initBackdrop");
+  initBackdrop({ commit }) {
+    commit("initBackdrop");
   },
 };
