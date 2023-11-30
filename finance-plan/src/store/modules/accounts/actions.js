@@ -59,7 +59,8 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           commit("setAccounts", response);
-          data = response;
+          data = response.status;
+          console.log("data: " + data);
         } else {
           console.error("ERROR:(");
           data = response;
@@ -69,6 +70,7 @@ export default {
         console.error("connection problem get account", error);
         data = error;
       });
+    console.log(data);
     return data;
   },
 };

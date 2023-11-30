@@ -1,5 +1,5 @@
 <template>
-  <base-card v-if="status <= 299 || status >= 200">
+  <base-card v-if="status <= 299 && status >= 200">
     <h2>Accounts</h2>
     <div v-for="account in accounts" :key="account.id" class="row">
       <input
@@ -138,13 +138,16 @@ export default {
     },
   },
   async beforeMount() {
+    console.log("before Mount");
     this.status = null;
     const userId = this.$store.getters["userModule/getUserId"];
     const response = await this.$store.dispatch(
       "accountsModule/getAccounts",
       userId
     );
-    this.status = response.status;
+    console.log("Respnse: " + response);
+    // this.status = response.status;
+    // console.log(this.status);
   },
   components: { SpinningLoader },
 };

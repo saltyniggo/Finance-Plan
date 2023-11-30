@@ -14,12 +14,16 @@ export default {
 
   async mounted() {
     // reicht ein platzhalter?
+    console.log("mounted");
     const userId = this.$store.getters["userModule/getUserId"];
     const response = await this.$store.dispatch(
       "accountsModule/getAccounts",
       userId
     );
-    if (response == "successful") {
+    console.log("loading" + response);
+    if (response.status === 200) {
+      this.$router.push("/accounts");
+    } else if (response.status === 404) {
       this.$router.push("/accounts");
     } else {
       this.$router.push("/:pathMatch(.*)*");

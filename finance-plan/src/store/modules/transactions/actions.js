@@ -45,7 +45,7 @@ export default {
         .padStart(2, "0")}.${year}`;
     }
 
-    payload.id = commit("getCategoryId", payload.id);
+    payload.id = context.commit("getCategoryId", payload.id);
     const toEditId = context.rootState.popupModule.toEditId;
     payload.id = toEditId;
     await TransactionService.putTransactionEdit(payload)
