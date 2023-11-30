@@ -36,7 +36,7 @@ export default {
       "transactionModule/getTransactions",
       accountId
     );
-    if (response == "successful") {
+    if (response.status === 200 || response.status === 404) {
       this.$router.push("/accounts/:name");
     } else {
       this.$router.push("/problemWithConnection");

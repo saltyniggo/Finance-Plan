@@ -40,10 +40,10 @@ export default {
     await userService
       .deleteUser(userId)
       .then((response) => {
-        if (response == "successful") {
+        if (response.status === 200) {
           commit("deleteUser");
           commit("setRequestStatus", undefined);
-        } else if (response == "unsuccessful") {
+        } else {
           console.warn("delete not possible");
           commit("setRequestStatus", "deleteProblem");
         }
