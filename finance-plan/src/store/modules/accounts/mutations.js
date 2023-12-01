@@ -20,7 +20,6 @@ export default {
   },
 
   setAccounts(state, response) {
-    console.log(response.data.data);
     state.accounts = response.data.data;
   },
 };
