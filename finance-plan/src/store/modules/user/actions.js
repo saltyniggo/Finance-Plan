@@ -22,8 +22,8 @@ export default {
             newEmail: payload.email,
           });
           commit("updatePassword", payload.password);
-          commit("popupModule/closeBackdrop", { root: true });
-          commit("popupModule/closeProfileEdit");
+          commit("popupModule/closeBackdrop", {}, { root: true });
+          commit("popupModule/closeProfileEdit", {}, { root: true });
           commit("setRequestStatus", undefined);
         } else if (response.data.data === null) {
           console.error("ERROR");

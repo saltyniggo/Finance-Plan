@@ -56,7 +56,6 @@ export default {
     await userService
       .getLogin(login.loginEmail, login.loginPassword)
       .then((response) => {
-        console.log(response);
         if (response.data.data !== null) {
           commit("login");
           commit("userModule/setUser", response, { root: true });
