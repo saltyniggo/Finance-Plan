@@ -6,6 +6,7 @@ export default {
   namespaced: true,
   state() {
     return {
+      currentAccount: undefined,
       categories: {
         Haushalt: 0,
         Essen: 1,

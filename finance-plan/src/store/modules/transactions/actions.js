@@ -67,7 +67,7 @@ export default {
     await TransactionService.getTransactions(accountId)
       .then((response) => {
         if (response.status === 200) {
-          commit("setTransactions");
+          commit("setTransactions", { data: response, id: accountId });
         } else {
           console.error("ERROR");
         }
