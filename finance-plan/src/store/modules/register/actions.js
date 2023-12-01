@@ -56,6 +56,7 @@ export default {
     await userService
       .getLogin(login.loginEmail, login.loginPassword)
       .then((response) => {
+        console.log(response);
         if (response.data.data !== null) {
           commit("login");
           commit("userModule/setUser", response, { root: true });
@@ -67,6 +68,7 @@ export default {
         }
       })
       .catch((error) => {
+        console.log(error);
         console.error("connection problem", error);
         commit("showErrorConnection");
         commit("setRequestStatus", undefined);

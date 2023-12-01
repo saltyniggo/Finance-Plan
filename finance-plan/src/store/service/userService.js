@@ -22,10 +22,12 @@ async function putUser(payload) {
 }
 
 async function getLogin(emailInput, passwordInput) {
+  const encodedEmail = encodeURIComponent(emailInput);
+  const encodedPassword = encodeURIComponent(passwordInput);
   try {
     const response = await axios({
       method: "get",
-      url: `http://192.168.50.71/api/User/${emailInput}/${passwordInput}`,
+      url: `http://192.168.50.71/api/User/${encodedEmail}/${encodedPassword}`,
     });
     return response;
   } catch (error) {
@@ -61,10 +63,11 @@ async function postRegister(
 }
 
 async function deleteUser(userId) {
+  const encodedUserID = encodeURIComponent(userId);
   try {
     const response = await axios({
       method: "delete",
-      url: `http://192.168.50.71/api/User/${userId}`,
+      url: `http://192.168.50.71/api/User/${encodedUserID}`,
     });
     return response;
   } catch (error) {
