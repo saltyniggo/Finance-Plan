@@ -92,7 +92,7 @@ async function getAccounts(userId) {
   } catch (error) {
     console.warn("Error while getting accounts from the DB");
     console.error("Error:", error);
-    throw error;
+    return error.response;
   }
 }
 

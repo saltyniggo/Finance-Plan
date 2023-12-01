@@ -54,16 +54,16 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           commit("setAccounts", response);
-          data = response;
+          data = response.status;
         } else {
-          console.error("ERROR:(");
-          data = response;
+          data = response.status;
         }
       })
       .catch((error) => {
         console.error("connection problem", error);
         data = error;
       });
+
     return data;
   },
 };
