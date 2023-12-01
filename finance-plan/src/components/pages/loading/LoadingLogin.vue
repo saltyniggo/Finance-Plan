@@ -13,14 +13,11 @@ export default {
   components: { SpinningLoader },
 
   async mounted() {
-    // reicht ein platzhalter?
-    console.log("mounted");
     const userId = this.$store.getters["userModule/getUserId"];
     const response = await this.$store.dispatch(
       "accountsModule/getAccounts",
       userId
     );
-    console.log("loading" + response);
     if (response.status === 200) {
       this.$router.push("/accounts");
     } else if (response.status === 404) {

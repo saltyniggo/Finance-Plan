@@ -21,6 +21,14 @@ export default {
     if (packet.category) state.transactions[id].category = packet.category;
   },
 
+  checktransactionModule(state) {
+    if (state.transactions.length <= 0) {
+      state.transactionsEmpty = true;
+    } else {
+      state.transactionsEmpty = false;
+    }
+  },
+
   setTransactions(state, { data, id }) {
     state.transactions = data;
     state.currentAccount = id;

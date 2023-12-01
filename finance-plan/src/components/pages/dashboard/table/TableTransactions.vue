@@ -1,7 +1,10 @@
 <template>
-  <div v-if="response && message == 'success'">
+  <div v-if="response">
     <edit-modal></edit-modal>
-    <div v-show="!transactionsEmpty" class="tableSec">
+    <div
+      v-show="!transactionsEmpty && (response === 200 || response === 404)"
+      class="tableSec"
+    >
       <table-head
         :tableSum="$route.params.accountBalance"
         :name="$route.params.name"
@@ -21,7 +24,7 @@
       <h2>Füge jetzt deine erste Transaktion hinzu!</h2>
     </div>
   </div>
-  <div v-else-if="message == 'Network Error'">
+  <div v-else-if="!response">
     <base-card>
       <h2>
         Oops, hier ist wohl etwas schief gegangen... 😭😨 <br />Hier kommst du
@@ -49,7 +52,6 @@ export default {
   data() {
     return {
       response: null,
-      message: null,
       params: this.$route.params,
       name: this.$route.params.name,
       accountBalance: this.$route.params.accountBalance,
@@ -70,14 +72,14 @@ export default {
 
   async beforeMount() {
     this.response = null;
-    this.message = null;
     const accountId = this.id;
     const response = await this.$store.dispatch(
       "transactionModule/getTransactions",
       accountId
     );
-    this.message = response.message;
-    this.response = true;
+    if (response.status === 200 || response.status === 404) {
+      this.response = response.status;
+    }
   },
 
   mounted() {

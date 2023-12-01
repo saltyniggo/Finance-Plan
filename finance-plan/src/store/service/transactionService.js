@@ -63,7 +63,7 @@ async function getTransactions(accountId) {
     return response;
   } catch (error) {
     console.warn("Error when getting transactions by account in DB");
-    throw error;
+    return error.response;
   }
 }
 

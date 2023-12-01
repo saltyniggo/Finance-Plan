@@ -26,7 +26,6 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           commit("addTransaction", payload);
-          // commit("checktransactionModule");
           dispatch("getTransactions");
         } else {
           console.error("ERROR when adding transaction");
@@ -62,12 +61,15 @@ export default {
       });
   },
 
-  async getTransactions({ commit }, accountId) {
+  async getTransactions({ commit, dispatch }, accountId) {
     let data = undefined;
     await TransactionService.getTransactions(accountId)
       .then((response) => {
         if (response.status === 200) {
           commit("setTransactions", { data: response, id: accountId });
+        } else if (response.status === 404) {
+          // commit("setTransactions", { data: response, id: accountId });
+          dispatch("checktransactionModule");
         } else {
           console.error("ERROR");
         }
