@@ -1,5 +1,5 @@
 <template>
-  <base-card v-if="status <= 299 && status >= 200">
+  <base-card v-if="(status <= 299 && status >= 200) || status === 404">
     <h2>Accounts</h2>
     <div v-for="account in accounts" :key="account.id" class="row">
       <input
@@ -63,6 +63,10 @@
       + Account hinzufügen
     </button>
   </base-card>
+  <base-card v-else-if="status === null">
+    <SpinningLoader></SpinningLoader>
+    <h2>Accountübersicht wird geladen</h2></base-card
+  >
   <div v-else-if="status > 299 || status < 200">
     <base-card>
       <h2>
@@ -72,10 +76,6 @@
       </h2>
     </base-card>
   </div>
-  <base-card v-else>
-    <SpinningLoader></SpinningLoader>
-    <h2>Accountübersicht wird geladen</h2></base-card
-  >
 </template>
 
 <script>
@@ -145,9 +145,9 @@ export default {
       "accountsModule/getAccounts",
       userId
     );
-    console.log("Respnse: " + response);
-    // this.status = response.status;
-    // console.log(this.status);
+
+    this.status = response;
+    console.log(this.status);
   },
   components: { SpinningLoader },
 };

@@ -38,8 +38,6 @@ export default {
     );
     if (response.status === 200) {
       this.$router.push("/accounts/:name");
-    } else if (response.status === 404) {
-      this.$router.push("/problemWithConnection");
     } else {
       this.$router.push("/problemWithConnection");
     }
