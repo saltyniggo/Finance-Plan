@@ -19,10 +19,11 @@ async function addTransaction(payload) {
   }
 }
 async function deleteTransaction(transactionId) {
+  const encodedTransactionId = encodeURIComponent(transactionId);
   try {
     const response = await axios({
       method: "delete",
-      url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${transactionId}`,
+      url: `https://io.adafruit.com/api/v2/angelos12345/feeds/${encodedTransactionId}`,
     });
     return response;
   } catch (error) {
@@ -32,10 +33,11 @@ async function deleteTransaction(transactionId) {
 }
 
 async function putTransactionEdit(payload, transactionId) {
+  const encodedTransactionId = encodeURIComponent(transactionId);
   try {
     const response = await axios({
       method: "put",
-      url: `http://192.168.50.71/api/Transaction/${transactionId}`,
+      url: `http://192.168.50.71/api/Transaction/${encodedTransactionId}`,
       data: {
         id: payload.id,
         amount: payload.amount,
@@ -52,10 +54,11 @@ async function putTransactionEdit(payload, transactionId) {
 }
 
 async function getTransactions(accountId) {
+  const encodedAccountId = encodeURIComponent(accountId);
   try {
     const response = await axios({
       method: "get",
-      url: `http://192.168.50.71/api/Transaction/TransactionsByAccount/${accountId}`,
+      url: `http://192.168.50.71/api/Transaction/TransactionsByAccount/${encodedAccountId}`,
     });
     return response;
   } catch (error) {

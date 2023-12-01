@@ -49,10 +49,11 @@ async function addAccount(payload) {
   }
 }
 async function deleteAccount(accountId) {
+  const encodedAccountId = encodeURIComponent(accountId);
   try {
     const response = await axios({
       method: "delete",
-      url: `http://192.168.50.71/api/Account/${accountId}`,
+      url: `http://192.168.50.71/api/Account/${encodedAccountId}`,
     });
     return response;
   } catch (error) {
@@ -83,10 +84,11 @@ async function putAccountEdit(accountId, accountNameInput) {
 }
 
 async function getAccounts(userId) {
+  const encodedUserId = encodeURIComponent(userId);
   try {
     const response = await axios({
       method: "get",
-      url: `http://192.168.50.71/api/Account/ByUserId/${userId}`,
+      url: `http://192.168.50.71/api/Account/ByUserId/${encodedUserId}`,
     });
     return response;
   } catch (error) {
