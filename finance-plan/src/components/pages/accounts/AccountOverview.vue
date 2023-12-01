@@ -138,7 +138,6 @@ export default {
     },
   },
   async beforeMount() {
-    console.log("before Mount");
     this.status = null;
     const userId = this.$store.getters["userModule/getUserId"];
     const response = await this.$store.dispatch(
@@ -147,7 +146,6 @@ export default {
     );
 
     this.status = response;
-    console.log(this.status);
   },
   components: { SpinningLoader },
 };
