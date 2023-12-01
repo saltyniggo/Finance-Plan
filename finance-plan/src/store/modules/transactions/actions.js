@@ -15,7 +15,7 @@ export default {
       });
   },
 
-  async addTransaction({ commit }, payload) {
+  async addTransaction({ commit, dispatch }, payload) {
     const parts = payload.date.split("-");
     const [year, month, day] = parts.map(Number);
     payload.date = `${day.toString().padStart(2, "0")}.${month
@@ -26,7 +26,8 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           commit("addTransaction", payload);
-          commit("checktransactionModule");
+          // commit("checktransactionModule");
+          dispatch("getTransactions");
         } else {
           console.error("ERROR when adding transaction");
         }

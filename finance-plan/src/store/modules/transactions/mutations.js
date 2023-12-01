@@ -20,13 +20,13 @@ export default {
       state.transactions[id].description = packet.description;
     if (packet.category) state.transactions[id].category = packet.category;
   },
-  checktransactionModule(state) {
-    if (state.transactions.length <= 0) {
-      state.transactionsEmpty = true;
-    } else {
-      state.transactionsEmpty = false;
-    }
-  },
+  // checktransactionModule(state) {
+  //   if (state.transactions.length <= 0) {
+  //     state.transactionsEmpty = true;
+  //   } else {
+  //     state.transactionsEmpty = false;
+  //   }
+  // },
 
   setTransactions(state, response) {
     state.transactions = response;
